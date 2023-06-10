@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+import TopNavigation from "./components/TopNavigationBar";
+import LoginButton from "./Auth0/login";
+import LogoutButton from "./Auth0/logout";
+import Profile from "./Auth0/profile";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    <TopNavigation />
+    <LoginButton />
+    <LogoutButton />
+    <Profile />
+    </>
+  )
 }
+
 
 export default App;
