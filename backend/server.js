@@ -7,6 +7,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const { Configuration, OpenAIApi } = require("openai");
+const generate = require("./generate")
 // import dotenv from "dotenv"
 // dotenv.config();
 
@@ -25,7 +26,7 @@ const openai = new OpenAIApi(configuration);
 
 const PORT = process.env.PORT || 8080;
 const app = express();
-
+app.use(express.json());
 app.use(cors());
 
 app.set("view engine", "ejs");
@@ -67,8 +68,22 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-module.exports = openai;
+app.post("/generate", async (req, res) => {
+  const question = req.body.question
+  try{
+    const user_question = await generate(question, openai);
+    res.json({response: user_question})
+
+  }catch(error) {
+    console.error(error)
+    res.status(500).send("Internal error server")
+  }
+})
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
-});
+}
+);
+module.exports = openai;

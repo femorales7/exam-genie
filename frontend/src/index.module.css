@@ -65,3 +65,10 @@
   font-weight: bold;
   margin-top: 40px;
 }
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+.radio-option {
+  margin-bottom: 10px;
+}
