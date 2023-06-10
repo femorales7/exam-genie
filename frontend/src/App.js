@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import logo from './logo.svg';
 import style from './index.module.css'
 import{useState} from 'react'
@@ -21,6 +22,21 @@ function App() {
     </form>
   </main>
   );
+=======
+import React from "react";
+
+import TopNavigation from "./components/TopNavigationBar";
+import Profile from "./Auth0/profile";
+
+const App = () => {
+  return (
+    <>
+    <TopNavigation />
+    <Profile />
+    </>
+  )
+>>>>>>> refs/remotes/origin/main
 }
+
 
 export default App;
