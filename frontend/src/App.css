@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+.main input[type="submit"] {
+  display: flex;
+  flex-direction: row;
+  padding: 12px 0;
+  color: #fff;
+  background-color: #10a37f;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
