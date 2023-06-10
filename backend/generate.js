@@ -14,7 +14,7 @@ const generate = async (question, openaiClient) => {
   const chatGptApi = async (question) => {
     const messages = [
       { role: "system", content: "you are a provider of question with multiple choise, open answer or mix." },
-      { role: "user", content: "I need 5 questions type test of Philosophy-Epistemology-Rationalism with feedback the reason of that answer, I need before the question put Q: , before the each option put A), B), C), D), E) as appropriate, before the answer put Answer: and before the feedback put feedback:." },
+      { role: "user", content: "I need 1 questions type test of Philosophy-Epistemology-Rationalism with feedback the reason of that answer, I need before the question put Q: , before the each option put A), B), C), D), E) as appropriate, before the answer put Answer: and before the feedback put feedback:." },
       { role: "assistant", content: `Q: Epistemology draws assessments for items that have tangible costs when open accordingly with reasonability that excludes chutzpah.
         A)True
         B)FALSE
