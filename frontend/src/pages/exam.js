@@ -79,7 +79,7 @@ function Exam() {
       .filter((line) => line.trim().length > 0) // Exclude empty lines
       .join("\n");
     }
-
+console.log("question", options, answer, feedback )
     return { question, options, answer, feedback };
   };
   
@@ -92,50 +92,46 @@ function Exam() {
     setSelectedOption(e.target.value);
   };
 
-  return (
-    <>
-      <main className={style.main}>
-        <h3>EXAM-GENIE</h3>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="query-description"
-            placeholder="question"
-            onChange={(e) => setQuestion(e.target.value)}
-          />
-          <input type="submit" value="generate question" />
-        </form>
-  
-        {question && (
-          <div>
-            <h2>{question}</h2>
-            <ul>
-              {options.map((option) => (
-                <li key={option.letter} className={style["radio-option"]}>
-                  <label>
-                    <input
-                      type="radio"
-                      name="options"
-                      value={option.letter}
-                      checked={selectedOption === option.letter}
-                      onChange={handleOptionChange}
-                    />
-                    {option.letter}) {option.text}
-                  </label>
-                </li>
-              ))}
-            </ul>
-            {selectedOption && (
-              <div>
-                <p>Answer: {answer}</p>
-                <p>Feedback: {feedback}</p>
-              </div>
-            )}
-          </div>
-        )}
-      </main>
-  
-    </>
+   return (
+    <main className={style.main}>
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          name="query-description"
+          placeholder="question"
+          onChange={(e) => setQuestion(e.target.value)}
+        />
+        <input type="submit" value="generate question" />
+      </form>
+
+      {question && (
+        <div>
+          <h2>{question}</h2>
+          <ul>
+            {options.map((option, index) => (
+              <li key={index}>
+                <label>
+                  <input
+                    type="radio"
+                    name="options"
+                    value={option}
+                    checked={selectedOption === option}
+                    onChange={handleOptionChange}
+                  />
+                  {option}
+                </label>
+              </li>
+            ))}
+          </ul>
+          {selectedOption && (
+            <div>
+              <p>Answer: {answer}</p>
+              <p>Feedback: {feedback}</p>
+            </div>
+          )}
+        </div>
+      )}
+    </main>
   );
 }
 
