@@ -96,46 +96,51 @@ function App() {
   };
 
   return (
-    <main className={style.main}>
-      <h3>EXAM-GENIE</h3>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="query-description"
-          placeholder="question"
-          onChange={(e) => setQuestion(e.target.value)}
-        />
-        <input type="submit" value="generate question" />
-      </form>
-
-      {question && (
-        <div>
-          <h2>{question}</h2>
-          <ul>
-            {options.map((option) => (
-              <li key={option.letter} className={style["radio-option"]}>
-                <label>
-                  <input
-                    type="radio"
-                    name="options"
-                    value={option.letter}
-                    checked={selectedOption === option.letter}
-                    onChange={handleOptionChange}
-                  />
-                  {option.letter}) {option.text}
-                </label>
-              </li>
-            ))}
-          </ul>
-          {selectedOption && (
-            <div>
-              <p>Answer: {answer}</p>
-              <p>Feedback: {feedback}</p>
-            </div>
-          )}
-        </div>
-      )}
-    </main>
+    <>
+      <div>
+        <TopNavigation/>
+      </div>
+      <main className={style.main}>
+        <h3>EXAM-GENIE</h3>
+        <form onSubmit={onSubmit}>
+          <input
+            type="text"
+            name="query-description"
+            placeholder="question"
+            onChange={(e) => setQuestion(e.target.value)}
+          />
+          <input type="submit" value="generate question" />
+        </form>
+  
+        {question && (
+          <div>
+            <h2>{question}</h2>
+            <ul>
+              {options.map((option) => (
+                <li key={option.letter} className={style["radio-option"]}>
+                  <label>
+                    <input
+                      type="radio"
+                      name="options"
+                      value={option.letter}
+                      checked={selectedOption === option.letter}
+                      onChange={handleOptionChange}
+                    />
+                    {option.letter}) {option.text}
+                  </label>
+                </li>
+              ))}
+            </ul>
+            {selectedOption && (
+              <div>
+                <p>Answer: {answer}</p>
+                <p>Feedback: {feedback}</p>
+              </div>
+            )}
+          </div>
+        )}
+      </main>  
+    </>
   );
 }
 
