@@ -139,7 +139,8 @@ function App() {
             )}
           </div>
         )}
-      </main>  
+      </main>
+  
     </>
   );
 }

@@ -70,6 +70,7 @@ app.get("/", (req, res) => {
 
 app.post("/generate", async (req, res) => {
   const question = req.body.question
+  console.log(req.body)
   try{
     const user_question = await generate(question, openai);
     res.json({response: user_question})
