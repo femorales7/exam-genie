@@ -8,7 +8,9 @@ const generate = async (question, openaiClient) => {
       max_tokens: 200,
       temperature: 1.6,
     });
+   
     return response.data;
+
   };
 
   const chatGptApi = async (question) => {
@@ -31,7 +33,8 @@ const generate = async (question, openaiClient) => {
       model: "gpt-3.5-turbo",
       messages: messages,
     });
-    return response.data.choices[0].message.content;
+    console.log("response.data", response.data)
+    return response.data;
   };
 
   return await chatGptApi(question);
