@@ -73,7 +73,7 @@ function App() {
     ) {
       options = lines
       .slice(optionsStartIndex, answerIndex)
-      .map((line) => line.trim()) // Remove the substring(3).trim() to keep the options as is
+      .map((line) => line.trim()) 
       .filter((option) => option.length > 0); // Exclude empty options
     answer = lines[answerIndex].substring(8).trim();
     feedback = lines
