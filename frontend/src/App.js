@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import style from "./index.module.css";
 import { useState } from "react";
 import TopNavigation from "./components/TopNavigationBar";
