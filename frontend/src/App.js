@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import style from "./index.module.css";
 import { useState } from "react";
+import TopNavigation from "./components/TopNavigationBar";
 
 function App() {
   const [question, setQuestion] = useState("");
@@ -22,11 +23,11 @@ function App() {
     const questionData = data.response;
     const { question, options, answer, feedback } =
       extractQuestionData(questionData);
-    setQuestion(question);
-    setOptions(options);
-    setAnswer(answer);
-    setFeedback(feedback);
-    setSelectedOption(null); // Reset selected option
+      setQuestion(question);
+      setOptions(options);
+      setAnswer(answer);
+      setFeedback(feedback);
+      setSelectedOption(null); // Reset selected option
 
     return { question, options, answer, feedback }; // Return the question data
   };
@@ -80,46 +81,49 @@ function App() {
   };
 
   return (
-    <main className={style.main}>
-      <h3>EXAM-GENIE</h3>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="query-description"
-          placeholder="question"
-          onChange={(e) => setQuestion(e.target.value)}
-        />
-        <input type="submit" value="generate question" />
-      </form>
+    <div>
+      <TopNavigation/>
+      <main className={style.main}>
+        <h3>EXAM-GENIE</h3>
+        <form onSubmit={onSubmit}>
+          <input
+            type="text"
+            name="query-description"
+            placeholder="question"
+            onChange={(e) => setQuestion(e.target.value)}
+          />
+          <input type="submit" value="generate question" />
+        </form>
 
-      {question && (
-        <div>
-          <h2>{question}</h2>
-          <ul>
-            {options.map((option) => (
-              <li key={option.letter} className={style["radio-option"]}>
-                <label>
-                  <input
-                    type="radio"
-                    name="options"
-                    value={option.letter}
-                    checked={selectedOption === option.letter}
-                    onChange={handleOptionChange}
-                  />
-                  {option.letter}) {option.text}
-                </label>
-              </li>
-            ))}
-          </ul>
-          {selectedOption && (
-            <div>
-              <p>Answer: {answer}</p>
-              <p>Feedback: {feedback}</p>
-            </div>
-          )}
-        </div>
-      )}
-    </main>
+        {question && (
+          <div>
+            <h2>{question}</h2>
+            <ul>
+              {options.map((option) => (
+                <li key={option.letter} className={style["radio-option"]}>
+                  <label>
+                    <input
+                      type="radio"
+                      name="options"
+                      value={option.letter}
+                      checked={selectedOption === option.letter}
+                      onChange={handleOptionChange}
+                    />
+                    {option.letter}) {option.text}
+                  </label>
+                </li>
+              ))}
+            </ul>
+            {selectedOption && (
+              <div>
+                <p>Answer: {answer}</p>
+                <p>Feedback: {feedback}</p>
+              </div>
+            )}
+          </div>
+        )}
+      </main>
+    </div>
   );
 }
 

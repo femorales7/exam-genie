@@ -6,13 +6,13 @@ import App from './App';
 const root = createRoot(document.getElementById('root'));
 
 root.render(
-<Auth0Provider
+  <Auth0Provider
     domain="dev-a15bk3rmbiarbtcd.us.auth0.com"
     clientId="i9rUdfYXgWYbgBkqaYaTpVCmeG1ubiLn"
     authorizationParams={{
       redirect_uri: window.location.origin
     }}
   >
-    <App />
-  </Auth0Provider>,
+    <App/>
+  </Auth0Provider>
 );
