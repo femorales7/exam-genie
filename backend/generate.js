@@ -34,7 +34,7 @@ const generate = async (question, openaiClient) => {
       messages: messages,
     });
     console.log("response.data", response.data)
-    return response.data;
+    return response.data.choices[0].message.content;
   };
 
   return await chatGptApi(question);
