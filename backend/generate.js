@@ -1,4 +1,5 @@
 const openaiClient = require("./server");
+const extractQuestionData = require('./helpFunction/extractQuestions')
 
 const generate = async (question, openaiClient) => {
   const davinci = async (question) => {
@@ -8,7 +9,7 @@ const generate = async (question, openaiClient) => {
       max_tokens: 200,
       temperature: 1.6,
     });
-   
+
     return response.data;
 
   };
@@ -23,9 +24,9 @@ const generate = async (question, openaiClient) => {
         C)It depends
         D)judgment call
         E)Factual enforcement mechnistic
-      
+
         Answer: B) FALSE
-      
+
         Feedback: Epistemology assess open items with expectation to propose possible poses hypothes says but offer details adequate ongoing understanding reliance or holds of pers will without incl of chutzpah aka tact.` },
       { role: "user", content: `${question}.` },
     ];
@@ -34,6 +35,15 @@ const generate = async (question, openaiClient) => {
       messages: messages,
     });
     console.log("response.data", response.data)
+
+    // const { question, options, answer, feedback } =
+    // extractQuestionData(response.data);
+
+    // console.log("question", question);
+    // console.log("options", options);
+    // console.log("answer", answer);
+    // console.log("feedback", feedback);
+
     return response.data.choices[0].message.content;
   };
 

@@ -73,6 +73,7 @@ app.post("/generate", async (req, res) => {
   console.log(req.body)
   try{
     const user_question = await generate(question, openai);
+    console.log("user_question", user_question);
     res.json({response: user_question})
 
   }catch(error) {
