@@ -70,29 +70,24 @@ function Exam() {
       feedbackIndex !== -1
     ) {
       options = lines
-      .slice(optionsStartIndex, answerIndex)
-      .map((line) => line.trim()) 
-      .filter((option) => option.length > 0); // Exclude empty options
-    answer = lines[answerIndex].substring(8).trim();
-    feedback = lines
-      .slice(feedbackIndex)
-      .filter((line) => line.trim().length > 0) // Exclude empty lines
-      .join("\n");
+        .slice(optionsStartIndex, answerIndex)
+        .map((line) => line.trim())
+        .filter((option) => option.length > 0); // Exclude empty options
+      answer = lines[answerIndex].substring(8).trim();
+      feedback = lines
+        .slice(feedbackIndex)
+        .filter((line) => line.trim().length > 0) // Exclude empty lines
+        .join("\n");
     }
-console.log("question", options, answer, feedback )
+    console.log("question", options, answer, feedback);
     return { question, options, answer, feedback };
   };
-  
-  
-  
-  
-  
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
   };
 
-   return (
+  return (
     <main className={style.main}>
       <form onSubmit={onSubmit}>
         <input
