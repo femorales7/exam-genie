@@ -1,4 +1,5 @@
 import TopNavigation from "./components/TopNavigationBar";
+import Footer from "./components/Footer";
 import Home from "./pages/home";
 import AboutUs from "./pages/aboutUs";
 import Exam from "./pages/exam";
@@ -17,6 +18,7 @@ function App() {
           <Route path="/about" exact element={<AboutUs />} />
           <Route path="/dashboard" exact element={<Dashboard />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   )
