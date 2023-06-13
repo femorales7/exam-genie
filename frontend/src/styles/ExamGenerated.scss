@@ -1,0 +1,25 @@
+.question-card {
+  margin: 0 auto;
+
+  background-color: grey;
+  border-radius: 16px;
+  padding: 16px;
+
+  width: 70%;
+  height: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+
+.answers-list {
+  list-style: none;
+}
+
+.answers-list li {
+  background-color: darkgray;
+  padding: 16px;
+  border: 3px solid white;
+  border-radius: 20px;
+  font-size: 20px;
+  margin-top: 8px;
+}

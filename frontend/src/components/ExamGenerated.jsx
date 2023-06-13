@@ -3,6 +3,7 @@ import { useState } from "react";
 import data from "../components/topics/topics.json";
 import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
+import "../styles/ExamGenerated.scss"
 
 function Exam() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -33,8 +34,16 @@ function Exam() {
     console.log("return from server", questionData);
   };
 
-  const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const makeQuestion = { question, options, answer, feedback }
+    fetch('http://localhost:3000/exam', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify(makeQuestion)
+    }).then(() => {
+      console.log('new question added')
+    })
   };
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
@@ -77,27 +86,26 @@ function Exam() {
           <input type="submit" value="Next question" />
         </form>
       </div>
-      <div className="questions">
-        <h3>Questions</h3>
         {question && (
+        <div className="question-card">
           <div>
-            <h2>{question}</h2>
-            <ul>
-              {options.map((option, index) => (
-                <li key={index}>
-                  <label>
-                    <input
-                      type="radio"
-                      name="options"
-                      value={option}
-                      checked={selectedOption === option}
-                      onChange={handleOptionChange}
-                    />
-                    {option}
-                  </label>
-                </li>
-              ))}
-            </ul>
+            <h3>Questions</h3>
+            <form onSubmit={handleSubmit}>
+              <h2>{question}</h2>
+              <ul className="answers-list">
+                {options.map((option, index) => (
+                  <li key={index}>
+                      <input
+                        type="radio"
+                        name="options"
+                        value={option}
+                        />
+                      <label>{option}</label>
+                  </li>
+                ))}
+              </ul>
+              <button>Submit</button>
+            </form>
             {selectedOption && (
               <div>
                 <p>Answer: {answer}</p>
@@ -105,8 +113,8 @@ function Exam() {
               </div>
             )}
           </div>
+        </div>
         )}
-      </div>
     </main>
   );
 }
