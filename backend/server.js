@@ -8,6 +8,9 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { Configuration, OpenAIApi } = require("openai");
 const generate = require("./generate")
+const extractQuestionData = require('./helpFunction/extractQuestions')
+const { addQuestions } = require("./db/queries/addQuestions")
+
 // import dotenv from "dotenv"
 // dotenv.config();
 
@@ -70,10 +73,18 @@ app.get("/", (req, res) => {
 
 app.post("/generate", async (req, res) => {
   const question = req.body.question
-  console.log(req.body)
   try{
     const user_question = await generate(question, openai);
-    console.log("user_question", user_question);
+    // console.log("user_question", user_question);
+    // const { extractQuestion, options, answer, feedback } =
+    // extractQuestionData(user_question);
+
+
+    addQuestions(extractQuestionData(user_question))
+    .then((data) => {
+      console.log('add new question', data);
+    })
+
     res.json({response: user_question})
 
   }catch(error) {
