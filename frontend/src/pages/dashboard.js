@@ -21,6 +21,7 @@ function Dashboard() {
 
   }
   return(
+    <section id="background">
     <Container fluid className="project-section">
         <div style={ {width: "20%"}}>
           <Doughnut
@@ -29,6 +30,7 @@ function Dashboard() {
           />
         </div>
     </Container>
+    </section>
   )
 }
 
