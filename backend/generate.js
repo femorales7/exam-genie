@@ -1,6 +1,4 @@
 const openaiClient = require("./server");
-const extractQuestionData = require('./helpFunction/extractQuestions')
-
 const generate = async (question, openaiClient) => {
   const davinci = async (question) => {
     const response = await openaiClient.createCompletion({
@@ -34,16 +32,8 @@ const generate = async (question, openaiClient) => {
       model: "gpt-3.5-turbo",
       messages: messages,
     });
+
     console.log("response.data", response.data)
-
-    // const { question, options, answer, feedback } =
-    // extractQuestionData(response.data);
-
-    // console.log("question", question);
-    // console.log("options", options);
-    // console.log("answer", answer);
-    // console.log("feedback", feedback);
-
     return response.data.choices[0].message.content;
   };
 

@@ -1,15 +1,18 @@
 const db = require('../connection');
 
 const addQuestions = (post) => {
-  const query = `INSERT INTO questions (user_id, exam_id, question_type, question, answer) VALUES ($1, $2, $3, $4, $5);`;
+  const query = `INSERT INTO questions (user_id,  question, question_option, answer, feedback) VALUES ($1, $2, $3, $4, $5);`;
 
-  const user_id = post.user_id;
-  const exam_id = post.exam_id;
-  const question_type = post.question.type;
-  const question = post.question;
+  console.log(post)
+
+  const user_id = 1;
+  const question = post.extractQuestion;
+  const question_option = post.options.join();
+
   const answer = post.answer;
+  const feedback = post.feedback;
 
-  return db.query(query, [user_id, exam_id, question_type, question, answer])
+  return db.query(query, [user_id, question, question_option, answer, feedback])
   .then(data => {
     console.log('data', data.rows);
     return data.rows;
