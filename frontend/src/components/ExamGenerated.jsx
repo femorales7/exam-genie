@@ -1,36 +1,9 @@
 import style from "../index.module.css";
 import { useState } from "react";
-import data from "../topics/topics.json";
+import data from "../components/topics/topics.json";
+import BotonOpciones from "./generatedQuestion/botonOpciones";
+import generateQuestion from "./generatedQuestion/generateQuestion";
 
-
-
-const BotonOpciones = ({ opciones, handleOptionSelection }) => {
-  const [opcionSeleccionada, setOpcionSeleccionada] = useState(null);
-  const [mostrarOpciones, setMostrarOpciones] = useState(false);
-
-  const handleOpcionSeleccionada = (opcion) => {
-    setOpcionSeleccionada(opcion);
-    handleOptionSelection(opcion);
-    setMostrarOpciones(false);
-  };
-
-  return (
-    <div>
-      <button onClick={() => setMostrarOpciones(!mostrarOpciones)}>
-        {opcionSeleccionada ? opcionSeleccionada : "Seleccionar opción"}
-      </button>
-      {mostrarOpciones && (
-        <ul>
-          {opciones.map((opcion) => (
-            <li key={opcion} onClick={() => handleOpcionSeleccionada(opcion)}>
-              {opcion}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
 
 function Exam() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -42,86 +15,21 @@ function Exam() {
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
 
-  console.log(selectedCategory);      // Log the selected category
-console.log(selectedSubcategory);   // Log the selected subcategory
-console.log(selectedTopic); 
+  console.log(selectedCategory); // Log the selected category
+  console.log(selectedSubcategory); // Log the selected subcategory
+  console.log(selectedTopic);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const questionData = await generateQuestion();
+    const questionData = await generateQuestion(selectedCategory,
+      selectedSubcategory,
+      selectedTopic,
+      setQuestion,
+      setOptions,
+      setAnswer,
+      setFeedback,
+      setSelectedOption);
     console.log("return from server", questionData);
-  };
-
-  const generateQuestion = async (inputQuestion) => {
-    const structure = `I need 1 question type test of ${selectedCategory}-${selectedSubcategory}-${selectedTopic} with feedback. The reason for that answerI need before the question put Q: , before the each option put A), B), C), D), E) as appropriate, before the answer put Answer: and before the feedback put feedback:`;
-    console.log("structure", structure)
-    const response = await fetch("http://localhost:8080/generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ question: structure }),
-    });
-    const data = await response.json();
-    console.log("data", data); // Log the response data
-
-    const { response: questionData } = data;
-    const { question, options, answer, feedback } =
-      extractQuestionData(questionData);
-
-    setQuestion(question);
-    setOptions(options);
-    setAnswer(answer);
-    setFeedback(feedback);
-    setSelectedOption(null);
-
-    return { question, options, answer, feedback };
-  };
-
-  const extractQuestionData = (text) => {
-    const lines = text.split("\n");
-    console.log("lines", lines);
-    let question = "";
-    let options = [];
-    let answer = "";
-    let feedback = "";
-
-    const questionIndex = lines.findIndex((line) => line.startsWith("Q:"));
-    console.log("questionIndex", questionIndex);
-    if (questionIndex !== -1) {
-      question = lines[questionIndex].substring(3).trim();
-    }
-
-    const optionsStartIndex = lines.findIndex((line) =>
-      line.trim().startsWith("A)")
-    );
-    console.log("optionsStartIndex", optionsStartIndex);
-    const answerIndex = lines.findIndex((line) =>
-      line.trim().startsWith("Answer:")
-    );
-    console.log("answerIndex", answerIndex);
-    const feedbackIndex = lines.findIndex((line) =>
-      line.trim().startsWith("Feedback:")
-    );
-    console.log("feedbackIndex", feedbackIndex);
-
-    if (
-      optionsStartIndex !== -1 &&
-      answerIndex !== -1 &&
-      feedbackIndex !== -1
-    ) {
-      options = lines
-        .slice(optionsStartIndex, answerIndex)
-        .map((line) => line.trim())
-        .filter((option) => option.length > 0); // Exclude empty options
-      answer = lines[answerIndex].substring(8).trim();
-      feedback = lines
-        .slice(feedbackIndex)
-        .filter((line) => line.trim().length > 0) // Exclude empty lines
-        .join("\n");
-    }
-    console.log("question", options, answer, feedback);
-    return { question, options, answer, feedback };
   };
 
   const handleOptionChange = (e) => {
@@ -144,27 +52,32 @@ console.log(selectedTopic);
 
   return (
     <main className={style.main}>
+      <div className="options">
       <form onSubmit={onSubmit}>
         Topic
-      <BotonOpciones
-        opciones={Object.keys(data)}
-        handleOptionSelection={handleCategorySelection}
-      />Sub-Topic
-      {selectedCategory && (
         <BotonOpciones
-          opciones={Object.keys(data[selectedCategory])}
-          handleOptionSelection={handleSubcategorySelection}
+          opciones={Object.keys(data)}
+          handleOptionSelection={handleCategorySelection}
         />
-      )}Detail
-      {selectedSubcategory && (
-        <BotonOpciones
-          opciones={data[selectedCategory][selectedSubcategory]}
-          handleOptionSelection={handleTopicSelection}
-        />
-      )}
-      <input type="submit" value="generate question" />
+        Sub-Topic
+        {selectedCategory && (
+          <BotonOpciones
+            opciones={Object.keys(data[selectedCategory])}
+            handleOptionSelection={handleSubcategorySelection}
+          />
+        )}
+        Detail
+        {selectedSubcategory && (
+          <BotonOpciones
+            opciones={data[selectedCategory][selectedSubcategory]}
+            handleOptionSelection={handleTopicSelection}
+          />
+        )}
+        <input type="submit" value="generate question" />
       </form>
-
+      </div>
+          <div className="questions">
+            <h3>Questions</h3> 
       {question && (
         <div>
           <h2>{question}</h2>
@@ -192,6 +105,7 @@ console.log(selectedTopic);
           )}
         </div>
       )}
+      </div>
     </main>
   );
 }
