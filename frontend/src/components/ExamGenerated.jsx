@@ -1,7 +1,7 @@
 import style from "../index.module.css";
 import { useState } from "react";
 import data from "../components/topics/topics.json";
-import BotonOpciones from "./generatedQuestion/botonOpciones";
+import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
 
 function Exam() {
@@ -55,22 +55,22 @@ function Exam() {
     <main className={style.main}>
       <div className="options">
         <form onSubmit={onSubmit}>
-          Topic
-          <BotonOpciones
-            opciones={Object.keys(data)}
+          <label>Topic</label>
+          <ButtonOptions
+            options={Object.keys(data)}
             handleOptionSelection={handleCategorySelection}
           />
-          Sub-Topic
+          <h2>Sub-Topic</h2>
           {selectedCategory && (
-            <BotonOpciones
-              opciones={Object.keys(data[selectedCategory])}
+            <ButtonOptions
+              options={Object.keys(data[selectedCategory])}
               handleOptionSelection={handleSubcategorySelection}
             />
           )}
           Detail
           {selectedSubcategory && (
-            <BotonOpciones
-              opciones={data[selectedCategory][selectedSubcategory]}
+            <ButtonOptions
+              options={data[selectedCategory][selectedSubcategory]}
               handleOptionSelection={handleTopicSelection}
             />
           )}
