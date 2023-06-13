@@ -1,8 +1,12 @@
+import { Container } from "react-bootstrap";
+
 function AboutUs() {
   return (
-    <div>
-      About Us Page
-    </div>
+    <Container fluid className="project-section">
+      <div>
+        About Us Page
+      </div>
+    </Container>
   )
 }
 
