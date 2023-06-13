@@ -19,21 +19,18 @@
   line-height: 24px;
   color: #353740;
   font-family: "ColfaxAI", Helvetica, sans-serif;
-  position: relative;
-  z-index: 2;
+  
 }
 .main {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   padding-top: 60px;
   height: calc(100vh - 60px);
   width: 100%;
   max-width: 100%;
   margin-left: auto;
-  margin-right: auto;
- 
- 
+  margin-right: auto; 
 }
 .main .icon {
   width: 34px;
@@ -81,4 +78,29 @@ input[type="radio"] {
 
 .radio-option {
   margin-bottom: 10px;
+}
+.options {
+  width: 30%;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-right: 20px;
+}
+
+.questions {
+  width: 70%;
+}
+
+.questions h3 {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #202123;
+  margin: 16px 0 40px;
+}
+.questions div {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
 }
