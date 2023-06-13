@@ -15,9 +15,9 @@ const ButtonOptions = ({ options, handleOptionSelection }) => {
 
   return (
     <div>
-      <button onClick={() => setShowOptions(!showOptions)}>
+      <div onClick={() => setShowOptions(!showOptions)}>
         {SelectedOption ? SelectedOption : "Select option"}
-      </button>
+      </div>
       {showOptions && (
         <ul>
           {options.map((option) => (

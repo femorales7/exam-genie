@@ -6,6 +6,7 @@ import Exam from "../components/ExamGenerated";
 
 function Home() {
   return (
+    <section id="background">
     <Container fluid className="project-section">
       <Particle />
       <Container>
@@ -16,6 +17,7 @@ function Home() {
         </Row>
       </Container>
     </Container>
+    </section>
   );
 }
 
