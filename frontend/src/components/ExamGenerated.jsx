@@ -64,7 +64,7 @@ function Exam() {
     <main className={style.main}>
       <div className="options">
         <form onSubmit={onSubmit}>
-          Topic
+          Topic 
           <BotonOpciones
             opciones={Object.keys(data)}
             handleOptionSelection={handleCategorySelection}

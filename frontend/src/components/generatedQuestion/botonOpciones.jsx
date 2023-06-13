@@ -15,9 +15,9 @@ const BotonOpciones = ({ opciones, handleOptionSelection }) => {
 
   return (
     <div>
-      <button onClick={() => setMostrarOpciones(!mostrarOpciones)}>
+      <div onClick={() => setMostrarOpciones(!mostrarOpciones)}>
         {opcionSeleccionada ? opcionSeleccionada : "Seleccionar opción"}
-      </button>
+      </div>
       {mostrarOpciones && (
         <ul>
           {opciones.map((opcion) => (

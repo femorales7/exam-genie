@@ -4,7 +4,7 @@ const generate = async (question, openaiClient) => {
     const response = await openaiClient.createCompletion({
       model: "text-davinci-003",
       prompt: `${question}.`,
-      max_tokens: 200,
+      max_tokens: 700,
       temperature: 1.6,
     });
 
@@ -14,18 +14,39 @@ const generate = async (question, openaiClient) => {
 
   const chatGptApi = async (question) => {
     const messages = [
-      { role: "system", content: "you are a provider of question with multiple choise, open answer or mix." },
-      { role: "user", content: "I need 5 questions type test of Philosophy-Epistemology-Rationalism with feedback the reason of that answer, I need before the question put Q: , before the each option put A), B), C), D), E) as appropriate, before the answer put Answer: and before the feedback put feedback:." },
-      { role: "assistant", content: `Q: Epistemology draws assessments for items that have tangible costs when open accordingly with reasonability that excludes chutzpah.
-        A)True
-        B)FALSE
-        C)It depends
-        D)judgment call
-        E)Factual enforcement mechnistic
-
-        Answer: B) FALSE
-
-        Feedback: Epistemology assess open items with expectation to propose possible poses hypothes says but offer details adequate ongoing understanding reliance or holds of pers will without incl of chutzpah aka tact.` },
+      { role: "system", content: "you are a provider of question with multiple choice" },
+      { role: "user", content: "I need Math Calculus  Differentiation 1 question  with feedback. The question has 5 multiple choice. And make question as object inside array. And has answer, feedback for each options" },
+      { role: "assistant", content: `question = {
+        "question": "What is the derivative of f(x) = 3x^2 + 2x - 1?",
+        "options": [
+            {
+                "text": "a) 6x + 2",
+                "is_correct": False,
+                "feedback": "That's not the correct derivative. Check your calculations again."
+            },
+            {
+                "text": "b) 3x^2 + 2x",
+                "is_correct": False,
+                "feedback": "That's not the correct derivative. Make sure you apply the power rule correctly."
+            },
+            {
+                "text": "c) 6x + 2",
+                "is_correct": True,
+                "feedback": "Correct! The derivative of 3x^2 is 6x, and the derivative of 2x is 2."
+            },
+            {
+                "text": "d) 3x^2 + 1",
+                "is_correct": False,
+                "feedback": "That's not the correct derivative. Double-check your calculations."
+            },
+            {
+                "text": "e) 3x^2 + 2",
+                "is_correct": False,
+                "feedback": "That's not the correct derivative. Pay attention to the coefficient of x."
+            }
+        ]
+    }
+    ` },
       { role: "user", content: `${question}.` },
     ];
     const response = await openaiClient.createChatCompletion({
@@ -34,6 +55,7 @@ const generate = async (question, openaiClient) => {
     });
 
     console.log("response.data", response.data)
+    console.log("response.data.choices[0].message.content", response.data.choices[0].message.content);
     return response.data.choices[0].message.content;
   };
 
