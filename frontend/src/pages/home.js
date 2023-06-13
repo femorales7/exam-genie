@@ -10,7 +10,7 @@ function Home() {
   return (
     <section>
       <Container fluid className="home-section" id="home">
-        <Particle />
+        {/* <Particle /> */}
         <Container className="home-content">
           <div id="center">
             <div className="home-header">
@@ -31,7 +31,7 @@ function Home() {
               </div>
             </div>
 
-            <div style={{ paddingBottom: 20 }}>
+            <div >
               <img
                 src={homeImage}
                 alt="home pic"

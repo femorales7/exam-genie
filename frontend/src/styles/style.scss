@@ -92,6 +92,7 @@ button:focus {
   width: 100%;
   justify-content: space-between; 
   align-items: inherit;
+  z-index: 1;
 }
 
 .navbar-toggler {
@@ -166,11 +167,12 @@ button:focus {
   max-width: 175px;
   padding: 30px;
   padding-right: 80px;
+  color: rgb(16, 15, 15) !important;
   
 }
 
 .navbar-nav .nav-link {
-  color: white !important;
+  color: rgb(16, 15, 15) !important;
   padding-right: 1rem !important;
   padding-left: 1rem !important;
 }
@@ -195,6 +197,7 @@ button:focus {
   transition: all 0.3s ease-out 0s;
   position: relative;
   z-index: 1;
+  
 }
 
 .navbar-nav .nav-item a::after {
@@ -253,21 +256,23 @@ button:focus {
   }
 }
 #tsparticles {
-  position: fixed !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  width: 100%;
-  height: 100%;
+  // position: fixed !important;
+  // background-repeat: no-repeat !important;
+  // background-size: cover !important;
+  // width: 100%;
+  // height: 100%;
 }
 
 .home-header {
-  padding-top: 80px !important;
+  padding-top: 80px !important;  
+  position: relative;
+  
 }
 
 .home-section {
   position: relative;
-  z-index: -1;
-  background-image: var(--image-gradient), url(../images/Background.png);
+  z-index: 0;
+  background-image:  url(../images/Background.png);
   background-position: top center;
   background-repeat: no-repeat;
   padding-bottom: 30px !important;
@@ -276,7 +281,7 @@ button:focus {
 
 .home-content {
   padding: 9rem 0 2rem !important;
-  color: whitesmoke;
+  color: rgb(9, 9, 9);
   align-content: space-between;
   // text-align: left;
 }
@@ -298,17 +303,17 @@ button:focus {
 }
 
 .main-name {
-  color: #cd5ff8;
+  color: #dba41a;
 }
 
 .Typewriter__wrapper {
   font-size: 2.2em !important;
-  color: #be6adf !important;
+  color: #dba41a !important;
   font-weight: 600 !important;
 }
 .Typewriter__cursor {
   font-size: 2.4em !important;
-  color: #b562d6 !important;
+  color: #dba41a !important;
 }
 
 @media (max-width: 767px) {
@@ -465,7 +470,7 @@ button:focus {
   position: relative !important;
   padding-top: 150px !important;
   padding-bottom: 30px !important;
-  background-image: var(--section-background-color) !important;
+  
 }
 
 .project-card {
@@ -796,6 +801,49 @@ button:focus {
 
 }
 
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+.radio-option {
+  margin-bottom: 10px;
+}
+.exam-container {
+  /* styles for the exam container */
+  max-width: 600px; /* adjust the max-width as per your requirements */
+  margin: 0 auto; /* center the exam container horizontally */
+}
+.main form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.main input[type="text"] {
+  padding: 12px 16px;
+  border: 1px solid #10a37f;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  outline-color: #10a37f;
+}
+.main ::placeholder {
+  color: #8e8ea0;
+  opacity: 1;
+}
+.main input[type="submit"] {
+  padding: 12px 0;
+  color: #fff;
+  background-color: #10a37f;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+.main .result {
+  font-weight: bold;
+  margin-top: 40px;
+}
 input[type="radio"] {
   margin-right: 5px;
 }

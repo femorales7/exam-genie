@@ -1,0 +1,170 @@
+{
+  "Math": {
+    "Arithmetic": [
+      "Whole numbers",
+      "Fractions",
+      "Decimals",
+      "Percentages",
+      "Number properties and operations"
+    ],
+    "Algebra": [
+      "Linear equations and inequalities",
+      "Quadratic equations",
+      "Exponents and logarithms",
+      "Polynomials and factoring",
+      "Systems of equations"
+    ],
+    "Geometry": [
+      "Euclidean geometry",
+      "Coordinate geometry",
+      "Triangles and polygons",
+      "Circles and conic sections",
+      "Transformations and symmetry"
+    ],
+    "Calculus": [
+      "Limits and continuity",
+      "Differentiation",
+      "Integration",
+      "Applications of calculus (e.g., optimization, related rates)",
+      "Multivariable calculus"
+    ],
+    "Probability and Statistics": [
+      "Probability theory",
+      "Descriptive statistics",
+      "Statistical inference",
+      "Hypothesis testing",
+      "Regression analysis"
+    ],
+    "Number Theory": [
+      "Prime numbers",
+      "Divisibility and factors",
+      "Modular arithmetic",
+      "Diophantine equations",
+      "Cryptography"
+    ],
+    "Discrete Mathematics": [
+      "Combinatorics",
+      "Graph theory",
+      "Set theory",
+      "Logic and proofs",
+      "Boolean algebra"
+    ],
+    "Linear Algebra": [
+      "Matrices and matrix operations",
+      "Vector spaces",
+      "Linear transformations",
+      "Eigenvalues and eigenvectors",
+      "Systems of linear equations"
+    ],
+    "Mathematical Logic": [
+      "Propositional logic",
+      "Predicate logic",
+      "Proof theory",
+      "Set theory and foundations of mathematics"
+    ],
+    "Differential Equations": [
+      "Ordinary differential equations (ODEs)",
+      "Partial differential equations (PDEs)",
+      "Solving differential equations",
+      "Boundary value problems",
+      "Applications in physics and engineering"
+    ]
+  },
+
+  "Computer Science": {
+    "Algorithms": [
+      "Sorting algorithms",
+      "Searching algorithms",
+      "Graph algorithms",
+      "Dynamic programming",
+      "Greedy algorithms"
+    ],
+    "Data Structures": [
+      "Arrays",
+      "Linked lists",
+      "Stacks",
+      "Queues",
+      "Trees",
+      "Graphs",
+      "Hash tables"
+    ],
+    "Programming Languages": [
+      "Java",
+      "Python",
+      "C++",
+      "JavaScript",
+      "Ruby",
+      "Go",
+      "Rust"
+    ],
+    "Operating Systems": [
+      "Process management",
+      "Memory management",
+      "File systems",
+      "Device drivers",
+      "Concurrency",
+      "Scheduling algorithms"
+    ],
+    "Database Systems": [
+      "Relational databases",
+      "SQL",
+      "Normalization",
+      "Indexing",
+      "Query optimization",
+      "Database transactions"
+    ]
+  },
+  "Philosophy": {
+    "Epistemology": [
+      "Theories of knowledge",
+      "Skepticism",
+      "Empiricism",
+      "Rationalism",
+      "Perception and reality",
+      "Justification and belief"
+    ],
+    "Metaphysics": [
+      "Reality and existence",
+      "Mind and body",
+      "Free will and determinism",
+      "Causality",
+      "Time and space",
+      "Identity and personal identity"
+    ],
+    "Ethics": [
+      "Normative ethics",
+      "Metaethics",
+      "Applied ethics",
+      "Moral reasoning",
+      "Ethical theories",
+      "Virtue ethics",
+      "Utilitarianism",
+      "Deontology"
+    ],
+    "Logic": [
+      "Propositional logic",
+      "Predicate logic",
+      "Deductive reasoning",
+      "Inductive reasoning",
+      "Fallacies",
+      "Formal systems"
+    ],
+    "Philosophy of Mind": [
+      "Consciousness",
+      "Mind-body problem",
+      "Dualism",
+      "Materialism",
+      "Functionalism",
+      "Intentionality",
+      "Identity theory"
+    ],
+    "Philosophy of Science": [
+      "Scientific method",
+      "Explanation and prediction",
+      "Realism and antirealism",
+      "Confirmation and falsification",
+      "Theories and paradigms",
+      "Scientific revolutions"
+    ]
+  }
+}
