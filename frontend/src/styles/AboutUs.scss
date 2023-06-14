@@ -1,0 +1,23 @@
+.profile-container {
+  margin-top: 50px;
+  margin-bottom: 25px;
+  // background-color: aqua;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-container-box {
+  display: flex;
+  width: 60%;
+  border: solid 2px black;
+  border-radius: 16px;
+  padding: 10px;
+  background-color: rgb(245, 245, 234);
+}
+
+.profile-image {
+  border-radius: 16px;
+  margin-right: 50px;
+  width: 300px;
+  height: 400px;
+}
