@@ -42,8 +42,8 @@ function Exam() {
   const handleOptionChange = (e) => {
     const userAnswer = e.target.value
     setSelectedOption(userAnswer);
-    console.log(userAnswer);
-    console.log(answer);
+    console.log("userAnswer",userAnswer);
+    console.log("answer",answer);
     if(userAnswer === answer) {
       alert("correct");
       setScore(score + 1);
@@ -131,7 +131,7 @@ function Exam() {
           </ul>
           {selectedOption && (
             <div>
-              <p>answer: {answer}</p>
+              <p>Answer: {answer}</p>
               <p>{feedback}</p>
               <form onSubmit={onSubmit}>
                 <button>Next question</button>

@@ -5,12 +5,22 @@ import Type from "./Type";
 import "../styles/style.scss";
 import homeImage from "../images/imageHome.png";
 import { faAlignRight } from "@fortawesome/free-solid-svg-icons";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Home() {
+  const { loginWithRedirect } = useAuth0();
+  const { isAuthenticated } = useAuth0();
  
     const handleButtonClick = () => {
       window.location.href = "/exam";
-    };
+    //   if (isAuthenticated) {
+    //     window.location.href = "/exam";
+    //   } else {
+    //     loginWithRedirect({
+    //       redirectUri: window.location.origin + "/exam"
+    //     });
+    // };
+  };
   return (
     <section>
       <Container fluid className="home-section" id="home">
