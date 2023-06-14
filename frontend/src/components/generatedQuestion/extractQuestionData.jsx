@@ -36,7 +36,7 @@ const extractQuestionData = (text) => {
       .slice(optionsStartIndex, answerIndex)
       .map((line) => line.trim())
       .filter((option) => option.length > 0); // Exclude empty options
-    answer = lines[answerIndex].substring(8).trim();
+    answer = lines[answerIndex].substring(4).trim();
     feedback = lines
       .slice(feedbackIndex)
       .filter((line) => line.trim().length > 0) // Exclude empty lines
@@ -44,6 +44,6 @@ const extractQuestionData = (text) => {
   }
   console.log("question", options, answer, feedback);
   return { question, options, answer, feedback };
-};
+};  
 
 export default extractQuestionData
