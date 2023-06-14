@@ -4,7 +4,7 @@ import data from "../components/topics/topics.json";
 import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
 import "../styles/ExamGenerated.scss"
-import { Navigate, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, route, useNavigate } from "react-router-dom";
 
 function Exam() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -18,7 +18,9 @@ function Exam() {
   const [score, setScore] = useState(0)
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const navigate = useNavigate();
+  const [questions, setQuestions] = useState([])
 
+  console.log("questions has value", questions);
   console.log(selectedCategory); // Log the selected category
   console.log(selectedSubcategory); // Log the selected subcategory
   console.log(selectedTopic);
@@ -29,6 +31,7 @@ function Exam() {
       selectedCategory,
       selectedSubcategory,
       selectedTopic,
+      setQuestions,
       setQuestion,
       setOptions,
       setAnswer,
@@ -36,14 +39,15 @@ function Exam() {
       setSelectedOption
     );
     setCurrentQuestion(currentQuestion + 1);
+    setQuestions(questionData);
     console.log("return from server", questionData);
   };
+
+
 
   const handleOptionChange = (e) => {
     const userAnswer = e.target.value
     setSelectedOption(userAnswer);
-    console.log("userAnswer",userAnswer);
-    console.log("answer",answer);
     if(userAnswer === answer) {
       alert("correct");
       setScore(score + 1);
@@ -108,7 +112,8 @@ function Exam() {
           <input type="submit" value="Start exam" />
         </form>
       </div>
-      {question && (
+      {questions && (
+        questions.map((answer, feedback, options, question) => {
         <div className="question-card">
           <h1>Question {currentQuestion}</h1>
           <h2>{question} </h2>
@@ -116,14 +121,14 @@ function Exam() {
           <ul className="answers-list">
             {options.map((option, index) => (
               <li key={index}>
-                  <label>
-                    <input
-                      type="radio"
-                      name="options"
-                      value={option}
-                      checked={selectedOption === option}
-                      onChange={handleOptionChange}
-                    />
+                <label>
+                  <input
+                    type="radio"
+                    name="options"
+                    value={option}
+                    checked={selectedOption === option}
+                    onChange={handleOptionChange}
+                  />
                     {option}
                   </label>
               </li>
@@ -140,6 +145,7 @@ function Exam() {
             </div>
           )}
         </div>
+        })
       )}
     </main>
   );
