@@ -4,6 +4,7 @@ import data from "../components/topics/topics.json";
 import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
 import "../styles/ExamGenerated.scss"
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Exam() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -14,6 +15,7 @@ function Exam() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
+  const navigate = useNavigate();
 
   console.log(selectedCategory); // Log the selected category
   console.log(selectedSubcategory); // Log the selected subcategory
@@ -51,6 +53,10 @@ function Exam() {
   const handleTopicSelection = (topic) => {
     setSelectedTopic(topic);
   };
+
+  const finishExam = () => {
+    navigate("/dashboard")
+  }
 
   return (
     <main className={style.main}>
@@ -101,6 +107,10 @@ function Exam() {
             <div>
               <p>{answer}</p>
               <p>{feedback}</p>
+              <form onSubmit={onSubmit}>
+                <button>Next question</button>
+              </form>
+              <button onClick={finishExam}>Finish Exam</button>
             </div>
           )}
         </div>
