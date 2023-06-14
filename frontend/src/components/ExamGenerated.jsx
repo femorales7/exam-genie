@@ -4,7 +4,7 @@ import data from "../components/topics/topics.json";
 import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
 import "../styles/ExamGenerated.scss"
-import { Navigate, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, route } from "react-router-dom";
 
 function Exam() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -79,6 +79,7 @@ function Exam() {
   };
 
   const finishExam = () => {
+
     navigate("/dashboard")
   }
 

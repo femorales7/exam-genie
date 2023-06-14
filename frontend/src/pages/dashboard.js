@@ -4,19 +4,19 @@ import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function Dashboard() {
+function Dashboard(props) {
   const data = {
-    label: ["red", "orange", "blue"],
+    label: ["red", "blue"],
     datasets : [
       {
         label: "Dataset 1",
-        data: [3, 6, 9],
-        backgroundColor: ["red", "orange", "blue"],
+        data: [3, 6],
+        backgroundColor: ["red", "blue"],
         borderColor: "black"
       }
     ]
   };
-
+  console.log("It's from dashboard", props);
   const options = {
 
   }
