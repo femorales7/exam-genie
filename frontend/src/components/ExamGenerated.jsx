@@ -15,7 +15,8 @@ function Exam() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
-  const [ score, setScore ] = useState(0)
+  const [score, setScore] = useState(0)
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const navigate = useNavigate();
 
   console.log(selectedCategory); // Log the selected category
@@ -34,6 +35,7 @@ function Exam() {
       setFeedback,
       setSelectedOption
     );
+    setCurrentQuestion(currentQuestion + 1);
     console.log("return from server", questionData);
   };
 
@@ -108,7 +110,9 @@ function Exam() {
       </div>
       {question && (
         <div className="question-card">
-          <h2>{question}</h2>
+          <h1>Question {currentQuestion}</h1>
+          <h2>{question} </h2>
+          <div>present score: {score} / {currentQuestion}</div>
           <ul className="answers-list">
             {options.map((option, index) => (
               <li key={index}>
