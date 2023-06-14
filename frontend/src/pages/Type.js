@@ -9,7 +9,6 @@ function Type() {
           "Making easy your test",
           "Questions from AI",
           "The best way to study",
-          
         ],
         autoStart: true,
         loop: true,

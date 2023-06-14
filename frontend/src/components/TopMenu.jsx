@@ -1,5 +1,5 @@
-import '../styles/TopMenu.scss';
-import Profile from '../Auth0/profile';
+import "../styles/TopMenu.scss";
+import Profile from "../Auth0/profile";
 import React, { useState } from "react";
 import "../styles/TopNavigationBar.scss";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -32,7 +32,7 @@ const TopMenu = () => {
       updateNavbar(false);
     }
   }
- 
+
   return (
     <Navbar
       expanded={expand}
@@ -41,41 +41,48 @@ const TopMenu = () => {
       className={navColour ? "sticky" : "navbar"}
     >
       <Navbar.Brand href="/" className="d-flex">
-          <img src={logo} className="img-fluid logo" alt="brand" />
-        </Navbar.Brand>
+        <img src={logo} className="img-fluid logo" alt="brand" />
+      </Navbar.Brand>
       <Container id="nav-container">
-        
-        
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="Navigation" defaultActiveKey="#home">
             <Nav.Item>
-              <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
+              <Nav.Link
+                as={Link}
+                to="/"
+                onClick={() => updateExpanded(false)}
+              >
                 <AiOutlineHome style={{ marginBottom: "2px" }} /> Home
               </Nav.Link>
             </Nav.Item>
 
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/exam"
-                onClick={() => updateExpanded(false)}
-              >
-                <AiOutlineFundProjectionScreen
-                  style={{ marginBottom: "2px" }}
-                />{" "}
-                Test Exam
-              </Nav.Link>
-            </Nav.Item>
+            {isAuthenticated && (
+              <>
+                <Nav.Item>
+                  <Nav.Link
+                    as={Link}
+                    to="/exam"
+                    onClick={() => updateExpanded(false)}
+                  >
+                    <AiOutlineFundProjectionScreen
+                      style={{ marginBottom: "2px" }}
+                    />
+                    Test Exam
+                  </Nav.Link>
+                </Nav.Item>
 
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/dashboard"
-                onClick={() => updateExpanded(false)}
-              >
-                <CgFileDocument style={{ marginBottom: "2px" }} /> Dashboard
-              </Nav.Link>
-            </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link
+                    as={Link}
+                    to="/dashboard"
+                    onClick={() => updateExpanded(false)}
+                  >
+                    <CgFileDocument style={{ marginBottom: "2px" }} /> Dashboard
+                  </Nav.Link>
+                </Nav.Item>
+              </>
+            )}
+
             <Nav.Item>
               <Nav.Link
                 as={Link}
@@ -86,21 +93,17 @@ const TopMenu = () => {
               </Nav.Link>
             </Nav.Item>
           </Nav>
-        </Navbar.Collapse>        
+        </Navbar.Collapse>
       </Container>
-      <Nav.Item className='autentication'>
-              <Nav.Link
-                as={Link}
-                to="/about"
-                onClick={() => updateExpanded(false)}
-              >
-                <AiOutlineUser style={{ marginBottom: "2px" }} />{isAuthenticated ? <LogoutButton /> : <LoginButton />}
-              </Nav.Link>
-            </Nav.Item>
-      
+
+      <Nav.Item className="autentication">
+        <Nav.Link as={Link} to="/about" onClick={() => updateExpanded(false)}>
+          <AiOutlineUser style={{ marginBottom: "2px" }} />
+          {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+        </Nav.Link>
+      </Nav.Item>
     </Navbar>
-    
-  )
-}
+  );
+};
 
 export default TopMenu;

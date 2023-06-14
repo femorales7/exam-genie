@@ -7,6 +7,10 @@ import homeImage from "../images/imageHome.png";
 import { faAlignRight } from "@fortawesome/free-solid-svg-icons";
 
 function Home() {
+ 
+    const handleButtonClick = () => {
+      window.location.href = "/exam";
+    };
   return (
     <section>
       <Container fluid className="home-section" id="home">
@@ -31,13 +35,22 @@ function Home() {
               </div>
             </div>
 
-            <div >
+            <div>
               <img
                 src={homeImage}
                 alt="home pic"
                 className="img-fluid"
-                style={{ maxHeight: "450px"}}
+                style={{ maxHeight: "450px" }}
               />
+            <button
+                className="buttonLets"
+                role="button"
+                onClick={handleButtonClick}
+              >
+                Let's try
+              </button>
+
+
             </div>
           </div>
         </Container>
