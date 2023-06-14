@@ -7,7 +7,7 @@ const generateQuestion = async (selectedCategory, selectedSubcategory, selectedT
   console.log(selectedCategory);
   console.log(selectedSubcategory);
   console.log(selectedTopic);
-  const structure = `I need a question of ${selectedCategory}-${selectedSubcategory}-${selectedTopic}. the question has 5 multiple choice. And make it as object inside array. And has answer, feedback for each options`;
+  const structure = `I need 1 question type test of ${selectedCategory}-${selectedSubcategory}-${selectedTopic} with feedback the reason of that answer, I need before the question put Q: , before the each option put A), B), C), D), E) as appropriate, before the answer put Answer: and before the feedback put feedback, summarize feeback :.`;
   // console.log("structure", structure);
   const response = await fetch("http://localhost:8080/generate", {
     method: "POST",
