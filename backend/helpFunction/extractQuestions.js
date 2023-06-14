@@ -28,13 +28,15 @@ const extractQuestionData = (text) => {
   if (
     optionsStartIndex !== -1 &&
     answerIndex !== -1 &&
-    feedbackIndex !== -12
+    feedbackIndex !== -1
   ) {
     options = lines
     .slice(optionsStartIndex, answerIndex)
     .map((line) => line.trim())
     .filter((option) => option.length > 0); // Exclude empty options
-  answer = lines[answerIndex].substring(8).trim();
+  answer = lines[answerIndex].trim();
+  answer = answer.replace("Anwer:", "").trim();
+  console.log("answer", answer);
   feedback = lines
     .slice(feedbackIndex)
     .filter((line) => line.trim().length > 0) // Exclude empty lines
