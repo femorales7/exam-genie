@@ -82,7 +82,7 @@ app.post("/generate", async (req, res) => {
 
     addQuestions(extractQuestionData(user_question))
     .then((data) => {
-      console.log('add new question', data);
+      // console.log('add new question', data);
     })
 
     res.json({response: user_question})
@@ -91,6 +91,11 @@ app.post("/generate", async (req, res) => {
     console.error(error)
     res.status(500).send("Internal error server")
   }
+})
+
+app.post("/exam", async(req, res) => {
+  const userAnswer = req.body
+  console.log("sever side", userAnswer);
 })
 
 

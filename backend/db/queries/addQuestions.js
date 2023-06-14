@@ -14,7 +14,7 @@ const addQuestions = (post) => {
 
   return db.query(query, [user_id, question, question_option, answer, feedback])
   .then(data => {
-    console.log('data', data.rows);
+    // console.log('data', data.rows);
     return data.rows;
   })
   .catch((err) => {

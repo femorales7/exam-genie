@@ -17,11 +17,11 @@ const generate = async (question, openaiClient) => {
       { role: "system", content: "you are a provider of question with multiple choice" },
       { role: "user", content: "I need 1 question type test of ${selectedCategory}-${selectedSubcategory}-${selectedTopic} with feedback. The reason for that answerI need before the question put Q: , before the each option put A), B), C), D), E) as appropriate, before the answer put Answer: and before the feedback put feedback:" },
       { role: "assistant", content: `Q: Epistemology draws assessments for items that have tangible costs when open accordingly with reasonability that excludes chutzpah.
-      A)True
-      B)FALSE
-      C)It depends
-      D)judgment call
-      E)Factual enforcement mechnistic
+      A) True
+      B) FALSE
+      C) It depends
+      D) judgment call
+      E) Factual enforcement mechnistic
 
       Answer: B) FALSE
 
@@ -33,9 +33,6 @@ const generate = async (question, openaiClient) => {
       model: "gpt-3.5-turbo",
       messages: messages,
     });
-
-    console.log("response.data", response.data)
-    console.log("response.data.choices[0].message.content", response.data.choices[0].message.content);
     return response.data.choices[0].message.content;
   };
 

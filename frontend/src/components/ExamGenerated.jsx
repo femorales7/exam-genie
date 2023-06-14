@@ -15,6 +15,7 @@ function Exam() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [ score, setScore ] = useState(0)
   const navigate = useNavigate();
 
   console.log(selectedCategory); // Log the selected category
@@ -37,8 +38,29 @@ function Exam() {
   };
 
   const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value);
+    const userAnswer = e.target.value
+    setSelectedOption(userAnswer);
+    console.log(userAnswer);
+    console.log(answer);
+    if(userAnswer === answer) {
+      alert("correct");
+      setScore(score + 1);
+    } else {
+      alert("do some more work");
+    }
   };
+
+  // const saveUserAnswer = (e) => {
+  //   e.preventDefault();
+
+  //   fetch('http://localhost:3000/exam', {
+  //     method: 'POST',
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(e.target.value)
+  //   }).then(() => {
+  //     console.log('add user answer');
+  //   })
+  // }
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
     setSelectedSubcategory(null);
@@ -90,22 +112,22 @@ function Exam() {
           <ul className="answers-list">
             {options.map((option, index) => (
               <li key={index}>
-                <label>
-                  <input
-                    type="radio"
-                    name="options"
-                    value={option}
-                    checked={selectedOption === option}
-                    onChange={handleOptionChange}
-                  />
-                  {option}
-                </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="options"
+                      value={option}
+                      checked={selectedOption === option}
+                      onChange={handleOptionChange}
+                    />
+                    {option}
+                  </label>
               </li>
             ))}
           </ul>
           {selectedOption && (
             <div>
-              <p>{answer}</p>
+              <p>answer: {answer}</p>
               <p>{feedback}</p>
               <form onSubmit={onSubmit}>
                 <button>Next question</button>
