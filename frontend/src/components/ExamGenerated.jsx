@@ -4,6 +4,7 @@ import data from "../components/topics/topics.json";
 import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
 import "../styles/ExamGenerated.scss"
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Exam() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -14,6 +15,7 @@ function Exam() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
+  const navigate = useNavigate();
 
   console.log(selectedCategory); // Log the selected category
   console.log(selectedSubcategory); // Log the selected subcategory
@@ -34,16 +36,8 @@ function Exam() {
     console.log("return from server", questionData);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const makeQuestion = { question, options, answer, feedback }
-    fetch('http://localhost:3000/exam', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify(makeQuestion)
-    }).then(() => {
-      console.log('new question added')
-    })
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
   };
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
@@ -59,6 +53,10 @@ function Exam() {
   const handleTopicSelection = (topic) => {
     setSelectedTopic(topic);
   };
+
+  const finishExam = () => {
+    navigate("/dashboard")
+  }
 
   return (
     <main className={style.main}>
@@ -83,38 +81,40 @@ function Exam() {
               handleOptionSelection={handleTopicSelection}
             />
           )}
-          <input type="submit" value="Next question" />
+          <input type="submit" value="Start exam" />
         </form>
       </div>
-        {question && (
+      {question && (
         <div className="question-card">
-          <div>
-            <h3>Questions</h3>
-            <form onSubmit={handleSubmit}>
-              <h2>{question}</h2>
-              <ul className="answers-list">
-                {options.map((option, index) => (
-                  <li key={index}>
-                      <input
-                        type="radio"
-                        name="options"
-                        value={option}
-                        />
-                      <label>{option}</label>
-                  </li>
-                ))}
-              </ul>
-              <button>Submit</button>
-            </form>
-            {selectedOption && (
-              <div>
-                <p>Answer: {answer}</p>
-                <p>Feedback: {feedback}</p>
-              </div>
-            )}
-          </div>
+          <h2>{question}</h2>
+          <ul className="answers-list">
+            {options.map((option, index) => (
+              <li key={index}>
+                <label>
+                  <input
+                    type="radio"
+                    name="options"
+                    value={option}
+                    checked={selectedOption === option}
+                    onChange={handleOptionChange}
+                  />
+                  {option}
+                </label>
+              </li>
+            ))}
+          </ul>
+          {selectedOption && (
+            <div>
+              <p>{answer}</p>
+              <p>{feedback}</p>
+              <form onSubmit={onSubmit}>
+                <button>Next question</button>
+              </form>
+              <button onClick={finishExam}>Finish Exam</button>
+            </div>
+          )}
         </div>
-        )}
+      )}
     </main>
   );
 }
