@@ -12,14 +12,14 @@ function Home() {
   const { isAuthenticated } = useAuth0();
  
     const handleButtonClick = () => {
-      window.location.href = "/exam";
-    //   if (isAuthenticated) {
-    //     window.location.href = "/exam";
-    //   } else {
-    //     loginWithRedirect({
-    //       redirectUri: window.location.origin + "/exam"
-    //     });
-    // };
+      // window.location.href = "/exam";
+      if (isAuthenticated) {
+        window.location.href = "/exam";
+      } else {
+        loginWithRedirect({
+          redirectUri: window.location.origin + "/exam"
+        });
+    };
   };
   return (
     <section>

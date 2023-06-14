@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import AboutUs from "./pages/aboutUs";
 import ScrollToTop from "./components/ScrollToTop";
 import Exam from "./pages/exam";
+import Game from "./components/game/games";
 import Dashboard from "./pages/dashboard";
 import Preloader from "../src/components/Pre";
 
@@ -35,6 +36,7 @@ function App() {
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/exam" exact element={<Exam />} />
+            <Route path="/game" exact element={<Game />} />
             <Route path="/about" exact element={<AboutUs />} />
             <Route path="/dashboard" exact element={<Dashboard />} />
           </Routes>

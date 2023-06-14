@@ -70,6 +70,18 @@ const TopMenu = () => {
                     Test Exam
                   </Nav.Link>
                 </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link
+                    as={Link}
+                    to="/game"
+                    onClick={() => updateExpanded(false)}
+                  >
+                    <AiOutlineFundProjectionScreen
+                      style={{ marginBottom: "2px" }}
+                    />
+                    Game
+                  </Nav.Link>
+                </Nav.Item>
 
                 <Nav.Item>
                   <Nav.Link
