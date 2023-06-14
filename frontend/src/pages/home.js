@@ -58,7 +58,7 @@ function Home() {
                 onClick={handleButtonClick}
               >
                 Let's try
-              </button>
+            </button>
 
 
             </div>
