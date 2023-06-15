@@ -48,34 +48,40 @@ function Exam() {
     <main className={style.main}>
       <div className="options">
         <form onSubmit={onSubmit}>
-          <label>Topic</label>
+          <h2>Topic</h2>
+          <div className="options-button">
           <ButtonOptions
             options={Object.keys(data)}
             handleOptionSelection={handleCategorySelection}
           />
+          </div>
           <h2>Sub-Topic</h2>
+          <div className="options-button">
           {selectedCategory && (
             <ButtonOptions
               options={Object.keys(data[selectedCategory])}
               handleOptionSelection={handleSubcategorySelection}
             />
-          )}
-          Detail
+            )}
+            </div>
+          <h2>Specialization</h2>
+          <div className="options-button">
           {selectedSubcategory && (
             <ButtonOptions
               options={data[selectedCategory][selectedSubcategory]}
               handleOptionSelection={handleTopicSelection}
             />
           )}
-          <label for="question number">How many questions?</label>
-          <select onChange={e => setHowManyQuestion(e.target.value)}>
+          </div>
+          <h2 for="question number">How many questions?</h2>
+          <select onChange={e => setHowManyQuestion(e.target.value)} >
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>
             <option value="20">20</option>
           </select>
-          <input type="submit" value="Start exam" />
-        </form>
+          <input type="submit" value="Start exam" className="exam-submit--form"/>
+        </form >
       </div>
       {questions && 
         <QuestionList  questions={questions}/>
