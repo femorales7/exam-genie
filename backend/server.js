@@ -75,14 +75,9 @@ app.post("/generate", async (req, res) => {
   const question = req.body.question
   try{
     const user_question = await generate(question, openai);
-    // console.log("user_question", user_question);
-    // const { extractQuestion, options, answer, feedback } =
-    // extractQuestionData(user_question);
-
-
+    
     addQuestions(extractQuestionData(user_question))
     .then((data) => {
-      // console.log('add new question', data);
     })
 
     res.json({response: user_question})

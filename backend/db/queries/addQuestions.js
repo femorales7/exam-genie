@@ -3,8 +3,6 @@ const db = require('../connection');
 const addQuestions = (post) => {
   const query = `INSERT INTO questions (user_id,  question, question_option, answer, feedback) VALUES ($1, $2, $3, $4, $5);`;
 
-  console.log(post)
-
   const user_id = 1;
   const question = post.extractQuestion;
   const question_option = post.options.join();
