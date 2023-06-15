@@ -1,0 +1,23 @@
+.topNav {
+// background-color: aqua;
+
+}
+
+.topNav-container {
+  // background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 25px;
+}
+
+.topNav-container--navigation {
+  // background-color: green;
+  width: 500px;
+  font-size: 18px;
+  &:hover {
+    text-decoration: overline;
+    color: #111;
+  }
+}
