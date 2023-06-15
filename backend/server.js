@@ -67,17 +67,16 @@ app.use("/users", usersRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 app.post("/generate", async (req, res) => {
   const question = req.body.question
   try{
     const user_question = await generate(question, openai);
-    
-    addQuestions(extractQuestionData(user_question))
+    const questions = user_question.split("===").map(extractQuestionData)
+    console.log("user question", user_question);
+
+    addQuestions((questions))
     .then((data) => {
+      console.log("insert new question")
     })
 
     res.json({response: user_question})
@@ -87,13 +86,6 @@ app.post("/generate", async (req, res) => {
     res.status(500).send("Internal error server")
   }
 })
-
-app.post("/exam", async(req, res) => {
-  const userAnswer = req.body
-  console.log("sever side", userAnswer);
-})
-
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

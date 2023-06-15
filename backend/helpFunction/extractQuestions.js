@@ -1,7 +1,8 @@
 const extractQuestionData = (text) => {
   const lines = text.split("\n");
   // console.log("lines", lines);
-  let extractQuestion = "";
+  let questions = {};
+  let question = "";
   let options = [];
   let answer = "";
   let feedback = "";
@@ -9,7 +10,7 @@ const extractQuestionData = (text) => {
   const questionIndex = lines.findIndex((line) => line.startsWith("Q:"));
   // console.log("questionIndex", questionIndex);
   if (questionIndex !== -1) {
-    extractQuestion = lines[questionIndex].substring(3).trim();
+    question = lines[questionIndex].substring(3).trim();
   }
 
   const optionsStartIndex = lines.findIndex((line) =>
@@ -31,19 +32,19 @@ const extractQuestionData = (text) => {
     feedbackIndex !== -1
   ) {
     options = lines
-    .slice(optionsStartIndex, answerIndex)
-    .map((line) => line.trim())
-    .filter((option) => option.length > 0); // Exclude empty options
-  answer = lines[answerIndex].trim();
-  answer = answer.replace("Anwer:", "").trim();
-  console.log("answer", answer);
-  feedback = lines
-    .slice(feedbackIndex)
-    .filter((line) => line.trim().length > 0) // Exclude empty lines
-    .join("\n");
+      .slice(optionsStartIndex, answerIndex)
+      .map((line) => line.trim())
+      .filter((option) => option.length > 0); // Exclude empty options
+    answer = lines[answerIndex].trim();
+    answer = answer.replace("Answer:", "").trim();
+    // console.log("answer", answer);
+    feedback = lines
+      .slice(feedbackIndex)
+      .filter((line) => line.trim().length > 0) // Exclude empty lines
+      .join("\n");
   }
-// console.log("it's from funciton", extractQuestion, options, answer, feedback )
-  return { extractQuestion, options, answer, feedback };
-};
+
+  return { question, options, answer, feedback };
+};  
 
 module.exports =  extractQuestionData;
