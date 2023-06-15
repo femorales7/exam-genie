@@ -70,7 +70,7 @@ const TopMenu = () => {
                     Test Exam
                   </Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
+                {/* <Nav.Item>
                   <Nav.Link
                     as={Link}
                     to="/game"
@@ -81,7 +81,7 @@ const TopMenu = () => {
                     />
                     Game
                   </Nav.Link>
-                </Nav.Item>
+                </Nav.Item> */}
 
                 <Nav.Item>
                   <Nav.Link

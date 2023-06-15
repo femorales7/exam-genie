@@ -1,9 +1,9 @@
 import style from "../index.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import data from "../components/topics/topics.json";
 import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
-import "../styles/ExamGenerated.scss"
+import "../styles/ExamGenerated.scss";
 import { BrowserRouter as Router, route, useNavigate } from "react-router-dom";
 
 function Exam() {
@@ -15,12 +15,11 @@ function Exam() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const navigate = useNavigate();
-  const [questions, setQuestions] = useState([])
+  const [questions, setQuestions] = useState([]);
 
-  console.log("questions has value", questions);
   console.log(selectedCategory); // Log the selected category
   console.log(selectedSubcategory); // Log the selected subcategory
   console.log(selectedTopic);
@@ -31,7 +30,7 @@ function Exam() {
       selectedCategory,
       selectedSubcategory,
       selectedTopic,
-      setQuestions,
+
       setQuestion,
       setOptions,
       setAnswer,
@@ -40,15 +39,18 @@ function Exam() {
     );
     setCurrentQuestion(currentQuestion + 1);
     setQuestions(questionData);
+    console.log("quetions data", questions);
     console.log("return from server", questionData);
+    console.log("questions has value", questionData[0].question);
   };
-
-
+  useEffect(() => {
+    console.log("questions useEfect", questions[0]?.question);
+  }, [questions]);
 
   const handleOptionChange = (e) => {
-    const userAnswer = e.target.value
+    const userAnswer = e.target.value;
     setSelectedOption(userAnswer);
-    if(userAnswer === answer) {
+    if (userAnswer === answer) {
       alert("correct");
       setScore(score + 1);
     } else {
@@ -83,8 +85,8 @@ function Exam() {
   };
 
   const finishExam = () => {
-    navigate("/dashboard")
-  }
+    navigate("/dashboard");
+  };
 
   return (
     <main className={style.main}>
@@ -112,41 +114,42 @@ function Exam() {
           <input type="submit" value="Start exam" />
         </form>
       </div>
-      {questions && (
+      {questions &&
         questions.map((answer, feedback, options, question) => {
-        <div className="question-card">
-          <h1>Question {currentQuestion}</h1>
-          <h2>{question} </h2>
-          <div>present score: {score} / {currentQuestion}</div>
-          <ul className="answers-list">
-            {options.map((option, index) => (
-              <li key={index}>
-                <label>
-                  <input
-                    type="radio"
-                    name="options"
-                    value={option}
-                    checked={selectedOption === option}
-                    onChange={handleOptionChange}
-                  />
+          <div className="question-card">
+            <h1>Question {currentQuestion}</h1>
+            <h2>{question} </h2>
+            <div>
+              present score: {score} / {currentQuestion}
+            </div>
+            <ul className="answers-list">
+              {options.map((option, index) => (
+                <li key={index}>
+                  <label>
+                    <input
+                      type="radio"
+                      name="options"
+                      value={option}
+                      checked={selectedOption === option}
+                      onChange={handleOptionChange}
+                    />
                     {option}
                   </label>
-              </li>
-            ))}
-          </ul>
-          {selectedOption && (
-            <div>
-              <p>Answer: {answer}</p>
-              <p>{feedback}</p>
-              <form onSubmit={onSubmit}>
-                <button>Next question</button>
-              </form>
-              <button onClick={finishExam}>Finish Exam</button>
-            </div>
-          )}
-        </div>
-        })
-      )}
+                </li>
+              ))}
+            </ul>
+            {selectedOption && (
+              <div>
+                <p>Answer: {answer}</p>
+                <p>{feedback}</p>
+                <form onSubmit={onSubmit}>
+                  <button>Next question</button>
+                </form>
+                <button onClick={finishExam}>Finish Exam</button>
+              </div>
+            )}
+          </div>;
+        })}
     </main>
   );
 }
