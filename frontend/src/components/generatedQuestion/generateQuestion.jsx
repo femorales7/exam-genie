@@ -3,10 +3,10 @@ import data from "../topics/topics.json"
 import extractQuestionData from "./extractQuestionData";
 
 
-const generateQuestion = async (selectedCategory, selectedSubcategory, selectedTopic, setQuestion, setOptions, setAnswer, setFeedback, setSelectedOption, setQuestions) => {
- 
-  const structure = `I need 10 questions type test of ${selectedCategory}-${selectedSubcategory}-${selectedTopic} with feedback the reason of that answer, I need before the question put Q: , before the each option put A), B), C), D), E) as appropriate, before the answer put Answer: and before the feedback put feedback, summarize feeback as possible. seperate each question by three equal to characters (===)`;
- 
+const generateQuestion = async (selectedCategory, selectedSubcategory, selectedTopic, howManyQuestion) => {
+  const structure = `I need ${howManyQuestion} questions type test of ${selectedCategory}-${selectedSubcategory}-${selectedTopic} with feedback the reason of that answer, I need before the question put Q: , before the each option put A), B), C), D), E) as appropriate, before the answer put Answer: and before the feedback put feedback, summarize feeback as possible. seperate each question by three equal to characters (===)`;
+  console.log(howManyQuestion)
+  console.log(structure);
   const response = await fetch("http://localhost:8080/generate", {
     method: "POST",
     headers: {
@@ -15,20 +15,9 @@ const generateQuestion = async (selectedCategory, selectedSubcategory, selectedT
     body: JSON.stringify({ question: structure }),
   });
   const data = await response.json();
-  
+
   const { response: questionData } = data;
   const questions = questionData.split("===").map(extractQuestionData)
-
-  // setQuestions(questions);
-  console.log("quesitons hello", questions)
-  // const { question, options, answer, feedback } =
-  //   extractQuestionData(questionData);
-
-  // setQuestion(question);
-  // setOptions(options);
-  // setAnswer(answer);
-  // setFeedback(feedback);
-  setSelectedOption(null);
 
   return questions;
 };

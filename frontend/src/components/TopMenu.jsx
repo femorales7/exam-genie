@@ -2,17 +2,18 @@ import "../styles/TopMenu.scss";
 import Profile from "../Auth0/profile";
 import React, { useState } from "react";
 import "../styles/TopNavigationBar.scss";
+
+
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../Auth0/login";
 import LogoutButton from "../Auth0/logout";
+
 import logo from "../images/Exam-genie1.png";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import {
-  AiFillStar,
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiOutlineUser,

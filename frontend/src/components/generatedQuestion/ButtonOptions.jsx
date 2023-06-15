@@ -2,6 +2,8 @@ import style from "../../index.module.css";
 import { useState } from "react";
 import data from "../topics/topics.json";
 import extractQuestionData from "./extractQuestionData";
+import "../../styles/ExamGenerated.scss"
+
 
 const ButtonOptions = ({ options, handleOptionSelection }) => {
   const [SelectedOption, setSelectedOption] = useState(null);
@@ -19,13 +21,13 @@ const ButtonOptions = ({ options, handleOptionSelection }) => {
         {SelectedOption ? SelectedOption : "Select option"}
       </div>
       {showOptions && (
-        <ul>
+        <div className="menu">
           {options.map((option) => (
-            <li key={option} onClick={() => handleSelectedOption(option)}>
+            <div key={option} onClick={() => handleSelectedOption(option)}>
               {option}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
