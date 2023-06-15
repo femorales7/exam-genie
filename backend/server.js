@@ -71,12 +71,9 @@ app.post("/generate", async (req, res) => {
   const question = req.body.question
   try{
     const user_question = await generate(question, openai);
-    const questions = user_question.split("===").map(extractQuestionData)
-    console.log("user question", user_question);
 
-    addQuestions((questions))
+    addQuestions(extractQuestionData(user_question))
     .then((data) => {
-      console.log("insert new question")
     })
 
     res.json({response: user_question})
@@ -85,6 +82,11 @@ app.post("/generate", async (req, res) => {
     console.error(error)
     res.status(500).send("Internal error server")
   }
+})
+
+app.post("/exam", async(req, res) => {
+  const userAnswer = req.body
+  console.log("sever side", userAnswer);
 })
 
 app.listen(PORT, () => {

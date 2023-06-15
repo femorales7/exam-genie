@@ -9,12 +9,12 @@ const addQuestions = (post) => {
     const answer = "";
     const feedback = "";
 
-  post.map((question) => {
-    question = question.question
-    question_option = question.options
-    answer = question.answer
-    feedback = question.feedback
-  })
+  // post.map((question) => {
+  //   question = question.question
+  //   question_option = question.options
+  //   answer = question.answer
+  //   feedback = question.feedback
+  // })
 
   return db.query(query, [user_id, question, question_option, answer, feedback])
   .then(data => {
