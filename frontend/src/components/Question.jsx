@@ -5,19 +5,6 @@ import { useNavigate } from "react-router";
 const Question = (props) => {
 
   const navigate = useNavigate();
-  
-
-  // const handleOptionChange = (e) => {
-  //   const userAnswer = e.target.value
-  //   setSelectedOption(userAnswer);
-  //   if(userAnswer === props.answer) {
-  //     alert("correct");
-  //     setScore(score + 1);
-  //   } else {
-  //     alert("do some more work");
-  //   }
-  // };
-
   const finishExam = () => {
     navigate("/dashboard")
   };

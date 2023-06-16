@@ -10,12 +10,11 @@ function Exam() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [selectedTopic, setSelectedTopic] = useState(null);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [howManyQuestion, setHowManyQuestion] = useState("5");
 
 
-  console.log("howmanyquestion", howManyQuestion);
+ 
   const onSubmit = async (e) => {
     e.preventDefault();
     const questionData = await generateQuestion(
@@ -25,7 +24,6 @@ function Exam() {
       setQuestions,
       howManyQuestion
     );
-    setCurrentQuestion(currentQuestion + 1);
     setQuestions(questionData);
   };
 

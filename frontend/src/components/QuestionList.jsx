@@ -4,7 +4,6 @@ import "../styles/QuestionList.scss"
 
 
 const QuestionList = (props) => {
-  // console.log("question list", props);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0)
   const [selectedOption, setSelectedOption] = useState(null);
@@ -33,13 +32,6 @@ const QuestionList = (props) => {
       setShowResults(true);
     }
   }
-  
-  
-  console.log("props questions form questionList", questions);
-
-  console.log("length of questions", questions.length);
-
-  console.log("score", score)
 
   const mappedQuestion = questions.map((question, index) => {
     return <Question

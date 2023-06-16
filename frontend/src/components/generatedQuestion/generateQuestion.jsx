@@ -4,8 +4,8 @@ import extractQuestionData from "./extractQuestionData";
 
 
 const generateQuestion = async (selectedCategory, selectedSubcategory, selectedTopic, howManyQuestion) => {
+  console.log("howmanyquestion", howManyQuestion);
   const structure = `I need ${howManyQuestion} questions type test of ${selectedCategory}-${selectedSubcategory}-${selectedTopic} with feedback the reason of that answer, I need before the question put Q: , before the each option put A), B), C), D), E) as appropriate, before the answer put Answer: and before the feedback put feedback, summarize feeback as possible. seperate each question by three equal to characters (===)`;
-  console.log(howManyQuestion)
   console.log(structure);
   const response = await fetch("http://localhost:8080/generate", {
     method: "POST",
