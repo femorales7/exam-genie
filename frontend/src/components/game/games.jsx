@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import generateQuestion from "../generatedQuestion/generateQuestion";
 import useApplicationData, { ACTIONS } from "./addplayerModal";
 import AddPlayerForm from "./AddPlayerForm";
+
 import style from "../../index.module.css";
 
 function Game() {
@@ -28,6 +29,7 @@ function Game() {
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [playerNameInput, setPlayerNameInput] = useState("");
+  const [howManyQuestion, setHowManyQuestion] = useState("5");
 
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
@@ -142,6 +144,7 @@ function Game() {
                       handleSubcategorySelection={handleSubcategorySelection}
                       handleTopicSelection={handleTopicSelection}
                       onSubmit={onSubmit}
+                      setHowManyQuestion = {setHowManyQuestion}
                     />
                   </div>
                   <div className="playerList">

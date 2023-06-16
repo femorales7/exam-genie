@@ -1,50 +1,38 @@
+const { addQuestions } = require("../db/queries/addQuestions");
+
 const extractQuestionData = (text) => {
-  const lines = text.split("\n");
-  // console.log("lines", lines);
-  let questions = {};
-  let question = "";
-  let options = [];
-  let answer = "";
-  let feedback = "";
 
-  const questionIndex = lines.findIndex((line) => line.startsWith("Q:"));
-  // console.log("questionIndex", questionIndex);
-  if (questionIndex !== -1) {
-    question = lines[questionIndex].substring(3).trim();
-  }
+  // console.log("text", text)
+  
+const questionBlocks = text.split("===");
 
-  const optionsStartIndex = lines.findIndex((line) =>
-    line.trim().startsWith("A)")
-  );
-  // console.log("optionsStartIndex", optionsStartIndex);
-  const answerIndex = lines.findIndex((line) =>
-    line.trim().startsWith("Answer:")
-  );
-  // console.log("answerIndex", answerIndex);
-  const feedbackIndex = lines.findIndex((line) =>
-    line.trim().startsWith("Feedback:")
-  );
-  // console.log("feedbackIndex", feedbackIndex);
+const questionObjects = questionBlocks.map((block) => {
+  const questionMatch = block.match(/Q:(.*)/);
+  const optionsMatch = block.match(/([A-E]\))(.*)/g);
+  const answerMatch = block.match(/Answer:(.*)/);
+  const feedbackMatch = block.match(/Feedback:(.*)/);
 
-  if (
-    optionsStartIndex !== -1 &&
-    answerIndex !== -1 &&
-    feedbackIndex !== -1
-  ) {
-    options = lines
-      .slice(optionsStartIndex, answerIndex)
-      .map((line) => line.trim())
-      .filter((option) => option.length > 0); // Exclude empty options
-    answer = lines[answerIndex].trim();
-    answer = answer.replace("Answer:", "").trim();
-    // console.log("answer", answer);
-    feedback = lines
-      .slice(feedbackIndex)
-      .filter((line) => line.trim().length > 0) // Exclude empty lines
-      .join("\n");
-  }
+  const question = questionMatch ? questionMatch[1].trim() : "";
+  const options = optionsMatch ? optionsMatch.map((option) => option.trim()) : [];
+  const answer = answerMatch ? answerMatch[1].trim() : "";
+  const feedback = feedbackMatch ? feedbackMatch[1].trim() : "";
 
-  return { question, options, answer, feedback };
+  const questionObject = { question, answer, feedback, options };
+
+  addQuestions(questionObject)
+  .then(() => {
+    
+    console.log('question saved in DB')
+  })
+  .catch((error) => {
+    console.error('error saving questions in DB', error)
+  })
+
+  return questionObject;
+});
+console.log("questionObjects", questionObjects);
+
+  
 };  
 
 module.exports =  extractQuestionData;

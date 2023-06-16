@@ -2,11 +2,9 @@ DROP TABLE IF EXISTS questions CASCADE;
 CREATE TABLE questions (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  -- exam_id INTEGER REFERENCES exams(id) ON DELETE CASCADE,
-  -- detail_id INTEGER REFERENCES details(id) ON DELETE CASCADE,
-  -- question_type VARCHAR NOT NULL,
+  
   question VARCHAR(255) NOT NULL,
-  question_option VARCHAR(255) NOT NULL,
+  question_option TEXT NOT NULL,
   answer VARCHAR(255) NOT NULL,
   feedback VARCHAR(1000) NOT NULL
 );

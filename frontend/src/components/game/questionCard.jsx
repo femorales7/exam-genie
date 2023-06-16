@@ -13,6 +13,7 @@ const QuestionCard = ({
   onSubmit,
   finishExam,
   nextQ 
+  
 }) => {
   return (
     <div>

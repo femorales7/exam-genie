@@ -13,25 +13,31 @@ const OptionsForm = ({
   return (
     <div className="options">
       <form onSubmit={onSubmit}>
-        <label>Topic</label>
+        <h2>Topic</h2>
+        <div className="options-button">
         <ButtonOptions
           options={Object.keys(data)}
           handleOptionSelection={handleCategorySelection}
         />
+        </div>
         <h2>Sub-Topic</h2>
+        <div className="options-button">
         {selectedCategory && (
           <ButtonOptions
             options={Object.keys(data[selectedCategory])}
             handleOptionSelection={handleSubcategorySelection}
           />
         )}
-        Detail
+        </div>
+        <h2>Detail</h2>
+        <div className="options-button">
         {selectedSubcategory && (
           <ButtonOptions
             options={data[selectedCategory][selectedSubcategory]}
             handleOptionSelection={handleTopicSelection}
           />
         )}
+        </div>
         <input type="submit" value="Start exam" />
       </form>
     </div>

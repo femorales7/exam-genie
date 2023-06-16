@@ -10,6 +10,7 @@ const { Configuration, OpenAIApi } = require("openai");
 const generate = require("./generate")
 const extractQuestionData = require('./helpFunction/extractQuestions')
 const { addQuestions } = require("./db/queries/addQuestions")
+// const { saveResponseToDatabase } = require('./database');
 
 // import dotenv from "dotenv"
 // dotenv.config();
@@ -71,12 +72,14 @@ app.post("/generate", async (req, res) => {
   const question = req.body.question
   try{
     const user_question = await generate(question, openai);
-
-    addQuestions(extractQuestionData(user_question))
-    .then((data) => {
-    })
+       
+    
+     
+      console.log('Question saved to the database.');
+    
 
     res.json({response: user_question})
+    extractQuestionData(user_question)
 
   }catch(error) {
     console.error(error)
