@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Question from "./Question";
+import { createRoutesFromElements, useNavigate, createBrowserRouter, Link } from "react-router-dom";
+import { Route } from "react-router";
 import "../styles/QuestionList.scss"
+import Dashboard from "../pages/dashboard";
 
 
 const QuestionList = (props) => {
@@ -8,6 +11,8 @@ const QuestionList = (props) => {
   const [score, setScore] = useState(0)
   const [selectedOption, setSelectedOption] = useState(null);
   const [showResults, setShowResults] = useState(false)
+  const navigate = useNavigate();
+  
   
 
   const questions = props.questions;
@@ -33,6 +38,13 @@ const QuestionList = (props) => {
     }
   }
 
+  const finishExam = () => {
+    navigate("/dashboard", {state: {score: score, currentQuestion: currentQuestion}});
+    // return(
+    //   <Dashboard score={score} currentQuestion={currentQuestion}/>
+    // )
+  };
+
   const mappedQuestion = questions.map((question, index) => {
     return <Question
       key={index}
@@ -56,6 +68,7 @@ const QuestionList = (props) => {
         <h2>
           {score} out of {questions.length} correct - ({(score/questions.length)* 100}%)
         </h2>
+        <button onClick={finishExam}>Finish Exam</button>
         </div>
       ) : (
       <div className="question-list"> 
