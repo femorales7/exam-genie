@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import Logo from "../../images/Exam-genie1.png";
 import "../../styles/addPlayerForm.scss";
-import { handleAddPlayer } from "./playerUtils";
 
 
 
-const AddPlayerForm = ({ onAddPlayer, onCloseModal }) => {
+
+const AddPlayerForm = ({ onAddPlayer }) => {
   const [playerName, setPlayerName] = useState(""); // Add state for player name
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    handleAddPlayer(playerName, onAddPlayer); // Call the handleAddPlayer function
+    onAddPlayer(playerName); // Call the handleAddPlayer function
     setPlayerName(""); // Reset the player name input
-    onCloseModal();
+    
   };
 
   const handleNameChange = (e) => {
@@ -23,10 +23,10 @@ const AddPlayerForm = ({ onAddPlayer, onCloseModal }) => {
   return (
     <div className="photo-details-modal">
       <form onSubmit={handleFormSubmit}>
-       <div class="containerADD">
-        <div class="brand-logo"></div>
-        <div class="brand-title">EXAM-GENIE</div>
-        <div class="inputs">
+       <div className="containerADD">
+        <div className="brand-logo"></div>
+        <div className="brand-title">EXAM-GENIE</div>
+        <div className="inputs">
           <label className="labelNickName">NickName</label>
           <input
             className="nickName"
