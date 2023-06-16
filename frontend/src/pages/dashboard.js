@@ -1,6 +1,6 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Container } from "react-bootstrap";
-import { Doughnut } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import { useLocation } from "react-router";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -8,26 +8,30 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 function Dashboard() {
   const location = useLocation();
   const { score, currentQuestion } = location.state
-  console.log(score, currentQuestion);
+  console.log("score", score);
+  console.log("current question number", currentQuestion)
   const data = {
-    label: ["Score", "Total Question"],
+    label: ["Score", "wrong question"],
     datasets : [
       {
-        label: "Results",
-        data: [score, currentQuestion],
-        backgroundColor: ["red", "blue"],
+        labels: ["correct", "wrong"], 
+        data: [score, (currentQuestion + 1) - score],
+        backgroundColor: ["blue", "red"],
         borderColor: "black"
       }
     ]
   };
   const options = {
-
+    title : {
+      display : true,
+      text : "Pia chart"
+    },
   }
   return(
     <section id="background">
     <Container fluid className="project-section">
         <div style={ {width: "20%"}}>
-          <Doughnut
+          <Pie
             data = {data}
             options={options}
           />

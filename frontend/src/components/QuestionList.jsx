@@ -1,10 +1,7 @@
 import { useState } from "react";
 import Question from "./Question";
-import { createRoutesFromElements, useNavigate, createBrowserRouter, Link } from "react-router-dom";
-import { Route } from "react-router";
+import { useNavigate } from "react-router-dom";
 import "../styles/QuestionList.scss"
-import Dashboard from "../pages/dashboard";
-
 
 const QuestionList = (props) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -13,7 +10,7 @@ const QuestionList = (props) => {
   const [showResults, setShowResults] = useState(false)
   const navigate = useNavigate();
   
-  
+  console.log("current questions from list", currentQuestion)
 
   const questions = props.questions;
 
