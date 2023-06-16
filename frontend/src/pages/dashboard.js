@@ -1,22 +1,25 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Container } from "react-bootstrap";
 import { Doughnut } from "react-chartjs-2";
+import { useLocation } from "react-router";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function Dashboard(props) {
+function Dashboard() {
+  const location = useLocation();
+  const { score, currentQuestion } = location.state
+  console.log(score, currentQuestion);
   const data = {
-    label: ["red", "blue"],
+    label: ["Score", "Total Question"],
     datasets : [
       {
-        label: "Dataset 1",
-        data: [3, 6],
+        label: "Results",
+        data: [score, currentQuestion],
         backgroundColor: ["red", "blue"],
         borderColor: "black"
       }
     ]
   };
-  console.log("It's from dashboard", props);
   const options = {
 
   }

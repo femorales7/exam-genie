@@ -7,13 +7,16 @@ import QuestionCard from "./questionCard";
 import PlayerList from "./playersList";
 import { useNavigate } from "react-router-dom";
 import generateQuestion from "../generatedQuestion/generateQuestion";
-import useApplicationData, { ACTIONS } from "./addplayerModal";
+// import useApplicationData, { ACTIONS } from "./addplayerModal";
+import { handleAddPlayer } from "./playerUtils";
 import AddPlayerForm from "./AddPlayerForm";
 
 import style from "../../index.module.css";
 
 function Game() {
-  const { handleAddPlayerModal, isModalOpen } = useApplicationData();
+  // const { handleAddPlayerModal, isModalOpen } = useApplicationData();
+  // console.log("isModalOpen", isModalOpen)
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [players, setPlayers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSubcategory, setSelectedSubcategory] = useState("");
@@ -98,11 +101,10 @@ function Game() {
     }
   };
 
-  const handleAddPlayer = () => {
-    const playerName = prompt("Enter player name");
+  const handleAddPlayer = (playerName) => {
     if (playerName) {
       setPlayers([...players, { name: playerName, score: 0 }]);
-    }
+    }; // Call the handleAddPlayer function
   };
 
   const handleRemovePlayer = (index) => {
@@ -124,8 +126,15 @@ function Game() {
     // Redirigir a la página de tablero o mostrar los resultados finales
     navigate("/dashboard");
   };
-  {isModalOpen && (console.log("im here", isModalOpen))}
-  console.log("im here", isModalOpen);
+
+
+  const handleAddPlayerModal = () => {
+    setIsModalOpen(true); // Open the modal form
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal form
+  };
   return (
     <section id="background">
       <Container fluid className="project-section">
@@ -156,7 +165,7 @@ function Game() {
                     />
                   </div>
                 </div>
-                {isModalOpen && <AddPlayerForm />}
+                {isModalOpen && <AddPlayerForm onAddPlayer={handleAddPlayer} onCloseModal={handleCloseModal} />}
                 <div>
                   {questions && (
                     <QuestionCard

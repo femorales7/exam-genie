@@ -1,14 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-
 
 const Question = (props) => {
-
-  const navigate = useNavigate();
-  const finishExam = () => {
-    navigate("/dashboard")
-  };
-
   return (
     props.id === props.currentQuestion && (<div className="question-card">
       <h1>Question {props.currentQuestion + 1}</h1>
@@ -34,7 +25,7 @@ const Question = (props) => {
           <p>Answer: {props.answer}</p>
           <p>{props.feedback}</p>
           <button onClick={props.handleNextQuestion}>Next Questions</button>
-          <button onClick={finishExam}>Finish Exam</button>
+
         </div>
         
         )}
