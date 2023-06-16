@@ -40,6 +40,8 @@ function Game() {
   const [incorrect, setIncorrect] = useState(false);
   const [loading, setLoading] = useState(true);
 
+
+  // select topic, sub-topic and Specialization
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
     setSelectedSubcategory(null);
@@ -55,6 +57,7 @@ function Game() {
     setSelectedTopic(topic);
   };
 
+  // send information to the funcions for generate questions from API
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(false);
@@ -69,7 +72,7 @@ function Game() {
     setQuestions(questionData);
     console.log("return from server", questionData);
   };
-
+// validation of answer and set new player 
   const handleOptionChange = (e) => {
     const userAnswer = e.target.value;
     setSelectedOption(userAnswer);
@@ -109,9 +112,10 @@ function Game() {
     if (playerName) {
       setPlayers([...players, { name: playerName, score: 0 }]);
       handleCloseModal();
-    } // Call the handleAddPlayer function
+    } 
   };
 
+  // remove players of the list
   const handleRemovePlayer = (index) => {
     const updatedPlayers = [...players];
     updatedPlayers.splice(index, 1);
@@ -119,16 +123,16 @@ function Game() {
   };
 
   const finishExam = () => {
-    // Calcular las puntuaciones y actualizar el estado de los jugadores
+    // Calculate scores and update the status of players
     const updatedPlayers = players.map((player) => ({
       ...player,
       score: player.score + score,
     }));
 
-    // Actualizar el estado de los jugadores
+    // Update player status
     setPlayers(updatedPlayers);
 
-    // Redirigir a la página de tablero o mostrar los resultados finales
+    // Redirect to dashboard page or show final results
     navigate("/dashboard");
   };
 
