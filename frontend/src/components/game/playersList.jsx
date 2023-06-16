@@ -1,7 +1,7 @@
 import React from "react";
 
 const PlayerList = ({ players, handleRemovePlayer, handleAddPlayer, handleAddPlayerModal }) => {
-  console.log("players", players)
+  // console.log("players", players)
   return (
     <div className="player-list">
       <h2>Scoreboard</h2>
@@ -19,7 +19,7 @@ const PlayerList = ({ players, handleRemovePlayer, handleAddPlayer, handleAddPla
         </div>
       ))}
       <div className="buttonAdd">
-      <button className="button-85" onClick={handleAddPlayerModal()}>Add Player</button>
+      <button className="button-85" onClick={handleAddPlayerModal}>Add Player</button>
       </div>
     </div>
   );

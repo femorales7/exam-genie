@@ -13,6 +13,7 @@ const generate = async (question, openaiClient) => {
   };
 
   const chatGptApi = async (question) => {
+    console.log("question in server", question)
     const messages = [
       { role: "system", content: "you are a provider of question with multiple choice" },
       { role: "user", content: "I need 1 question type test of ${selectedCategory}-${selectedSubcategory}-${selectedTopic} with feedback. The reason for that answerI need before the question put Q: , before the each option put A), B), C), D), E) as appropriate, before the answer put Answer: and before the feedback put feedback:" },

@@ -11,17 +11,21 @@ function Exam() {
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [questions, setQuestions] = useState([]);
-  const [howManyQuestion, setHowManyQuestion] = useState("5");
+  const [howManyQuestion, setHowManyQuestion] = useState("");
 
+  const handleHowManyQuestions = (event) => {
+    const numQuestions = event.target.value;
+    setHowManyQuestion(numQuestions); 
 
+  }
  
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log("howManyQuestion in call funtion", howManyQuestion);
     const questionData = await generateQuestion(
       selectedCategory,
       selectedSubcategory,
       selectedTopic,
-      setQuestions,
       howManyQuestion
     );
     setQuestions(questionData);
@@ -41,6 +45,7 @@ function Exam() {
   const handleTopicSelection = (topic) => {
     setSelectedTopic(topic);
   };
+
 
   return (
     <main className={style.main}>
@@ -72,7 +77,7 @@ function Exam() {
           )}
           </div>
           <h2 for="question number">How many questions?</h2>
-          <select onChange={e => setHowManyQuestion(e.target.value)} >
+          <select onChange={handleHowManyQuestions}>
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>
