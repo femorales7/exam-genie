@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/TopNavigationBar.scss";
 import TopMenu from "./TopMenu";
 import TopMenu2 from "./TopMenu2";
+import "../styles/TopMenu2.scss";
 
 
 const TopNavigation = () => {
@@ -9,7 +9,7 @@ const TopNavigation = () => {
   return (
    <div> 
     {/* <TopMenu />   */}
-    <TopMenu2 />        
+    <TopMenu2 className="TopMenu2"/>        
   </div>
     
   );
