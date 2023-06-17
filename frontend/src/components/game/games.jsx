@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import data from "../../components/topics/topics.json";
+import { FaTimesCircle } from "react-icons/fa";
+import { FcApproval, FcHighPriority } from "react-icons/fc";
 import { Container, Row, Col } from "react-bootstrap";
 import Particle from "../../pages/Particle";
 import OptionsForm from "./optionsForm";
@@ -7,8 +9,9 @@ import QuestionCard from "./questionCard";
 import PlayerList from "./playersList";
 import { useNavigate } from "react-router-dom";
 import generateQuestion from "../generatedQuestion/generateQuestion";
+import ReactLoading from "react-loading";
 // import useApplicationData, { ACTIONS } from "./addplayerModal";
-import { handleAddPlayer } from "./playerUtils";
+
 import AddPlayerForm from "./AddPlayerForm";
 
 import style from "../../index.module.css";
@@ -33,7 +36,12 @@ function Game() {
   const [questions, setQuestions] = useState([]);
   const [playerNameInput, setPlayerNameInput] = useState("");
   const [howManyQuestion, setHowManyQuestion] = useState("5");
+  const [correct, setCorrect] = useState(false);
+  const [incorrect, setIncorrect] = useState(false);
+  const [loading, setLoading] = useState(true);
 
+
+  // select topic, sub-topic and Specialization
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
     setSelectedSubcategory(null);
@@ -49,31 +57,29 @@ function Game() {
     setSelectedTopic(topic);
   };
 
+  // send information to the funcions for generate questions from API
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(false);
     const questionData = await generateQuestion(
       selectedCategory,
       selectedSubcategory,
-      selectedTopic,
-      setQuestion,
-      setOptions,
-      setAnswer,
-      setFeedback,
-      setSelectedOption
+      setLoading,
+      selectedTopic,      
+      howManyQuestion
     );
 
     setQuestions(questionData);
     console.log("return from server", questionData);
   };
-
+// validation of answer and set new player 
   const handleOptionChange = (e) => {
     const userAnswer = e.target.value;
     setSelectedOption(userAnswer);
 
-    const currentPlayer = players[currentPlayerIndex];
-
     if (userAnswer === questions[currentQuestion].answer) {
-      alert("Correct");
+      setCorrect(true);
+      const currentPlayer = players[currentPlayerIndex];
       const updatedPlayers = [...players];
       updatedPlayers[currentPlayerIndex] = {
         ...currentPlayer,
@@ -81,17 +87,15 @@ function Game() {
       };
       setPlayers(updatedPlayers);
     } else {
-      alert("Incorrect");
+      setIncorrect(true);
     }
-
-    // Move to the next player
-    const nextPlayerIndex = (currentPlayerIndex + 1) % players.length;
-    setCurrentPlayerIndex(nextPlayerIndex);
   };
 
   // Move to the next question
   const nextQ = (e) => {
     e.preventDefault();
+    setCorrect(false);
+    setIncorrect(false);
 
     if (currentQuestion < questions.length) {
       const nexQuestion = currentQuestion + 1;
@@ -99,14 +103,19 @@ function Game() {
     } else {
       navigate("/dashboard");
     }
+    // Move to the next player
+    const nextPlayerIndex = (currentPlayerIndex + 1) % players.length;
+    setCurrentPlayerIndex(nextPlayerIndex);
   };
 
   const handleAddPlayer = (playerName) => {
     if (playerName) {
       setPlayers([...players, { name: playerName, score: 0 }]);
-    }; // Call the handleAddPlayer function
+      handleCloseModal();
+    } 
   };
 
+  // remove players of the list
   const handleRemovePlayer = (index) => {
     const updatedPlayers = [...players];
     updatedPlayers.splice(index, 1);
@@ -114,19 +123,18 @@ function Game() {
   };
 
   const finishExam = () => {
-    // Calcular las puntuaciones y actualizar el estado de los jugadores
+    // Calculate scores and update the status of players
     const updatedPlayers = players.map((player) => ({
       ...player,
       score: player.score + score,
     }));
 
-    // Actualizar el estado de los jugadores
+    // Update player status
     setPlayers(updatedPlayers);
 
-    // Redirigir a la página de tablero o mostrar los resultados finales
+    // Redirect to dashboard page or show final results
     navigate("/dashboard");
   };
-
 
   const handleAddPlayerModal = () => {
     setIsModalOpen(true); // Open the modal form
@@ -153,36 +161,49 @@ function Game() {
                       handleSubcategorySelection={handleSubcategorySelection}
                       handleTopicSelection={handleTopicSelection}
                       onSubmit={onSubmit}
-                      setHowManyQuestion = {setHowManyQuestion}
-                    />
-                  </div>
-                  <div className="playerList">
-                    <PlayerList
+                      setHowManyQuestion={setHowManyQuestion}
                       players={players}
                       handleRemovePlayer={handleRemovePlayer}
-                      // handleAddPlayer={handleAddPlayer}
                       handleAddPlayerModal={handleAddPlayerModal}
                     />
                   </div>
                 </div>
-                {isModalOpen && <AddPlayerForm onAddPlayer={handleAddPlayer} onCloseModal={handleCloseModal} />}
-                <div>
-                  {questions && (
-                    <QuestionCard
-                      questions={questions}
-                      currentQuestion={currentQuestion}
-                      currentPlayerIndex={currentPlayerIndex}
-                      players={players}
-                      selectedOption={selectedOption}
-                      answer={answer}
-                      feedback={feedback}
-                      handleOptionChange={handleOptionChange}
-                      onSubmit={onSubmit}
-                      finishExam={finishExam}
-                      nextQ={nextQ}
-                    />
-                  )}
-                </div>
+                {isModalOpen && (
+                  <AddPlayerForm
+                    players={players}
+                    setPlayers={setPlayers}
+                    onAddPlayer={handleAddPlayer}
+                    onCloseModal={handleCloseModal}
+                  />
+                )}
+                {!loading ? (
+                  <ReactLoading
+                    type={"bars"}
+                    color={"#03fc4e"}
+                    height={200}
+                    width={200}
+                  />
+                ) : (
+                  <div>
+                    {questions && (
+                      <QuestionCard
+                        questions={questions}
+                        currentQuestion={currentQuestion}
+                        currentPlayerIndex={currentPlayerIndex}
+                        players={players}
+                        selectedOption={selectedOption}
+                        answer={answer}
+                        feedback={feedback}
+                        handleOptionChange={handleOptionChange}
+                        onSubmit={onSubmit}
+                        finishExam={finishExam}
+                        nextQ={nextQ}
+                        correct={correct}
+                        incorrect={incorrect}
+                      />
+                    )}
+                  </div>
+                )}
               </main>
             </Col>
           </Row>
