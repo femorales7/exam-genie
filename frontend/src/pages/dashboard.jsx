@@ -2,29 +2,22 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Container } from "react-bootstrap";
 import { Pie } from "react-chartjs-2";
 import { useLocation } from "react-router";
-import { useEffect } from "react";  
+import { useEffect, useState } from "react";  
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function Dashboard() {
-  const location = useLocation();
-  console.log("This is location", location)
-  let score, currentQuestion; 
-  useEffect(() => {
-    if(location.state){
-      // const { score, currentQuestion } = location.state
-      score = location.state;
-      currentQuestion = location.state.currentQuestion;
-    }
-  }, [location])
-  console.log("score", score);
-  console.log("current question number", currentQuestion)
+function Dashboard(props) {
+  console.log(props.currentQuestion);
+  console.log(props.finalScore);
+  const [show, setShow] = useState()
+  
   const data = {
-    label: ["Score", "wrong question"],
+    labels : ["correct", "wrong"],
     datasets : [
       {
-        labels: ["correct", "wrong"], 
-        // data: [score, (currentQuestion + 1) - score],
+        label: "results", 
+        data: [2, (props.currentQuestion + 1) - props.finalScore],
+        // data: [3, 5],
         backgroundColor: ["blue", "red"],
         borderColor: "black"
       }
@@ -38,16 +31,27 @@ function Dashboard() {
     },
   }
   return(
-    <section id="background">
+    props.currentQuestion !== 0 ? (
     <Container fluid className="project-section">
-        <div style={ {width: "20%"}}>
-          <Pie
-            data = {data}
-            options={options}
-          />
+        <div className="final-results">
+          <div style={ {width: "50%"}}>
+            <Pie
+              data = {data}
+              options={options}
+            />
+          </div>
+          <h1>Fianl Results</h1>
+          <h2>
+            {props.finalScore} out of {props.currentQuestion + 1} correct - (
+            {(props.finalScore / (props.currentQuestion + 1)) * 100}%)
+          </h2>
         </div>
     </Container>
-    </section>
+    ) : (
+        <Container fluid className="project-section">
+          <h1>There is no result yet</h1>
+        </Container>
+    )
   )
 }
 

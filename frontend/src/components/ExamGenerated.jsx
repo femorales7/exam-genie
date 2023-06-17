@@ -1,5 +1,5 @@
 import style from "../index.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import data from "../components/topics/topics.json";
 import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
@@ -7,7 +7,9 @@ import QuestionList from "./QuestionList";
 import "../styles/ExamGenerated.scss";
 import ReactLoading from "react-loading";
 
-function Exam() {
+function ExamGenerated(props) {
+
+  console.log("exam", props)
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [selectedTopic, setSelectedTopic] = useState(null);
@@ -101,10 +103,10 @@ function Exam() {
         />
         </div>
       ) : (
-        <div>{questions && <QuestionList questions={questions} />}</div>
+        <div>{questions && <QuestionList questions={questions} setFinalScore={props.setFinalScore} finalScore={props.finalScore} currentQuestion={props.currentQuestion} setCurrentQuestion={props.setCurrentQuestion}/>}</div>
       )}
     </main>
   );
 }
 
-export default Exam;
+export default ExamGenerated;
