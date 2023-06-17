@@ -11,7 +11,7 @@ function Exam() {
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [questions, setQuestions] = useState([]);
-  const [howManyQuestion, setHowManyQuestion] = useState("");
+  const [howManyQuestion, setHowManyQuestion] = useState("5");
 
   const handleHowManyQuestions = (event) => {
     const numQuestions = event.target.value;

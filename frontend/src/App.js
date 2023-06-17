@@ -26,6 +26,8 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  const [finalScore, setFinalScore] = useState("");
+
   return (
     <div className="App">
       <Router>
