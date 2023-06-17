@@ -9,7 +9,7 @@ const TopNavigation = () => {
   return (
    <div> 
     {/* <TopMenu />   */}
-    <TopMenu2 className="TopMenu2"/>        
+    <TopMenu2 />        
   </div>
     
   );

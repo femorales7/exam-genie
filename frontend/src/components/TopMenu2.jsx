@@ -29,17 +29,18 @@ const TopMenu2 = () => {
           </>
           )}
         </div>
-        <div className="topNav-profile">
-          <div className="topNav-profile--image">
-            <Profile className="topNav-profile--Icon"/>
-          </div>        
-          <div>
-            {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-          </div>
+
+        <div class="navigation">
+          <a class="button" href="">
+  	      <Profile/>
+          <div class="logout">LOGOUT</div>
+          </a>
         </div>
       </div>
     </div>
   )
 }
+
+{/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
 
 export default TopMenu2;
