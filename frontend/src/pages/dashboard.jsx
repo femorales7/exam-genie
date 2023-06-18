@@ -16,7 +16,7 @@ function Dashboard(props) {
     datasets : [
       {
         label: "results", 
-        data: [2, (props.currentQuestion + 1) - props.finalScore],
+        data: [props.finalScore, (props.currentQuestion + 1) - props.finalScore],
         // data: [3, 5],
         backgroundColor: ["blue", "red"],
         borderColor: "black"
