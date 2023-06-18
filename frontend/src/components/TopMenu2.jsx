@@ -24,22 +24,26 @@ const TopMenu2 = () => {
           <Link to="/about"><FaGithubAlt />About Us</Link>
           {isAuthenticated && (
           <>
-          <Link to="/exam"><FaBookReader />Text Exam</Link>
+          <Link to="/exam"><FaBookReader />Test Exam</Link>
+          <Link to="/game"><FaBookReader />Player Challenge</Link>
           <Link to="/dashboard"><FaChartLine />Dashboard</Link>
           </>
           )}
         </div>
-        <div className="topNav-profile">
-          <div className="topNav-profile--image">
-            <Profile className="topNav-profile--Icon"/>
-          </div>        
-          <div>
-            {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-          </div>
+
+        <div class="navigation">
+          <a class="button" href="/dashboard">
+  	      <Profile/>
+          {isAuthenticated ?
+          <div class="logout"><LogoutButton /></div> :
+          <LoginButton />}
+          </a>
         </div>
       </div>
     </div>
   )
 }
+
+{/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
 
 export default TopMenu2;

@@ -13,11 +13,13 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
 } from "react-router-dom";
 
 function App() {
   const [load, upadateLoad] = useState(true);
+  const [finalScore, setFinalScore] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       upadateLoad(false);
@@ -28,6 +30,7 @@ function App() {
 
   
 
+
   return (
     <div className="App">
       <Router>
@@ -37,10 +40,18 @@ function App() {
           <ScrollToTop />
           <Routes>
             <Route path="/" exact element={<Home />} />
-            <Route path="/exam" exact element={<Exam />} />
+            <Route path="/exam" exact element={
+            <Exam 
+            finalScore={finalScore} 
+            setFinalScore={setFinalScore} 
+            currentQuestion={currentQuestion} 
+            setCurrentQuestion={setCurrentQuestion}
+            />
+          } 
+            />
             <Route path="/game" exact element={<Game />} />
             <Route path="/about" exact element={<AboutUs />} />
-            <Route path="/dashboard" exact element={<Dashboard />} />
+            <Route path="/dashboard" exact element={<Dashboard finalScore={finalScore} currentQuestion={currentQuestion} />}/>
           </Routes>
           <Footer />
         </div>
