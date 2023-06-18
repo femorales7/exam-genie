@@ -14,21 +14,24 @@ const PlayerList = ({ players, handleRemovePlayer, handleAddPlayerModal }) => {
             <span>Score: {player.score}</span>
           </div>
           <div className="">
-            <button
-              className="button-85"
-              onClick={() => handleRemovePlayer(index)}
-            >
-              {" "}
-              Remove
-            </button>
+          <button class="button-pushable" onClick={() => handleRemovePlayer(index)}>
+          <span class="button-shadow"></span>
+          <span class="button-edge"></span>
+          <span class="button-front text">Remove</span>
+        </button>
+          
           </div>
         </div>
       ))}
 
       <div className="buttonAdd">
-        <button className="button-85" onClick={handleAddPlayerModal}>
-          Add Player
+      <button class="button-pushable" onClick={handleAddPlayerModal}>
+          <span class="button-shadow"></span>
+          <span class="button-edge"></span>
+          <span class="button-front text">Add Player</span>
         </button>
+
+        
       </div>
     </div>
   );

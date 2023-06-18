@@ -92,16 +92,17 @@ function Exam() {
           />
         </form>
       </div>
-      {!loading ? (<div className="loading">
-        <ReactLoading
-          type={"bars"}
-          color={"#03fc4e"}
-          height={200}
-          width={200}
-        />
+      {!loading ? (
+        <div className="loading">
+          <ReactLoading 
+            type={"bars"}
+            color={"#03fc4e"}
+            height={200}
+            width={200}
+          />
         </div>
       ) : (
-        <div>{questions && <QuestionList questions={questions} />}</div>
+        <div>{questions && <QuestionList questions={questions}  />}</div>
       )}
     </main>
   );

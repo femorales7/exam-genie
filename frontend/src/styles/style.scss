@@ -470,6 +470,8 @@ button:focus {
   position: relative !important;
   padding-top: 80px !important;
   padding-bottom: 30px !important;
+  flex: 1;
+  min-height: calc(100vh - 10px);
   
 }
 

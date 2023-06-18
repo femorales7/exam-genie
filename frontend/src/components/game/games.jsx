@@ -40,7 +40,6 @@ function Game() {
   const [incorrect, setIncorrect] = useState(false);
   const [loading, setLoading] = useState(true);
 
-
   // select topic, sub-topic and Specialization
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
@@ -65,14 +64,14 @@ function Game() {
       selectedCategory,
       selectedSubcategory,
       setLoading,
-      selectedTopic,      
+      selectedTopic,
       howManyQuestion
     );
 
     setQuestions(questionData);
     console.log("return from server", questionData);
   };
-// validation of answer and set new player 
+  // validation of answer and set new player
   const handleOptionChange = (e) => {
     const userAnswer = e.target.value;
     setSelectedOption(userAnswer);
@@ -112,7 +111,7 @@ function Game() {
     if (playerName) {
       setPlayers([...players, { name: playerName, score: 0 }]);
       handleCloseModal();
-    } 
+    }
   };
 
   // remove players of the list
@@ -151,7 +150,7 @@ function Game() {
           <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
             <Col md={4} className="project-card">
               <main className={style.maingame}>
-                <div className="sideBar">
+                
                   <div className="optionForm">
                     <OptionsForm
                       data={data}
@@ -167,7 +166,7 @@ function Game() {
                       handleAddPlayerModal={handleAddPlayerModal}
                     />
                   </div>
-                </div>
+               
                 {isModalOpen && (
                   <AddPlayerForm
                     players={players}
@@ -176,34 +175,40 @@ function Game() {
                     onCloseModal={handleCloseModal}
                   />
                 )}
-                {!loading ? (
-                  <ReactLoading
-                    type={"bars"}
-                    color={"#03fc4e"}
-                    height={200}
-                    width={200}
-                  />
-                ) : (
-                  <div>
-                    {questions && (
-                      <QuestionCard
-                        questions={questions}
-                        currentQuestion={currentQuestion}
-                        currentPlayerIndex={currentPlayerIndex}
-                        players={players}
-                        selectedOption={selectedOption}
-                        answer={answer}
-                        feedback={feedback}
-                        handleOptionChange={handleOptionChange}
-                        onSubmit={onSubmit}
-                        finishExam={finishExam}
-                        nextQ={nextQ}
-                        correct={correct}
-                        incorrect={incorrect}
+                <div className="loading-container">
+                  {!loading ? (
+                    <div className="Loadin">
+                      <ReactLoading
+                      
+                        type={"bars"}
+                        color={"#03fc4e"}
+                        height={200}
+                        width={200}
+                        className="reactLoading"
                       />
-                    )}
-                  </div>
-                )}
+                    </div>
+                  ) : (
+                    <div>
+                      {questions && (
+                        <QuestionCard
+                          questions={questions}
+                          currentQuestion={currentQuestion}
+                          currentPlayerIndex={currentPlayerIndex}
+                          players={players}
+                          selectedOption={selectedOption}
+                          answer={answer}
+                          feedback={feedback}
+                          handleOptionChange={handleOptionChange}
+                          onSubmit={onSubmit}
+                          finishExam={finishExam}
+                          nextQ={nextQ}
+                          correct={correct}
+                          incorrect={incorrect}
+                        />
+                      )}
+                    </div>
+                  )}
+                </div>
               </main>
             </Col>
           </Row>

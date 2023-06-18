@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import "../styles/style.scss";
 import Exam from "../components/ExamGenerated";
 
-function Home() {
+const  Home = ({setFinalScore}) => {
   return (
     <section id="background">
     <Container fluid className="project-section">
@@ -12,7 +12,7 @@ function Home() {
       <Container>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={4} className="project-card">
-            <Exam />
+            <Exam setFinalScore={setFinalScore} />
           </Col>
         </Row>
       </Container>

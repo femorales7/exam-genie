@@ -18,6 +18,7 @@ const QuestionList = (props) => {
   const [correct, setCorrect] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
   const navigate = useNavigate();
+  
 
   const questions = props.questions;
   //validation of answer and change set of message Correct or incorrect

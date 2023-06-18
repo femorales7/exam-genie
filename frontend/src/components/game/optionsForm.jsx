@@ -20,7 +20,7 @@ const OptionsForm = ({
     setHowManyQuestion(numQuestions);
   };
   return (
-    <div className="options">
+    <div className="optionsgame">
       <form onSubmit={onSubmit}>
         <h2>Topic</h2>
         <div className="options-button">

@@ -107,5 +107,21 @@ input[type="radio"] {
 
 .maingame{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ajusta el tamaño según tus necesidades */
+}
+.Loadin{
+  display: flex;
+  padding-right: 750px;
+  padding-top: 200px;
+}
+
+.optionForm {
+  position: fixed;
+  left: 0;
 }

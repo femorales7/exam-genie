@@ -1,14 +1,24 @@
 .question-card{
+  height:700px; /* Altura fija */
+  max-height: 600%;
+  width: 600px; /* Anchura fija */
+  max-width: 600%;
+  overflow: auto;
   margin: 0 auto;
+  // margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 50px;
 
   background-color: grey;
   border-radius: 16px;
   padding: 16px;
+  
 
-  width: 70%;
-  height: auto;
+  // width: 70%;
+  // height: auto;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    
 }
 .answers-list {
   list-style: none;
@@ -50,73 +60,109 @@ button {
   
 }
 
-/* CSS */
-.button-85 {
-  padding: 0.6em 2em;
-  border: none;
-  outline: none;
-  color: rgb(255, 255, 255);
-  background: #111;
-  cursor: pointer;
+//Button addPlayerForm, PlayerList 
+
+.button-pushable {
   position: relative;
-  z-index: 0;
-  border-radius: 10px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 }
 
-.button-85:before {
-  content: "";
-  background: linear-gradient(
-    45deg,
-    #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #7a00ff,
-    #ff00c8,
-    #ff0000
-  );
+.button-shadow {
   position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing-button-85 20s linear infinite;
-  transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
-  
-}
-
-@keyframes glowing-button-85 {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-}
-
-.button-85:after {
-  z-index: -1;
-  content: "";
-  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: #222;
-  left: 0;
+  border-radius: 12px;
+  background: hsl(0deg 0% 0% / 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+.button-edge {
+  position: absolute;
   top: 0;
-  border-radius: 10px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(
+    to left,
+    hsl(223, 96%, 30%) 0%,
+    hsl(211, 93%, 42%) 8%,
+    hsl(211, 93%, 42%) 92%,
+    hsl(223, 96%, 30%) 100%
+  );
+}
+
+.button-front {
+  display: block;
+  position: relative;
+  padding: 4px 9px;
+  border-radius: 12px;
+  font-size: 0.5rem;
+  color: white;
+  background: hsl(238, 94%, 49%);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+@media (min-width: 150px) {
+  .button-front {
+    font-size: 0.8rem;
+    padding: 4px 14px;
+  }
+}
+
+.button-pushable:hover {
+  filter: brightness(110%);
+  -webkit-filter: brightness(110%);
+}
+
+.button-pushable:hover .button-front {
+  transform: translateY(-6px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.button-pushable:active .button-front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.button-pushable:hover .button-shadow {
+  transform: translateY(4px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.button-pushable:active .button-shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.button-pushable:focus:not(:focus-visible) {
+  outline: none;
 }
 .name{
   display: flex;
@@ -144,9 +190,17 @@ button {
 }
 
 .optionForm {
-  padding-top: 10px;
+  padding-left: 10px;
+  position: fixed;
+  left: 0;
+  margin-bottom: 20px;
 }
 
 .playerList{
   padding-top: 10px;
+}
+
+//render loading in the middle of the screen
+.reactLoading{
+  padding-top: 250px;
 }
