@@ -10,11 +10,12 @@ import PlayerList from "./playersList";
 import { useNavigate } from "react-router-dom";
 import generateQuestion from "../generatedQuestion/generateQuestion";
 import ReactLoading from "react-loading";
-// import useApplicationData, { ACTIONS } from "./addplayerModal";
+import "../../styles/Game.scss";
+import "../../styles/ExamGenerated.scss";
 
 import AddPlayerForm from "./AddPlayerForm";
 
-import style from "../../index.module.css";
+// import style from "../../index.module.css";
 
 function Game() {
   // const { handleAddPlayerModal, isModalOpen } = useApplicationData();
@@ -24,8 +25,8 @@ function Game() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSubcategory, setSelectedSubcategory] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("");
-  const [question, setQuestion] = useState("");
-  const [options, setOptions] = useState([]);
+  // const [question, setQuestion] = useState("");
+  // const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
@@ -34,11 +35,12 @@ function Game() {
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
-  const [playerNameInput, setPlayerNameInput] = useState("");
+  // const [playerNameInput, setPlayerNameInput] = useState("");
   const [howManyQuestion, setHowManyQuestion] = useState("5");
   const [correct, setCorrect] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showResults, setShowResults] = useState(false);
 
   // select topic, sub-topic and Specialization
   const handleCategorySelection = (category) => {
@@ -89,23 +91,30 @@ function Game() {
       setIncorrect(true);
     }
   };
+  console.log("players", players);
 
   // Move to the next question
   const nextQ = (e) => {
     e.preventDefault();
     setCorrect(false);
     setIncorrect(false);
+    if (currentQuestion === questions.length) {
+      setShowResults(true);
+    }
 
     if (currentQuestion < questions.length) {
       const nexQuestion = currentQuestion + 1;
       setCurrentQuestion(nexQuestion);
-    } else {
-      navigate("/dashboard");
     }
+   
     // Move to the next player
     const nextPlayerIndex = (currentPlayerIndex + 1) % players.length;
     setCurrentPlayerIndex(nextPlayerIndex);
+    console.log("currentQuestion", currentQuestion);
+    console.log("questions.length", questions.length);
   };
+
+  console.log("showResults", showResults);
 
   const handleAddPlayer = (playerName) => {
     if (playerName) {
@@ -149,24 +158,23 @@ function Game() {
         <Container>
           <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
             <Col md={4} className="project-card">
-              <main className={style.maingame}>
-                
-                  <div className="optionForm">
-                    <OptionsForm
-                      data={data}
-                      selectedCategory={selectedCategory}
-                      selectedSubcategory={selectedSubcategory}
-                      handleCategorySelection={handleCategorySelection}
-                      handleSubcategorySelection={handleSubcategorySelection}
-                      handleTopicSelection={handleTopicSelection}
-                      onSubmit={onSubmit}
-                      setHowManyQuestion={setHowManyQuestion}
-                      players={players}
-                      handleRemovePlayer={handleRemovePlayer}
-                      handleAddPlayerModal={handleAddPlayerModal}
-                    />
-                  </div>
-               
+              <main className="maingame">
+                <div className="optionForm">
+                  <OptionsForm
+                    data={data}
+                    selectedCategory={selectedCategory}
+                    selectedSubcategory={selectedSubcategory}
+                    handleCategorySelection={handleCategorySelection}
+                    handleSubcategorySelection={handleSubcategorySelection}
+                    handleTopicSelection={handleTopicSelection}
+                    onSubmit={onSubmit}
+                    setHowManyQuestion={setHowManyQuestion}
+                    players={players}
+                    handleRemovePlayer={handleRemovePlayer}
+                    handleAddPlayerModal={handleAddPlayerModal}
+                  />
+                </div>
+
                 {isModalOpen && (
                   <AddPlayerForm
                     players={players}
@@ -179,7 +187,6 @@ function Game() {
                   {!loading ? (
                     <div className="Loadin">
                       <ReactLoading
-                      
                         type={"bars"}
                         color={"#03fc4e"}
                         height={200}
@@ -204,8 +211,23 @@ function Game() {
                           nextQ={nextQ}
                           correct={correct}
                           incorrect={incorrect}
+                          
                         />
                       )}
+                      <>
+                        {showResults && (
+                          <div className="final-results">
+                            <h1>Fianl Results</h1>
+                            {players.map((player) => (
+                              <h2>
+                                {player.score} out of {questions.length} correct
+                                - ({(player.score / questions.length) * 100}%)
+                              </h2>
+                            ))}
+                            <button onClick={finishExam}>Finish Exam</button>
+                          </div>
+                        )}
+                      </>
                     </div>
                   )}
                 </div>

@@ -2,8 +2,7 @@ import style from "../../index.module.css";
 import { useState } from "react";
 import data from "../topics/topics.json";
 import extractQuestionData from "./extractQuestionData";
-import "../../styles/ExamGenerated.scss"
-
+import "../../styles/ExamGenerated.scss";
 
 const ButtonOptions = ({ options, handleOptionSelection }) => {
   const [SelectedOption, setSelectedOption] = useState(null);

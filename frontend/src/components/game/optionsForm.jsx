@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ButtonOptions from "../generatedQuestion/ButtonOptions";
 import PlayerList from "./playersList";
+import "../../styles/ExamGenerated.scss"
 
 const OptionsForm = ({
   data,
@@ -20,7 +21,7 @@ const OptionsForm = ({
     setHowManyQuestion(numQuestions);
   };
   return (
-    <div className="optionsgame">
+    <div className="options">
       <form onSubmit={onSubmit}>
         <h2>Topic</h2>
         <div className="options-button">
@@ -48,13 +49,27 @@ const OptionsForm = ({
           )}
         </div>
         <h2 for="question number">How many questions?</h2>
-        <select onChange={handleHowManyQuestions}>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
-        <input type="submit" value="Start exam" className="exam-submit--form" />
+        <div id="numbers_buttonStart">
+              <div className="numbers_questions">
+                <select onChange={handleHowManyQuestions}>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                </select>
+              </div>
+              <div className="Button_start">
+                <button
+                  class="button-pushable"
+                  type="submit"
+                  value="Start exam"
+                >
+                  <span class="button-shadow"></span>
+                  <span class="button-edge"></span>
+                  <span class="button-front text">Start exam</span>
+                </button>
+              </div>
+            </div>
         
       </form>
       {players && (

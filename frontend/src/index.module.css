@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: "ColfaxAI";
   src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
@@ -6,6 +7,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ColfaxAI";
   src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
@@ -13,14 +15,15 @@
   font-weight: bold;
   font-style: normal;
 }
+
 .main,
 .main input {
   font-size: 16px;
   line-height: 24px;
   color: #353740;
   font-family: "ColfaxAI", Helvetica, sans-serif;
-  
 }
+
 .main {
   display: flex;
   align-items: flex-start;
@@ -30,11 +33,13 @@
   width: 100%;
   max-width: 100%;
   margin-left: auto;
-  margin-right: auto; 
+  margin-right: auto;
 }
+
 .main .icon {
   width: 34px;
 }
+
 .main h3 {
   font-size: 32px;
   line-height: 40px;
@@ -42,12 +47,14 @@
   color: #202123;
   margin: 16px 0 40px;
 }
+
 .main form {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
 }
+
 .main input[type="text"] {
   padding: 12px 16px;
   border: 1px solid #e4b527;
@@ -55,10 +62,12 @@
   margin-bottom: 24px;
   outline-color: #e4b527;
 }
+
 .main ::placeholder {
   color: #8e8ea0;
   opacity: 1;
 }
+
 .main input[type="submit"] {
   padding: 12px 0;
   color: #fff;
@@ -67,24 +76,36 @@
   border-radius: 4px;
   text-align: center;
   cursor: pointer;
+  
 }
+
 .main .result {
   font-weight: bold;
   margin-top: 40px;
 }
+
 input[type="radio"] {
   margin-right: 5px;
+  padding-top: 10px;
 }
 
 .radio-option {
   margin-bottom: 10px;
 }
-.options {
-  width: 30%;
-  border: 1px solid #ccc;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-right: 20px;
+
+.optionForm {
+  padding-left: 10px;
+  position: fixed;
+  left: 0;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.options-button {
+  display: flex;
+  justify-content: center;
 }
 
 .questions {
@@ -98,6 +119,7 @@ input[type="radio"] {
   color: #202123;
   margin: 16px 0 40px;
 }
+
 .questions div {
   border: 1px solid #ccc;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -105,23 +127,144 @@ input[type="radio"] {
   margin-bottom: 20px;
 }
 
-.maingame{
-  display: flex;
-  justify-content: space-around;
-}
 .loading-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Ajusta el tamaño según tus necesidades */
+  height: 100vh;
 }
-.Loadin{
+
+.Loadin {
   display: flex;
   padding-right: 750px;
   padding-top: 200px;
 }
 
-.optionForm {
-  position: fixed;
+.main input #numbers_buttonStart {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.Button_start,
+.numbers_questions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.Button_start select {
+  margin-left: 5px;
+}
+
+.playerList {
+  padding-top: 10px;
+}
+
+/* This is a CSS for Button Start Exam */
+
+
+.button-pushable {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-shadow {
+  position: absolute;
+  top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: hsl(0deg 0% 0% / 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+.button-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(
+    to left,
+    #e4b527 0%,
+    #efd890 8%,
+    #efd890  92%,
+    #e4b527 100%
+  );
+}
+
+.button-front {
+  display: block;
+  position: relative;
+  padding: 4px 9px;
+  border-radius: 12px;
+  font-size: 0.5rem;
+  color: white;
+  background: #e4b527;
+  will-change: transform;
+  transform: translateY(-4px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+@media (min-width: 150px) {
+  .button-front {
+    font-size: 0.8rem;
+    padding: 4px 14px;
+  }
+}
+
+.button-pushable:hover {
+  filter: brightness(110%);
+  -webkit-filter: brightness(110%);
+}
+
+.button-pushable:hover .button-front {
+  transform: translateY(-6px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.button-pushable:active .button-front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.button-pushable:hover .button-shadow {
+  transform: translateY(4px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.button-pushable:active .button-shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.button-pushable:focus:not(:focus-visible) {
+  outline: none;
 }

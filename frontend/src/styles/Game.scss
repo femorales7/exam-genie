@@ -1,9 +1,9 @@
 .question-card{
-  height:700px; /* Altura fija */
-  max-height: 600%;
-  width: 600px; /* Anchura fija */
+  height:950px; /* Altura fija */
+  max-height: 900px;
+  width: 950px; /* Anchura fija */
   max-width: 600%;
-  overflow: auto;
+  overflow:-moz-hidden-unscrollable;
   margin: 0 auto;
   // margin-top: 20px;
   margin-bottom: 20px;
@@ -18,6 +18,8 @@
   // height: auto;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    color: #353740;
+    font-family: "ColfaxAI", Helvetica, sans-serif;
     
 }
 .answers-list {
@@ -38,6 +40,7 @@
   width: 250px;
   justify-content:flex-start;
   border-radius: 16px;
+  
 
 }
 
@@ -61,7 +64,19 @@ button {
 }
 
 //Button addPlayerForm, PlayerList 
+.numbers_buttonStart{
+  display: flex;
+  justify-content: center;
+}
+.Button_start{
+  display: flex;
 
+  justify-self: center;
+  padding-top: 10px;
+  align-content: center;
+
+
+}
 .button-pushable {
   position: relative;
   border: none;
@@ -100,10 +115,10 @@ button {
   border-radius: 12px;
   background: linear-gradient(
     to left,
-    hsl(223, 96%, 30%) 0%,
-    hsl(211, 93%, 42%) 8%,
-    hsl(211, 93%, 42%) 92%,
-    hsl(223, 96%, 30%) 100%
+    #e4b527 0%,
+    #efd890 8%,
+    #efd890  92%,
+    #e4b527 100%
   );
 }
 
@@ -114,7 +129,7 @@ button {
   border-radius: 12px;
   font-size: 0.5rem;
   color: white;
-  background: hsl(238, 94%, 49%);
+  background: #e4b527;
   will-change: transform;
   transform: translateY(-4px);
   transition:
@@ -203,4 +218,71 @@ button {
 //render loading in the middle of the screen
 .reactLoading{
   padding-top: 250px;
+}
+
+.maingame{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding-top: 60px;
+  height: calc(100vh - 60px);
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+.maingame input {
+  font-size: 16px;
+  line-height: 24px;
+  color: #353740;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+
+.maingame h3 {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #202123;
+  margin: 16px 0 40px;
+}
+
+.maingame input[type="text"] {
+  padding: 12px 16px;
+  border: 1px solid #e4b527;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  outline-color: #e4b527;
+}
+.maingame form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+ 
+}
+
+.maingame input[type="submit"] {
+  padding: 12px 0;
+  color: #fff;
+  background-color: #e4b527;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.maingame .result {
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.options {
+  width: 100%;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-right: 20px;
+  font-size: 16px;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+  color: #353740;
 }

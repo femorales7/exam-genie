@@ -16,6 +16,7 @@ const QuestionCard = ({
   nextQ,
   incorrect,
   correct,
+  
 }) => {
   return (
     <div>
@@ -69,11 +70,12 @@ const QuestionCard = ({
               <form onSubmit={nextQ}>
                 <button>Next question</button>
               </form>
-              <button onClick={finishExam}>Finish Exam</button>
+              {/* <button onClick={finishExam}>Finish Exam</button> */}
             </div>
           )}
         </div>
       )}
+     
     </div>
   );
 };
