@@ -104,7 +104,7 @@ function ExamGenerated(props) {
           />
         </div>
       ) : (
-        <div>{questions && <QuestionList questions={questions} setFinalScore={props.setFinalScore} finalScore={props.finalScore} currentQuestion={props.currentQuestion} setCurrentQuestion={props.setCurrentQuestion}/>}</div>
+        <div>{questions && <QuestionList questions={questions}  finalScore={props.finalScore} currentQuestion={props.currentQuestion} />}</div>
       )}
     </main>
   );
