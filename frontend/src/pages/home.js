@@ -30,38 +30,40 @@ function Home() {
             <div className="home-header">
               <h1 style={{ paddingBottom: 15 }} className="heading">
                 Hi There!{" "}
-                <span className="wave" role="img" aria-labelledby="wave">
+                {/* <span className="wave" role="img" aria-labelledby="wave">
                   👋🏻
-                </span>
+                </span> */}
               </h1>
 
               <h1 className="heading-name">
-                We are
-                <strong className="main-name"> EXAM GENIE</strong>
+                Exam Genie
               </h1>
+              <h3>
+                Exam Genie is an AI question generator designed the way you want to create questions for your exams. Allowing you to generate different questions for your needs!
+              </h3>
 
-              <div style={{ padding: 50 }}>
+              {/* <div style={{ padding: 50 }}>
                 <Type />
-              </div>
+              </div> */}
             </div>
 
-            <div>
-              <img
+            {/* <div> */}
+              {/* <img
                 src={homeImage}
                 alt="home pic"
                 className="img-fluid"
                 style={{ maxHeight: "450px" }}
-              />
-            <button
+              /> */}
+            {/* <button
                 className="buttonLets"
                 role="button"
                 onClick={handleButtonClick}
               >
                 Let's try
-            </button>
+            </button> */}
 
 
-            </div>
+            {/* </div> */}
           </div>
         </Container>
       </Container>
