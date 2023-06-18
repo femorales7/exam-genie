@@ -24,16 +24,19 @@ const TopMenu2 = () => {
           <Link to="/about"><FaGithubAlt />About Us</Link>
           {isAuthenticated && (
           <>
-          <Link to="/exam"><FaBookReader />Text Exam</Link>
+          <Link to="/exam"><FaBookReader />Test Exam</Link>
+          <Link to="/game"><FaBookReader />Player Challenge</Link>
           <Link to="/dashboard"><FaChartLine />Dashboard</Link>
           </>
           )}
         </div>
 
         <div class="navigation">
-          <a class="button" href="">
+          <a class="button" href="/dashboard">
   	      <Profile/>
-          <div class="logout">LOGOUT</div>
+          {isAuthenticated ?
+          <div class="logout"><LogoutButton /></div> :
+          <LoginButton />}
           </a>
         </div>
       </div>
