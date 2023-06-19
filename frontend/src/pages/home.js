@@ -23,50 +23,23 @@ function Home() {
   };
   return (
     <section>
-      <Container fluid className="home-section" id="home">
-        {/* <Particle /> */}
-        <Container className="home-content">
-          <div id="center">
-            <div className="home-header">
-              <h1 style={{ paddingBottom: 15 }} className="heading">
-                Hi There!{" "}
-                {/* <span className="wave" role="img" aria-labelledby="wave">
-                  👋🏻
-                </span> */}
-              </h1>
-
-              <h1 className="heading-name">
+        <Container  className="home-content">
+          <div className="home-header">
+            <div>
+            <h1 className="heading-name">
                 Exam Genie
-              </h1>
-              <h3>
+            </h1>
+            </div>
+              <div>
+            <h3>
                 Exam Genie is an AI question generator designed the way you want to create questions for your exams. Allowing you to generate different questions for your needs!
               </h3>
-
-              {/* <div style={{ padding: 50 }}>
                 <Type />
-              </div> */}
             </div>
-
-            {/* <div> */}
-              {/* <img
-                src={homeImage}
-                alt="home pic"
-                className="img-fluid"
-                style={{ maxHeight: "450px" }}
-              /> */}
-            {/* <button
-                className="buttonLets"
-                role="button"
-                onClick={handleButtonClick}
-              >
-                Let's try
-            </button> */}
-
-
-            {/* </div> */}
+          </div>
+          <div className="home-right--empty">
           </div>
         </Container>
-      </Container>
     </section>
   );
 }
