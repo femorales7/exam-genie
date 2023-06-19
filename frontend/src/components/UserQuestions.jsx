@@ -2,9 +2,9 @@ import OptionsForm from "./game/optionsForm";
 
 const UserQuestions = (props) => {
   const option1 = props.options;
-
+  console.log(option1)
   const ArrayOptions = option1.substring(1, option1.length - 1).split(",");
-
+  console.log(ArrayOptions);
   const lastOption = ArrayOptions[ArrayOptions.length - 1];
   const options = ArrayOptions.filter((item) => item !== lastOption);
   console.log("options UserQuestion", options);

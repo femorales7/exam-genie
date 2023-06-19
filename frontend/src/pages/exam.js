@@ -19,6 +19,7 @@ function Exam(props) {
             finalScore={props.finalScore}
             currentQuestion={props.currentQuestion}
             setCurrentQuestion={props.setCurrentQuestion}
+            setUserQuestion={props.setUserQuestion}
             />
           </Col>
         </Row>

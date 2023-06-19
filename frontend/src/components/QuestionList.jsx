@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Question from "./Question";
 import { createRoutesFromElements, useNavigate, createBrowserRouter, Link } from "react-router-dom";
 import { Route } from "react-router";
@@ -17,8 +17,12 @@ const QuestionList = (props) => {
   const navigate = useNavigate();
   
   // console.log("user input", userInput);
-  
 
+  useEffect(() => {
+    fetch('http://localhost:8080/dashboard')
+    .then(res => res.json())
+    .then((data => { props.setUserQuestion(data)}))
+  }, [])
 
   const questions = props.questions;
   //validation of answer and change set of message Correct or incorrect

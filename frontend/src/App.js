@@ -31,11 +31,7 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    fetch('http://localhost:8080/dashboard')
-    .then(res => res.json())
-    .then((data => { setUserQuestion(data)}))
-  }, [])
+
 
   // console.log('userQuestions from backend', userQuestion);
 
@@ -54,12 +50,13 @@ function App() {
             setFinalScore={setFinalScore} 
             currentQuestion={currentQuestion} 
             setCurrentQuestion={setCurrentQuestion}
+            setUserQuestion={setUserQuestion}
             />
           } 
             />
             <Route path="/game" exact element={<Game />} />
             <Route path="/about" exact element={<AboutUs />} />
-            <Route path="/dashboard" exact element={<Dashboard userQuestions={userQuestion}finalScore={finalScore} currentQuestion={currentQuestion} />}/>
+            <Route path="/dashboard" exact element={<Dashboard userQuestions={userQuestion} finalScore={finalScore} currentQuestion={currentQuestion} />}/>
             <Route path="/construction" exact element={<Construction />} />
           </Routes>
           
