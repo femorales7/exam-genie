@@ -33,7 +33,7 @@ function Dashboard(props) {
       text : "Pia chart"
     },
   }
-
+// console.log("props.userQuestions dashboard", props.userQuestions);
   const mappedUserQuetions = props.userQuestions.map((question, index) => {
     return (
       <UserQuestions
@@ -41,6 +41,8 @@ function Dashboard(props) {
         question={question.question}
         answer={question.answer}
         feedback={question.feedback}
+        options={question.question_option}
+
       />
     )
   })

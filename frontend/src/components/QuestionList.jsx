@@ -7,7 +7,7 @@ import Dashboard from "../pages/dashboard";
 
 
 const QuestionList = (props) => {
-  console.log("questionlist", props)
+  // console.log("questionlist", props)
   // const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [showResults, setShowResults] = useState(false);
@@ -16,7 +16,7 @@ const QuestionList = (props) => {
   const [incorrect, setIncorrect] = useState(false);
   const navigate = useNavigate();
   
-  console.log("user input", userInput);
+  // console.log("user input", userInput);
   
 
 
@@ -26,7 +26,7 @@ const QuestionList = (props) => {
     const userAnswer = e.target.value;
     setUserInput([...userInput, userAnswer]);
     setSelectedOption(userAnswer);
-    console.log("user answer", userAnswer);
+    // console.log("user answer", userAnswer);
     if (userAnswer === questions[props.currentQuestion].answer) {
       setCorrect(true);
       props.setFinalScore(props.finalScore + 1);

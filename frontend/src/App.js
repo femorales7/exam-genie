@@ -37,7 +37,7 @@ function App() {
     .then((data => { setUserQuestion(data)}))
   }, [])
 
-  console.log('userQuestions from backend', userQuestion);
+  // console.log('userQuestions from backend', userQuestion);
 
   return (
     <div className="App">
