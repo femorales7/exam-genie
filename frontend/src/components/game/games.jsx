@@ -114,11 +114,11 @@ function Game() {
       
       const currentWinner = players.reduce((previus, current) => {
         if (current.score > previus.score ){
-          return current.name
+          return `The winner is ${current.name}`
         }else if (previus.score > current.score ){
-          return previus.name
+          return `The winner is ${previus.name}`
         }else {
-          return "Tie"
+          return "The Game Tied"
         }
         
       })
@@ -159,7 +159,7 @@ function Game() {
     setPlayers(updatedPlayers);
 
     // Redirect to dashboard page or show final results
-    navigate("/dashboard");
+    navigate("/");
   };
 
   const handleAddPlayerModal = () => {
@@ -245,7 +245,7 @@ function Game() {
                                 </h1>
                               </div>
                             ))}
-                            <h3>The Winner is {winner}</h3>
+                            <h3> {winner}</h3>
                             <button onClick={finishExam}>Finish Exam</button>
                           </div>
                         )}
