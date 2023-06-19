@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import data from "../../components/topics/topics.json";
-import { FaTimesCircle } from "react-icons/fa";
-import { FcApproval, FcHighPriority } from "react-icons/fc";
+
 import { Container, Row, Col } from "react-bootstrap";
 import Particle from "../../pages/Particle";
 import OptionsForm from "./optionsForm";
 import QuestionCard from "./questionCard";
-import PlayerList from "./playersList";
+
 import { useNavigate } from "react-router-dom";
 import generateQuestion from "../generatedQuestion/generateQuestion";
 import ReactLoading from "react-loading";
@@ -15,18 +14,13 @@ import "../../styles/ExamGenerated.scss";
 
 import AddPlayerForm from "./AddPlayerForm";
 
-// import style from "../../index.module.css";
-
 function Game() {
-  // const { handleAddPlayerModal, isModalOpen } = useApplicationData();
-  // console.log("isModalOpen", isModalOpen)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [players, setPlayers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSubcategory, setSelectedSubcategory] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("");
-  // const [question, setQuestion] = useState("");
-  // const [options, setOptions] = useState([]);
+
   const [selectedOption, setSelectedOption] = useState("");
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
@@ -35,15 +29,14 @@ function Game() {
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
-  // const [playerNameInput, setPlayerNameInput] = useState("");
+
   const [howManyQuestion, setHowManyQuestion] = useState("5");
   const [correct, setCorrect] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
   const [loading, setLoading] = useState(true);
   const [showResults, setShowResults] = useState(false);
-  const [winner, setWinner] = useState("")
+  const [winner, setWinner] = useState("");
 
-  // select topic, sub-topic and Specialization
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
     setSelectedSubcategory(null);
@@ -90,8 +83,6 @@ function Game() {
       setPlayers(updatedPlayers);
     } else {
       setIncorrect(true);
-      
-
     }
   };
   console.log("players", players);
@@ -107,31 +98,29 @@ function Game() {
     if (currentQuestion + 1 <= questions.length) {
       const nexQuestion = currentQuestion + 1;
       setCurrentQuestion(nexQuestion);
-    } 
-    if (currentQuestion + 1 === questions.length){
+    }
+    if (currentQuestion + 1 === questions.length) {
       console.log("currentQuestion inside if", currentQuestion);
       setShowResults(true);
-      
-      const currentWinner = players.reduce((previus, current) => {
-        if (current.score > previus.score ){
-          return `The winner is ${current.name}`
-        }else if (previus.score > current.score ){
-          return `The winner is ${previus.name}`
-        }else {
-          return "The Game Tied"
-        }
-        
-      })
-      console.log(currentWinner)
-      setWinner(currentWinner)      
 
+      //set the winner of the game
+      const currentWinner = players.reduce((previus, current) => {
+        if (current.score > previus.score) {
+          return `The winner is ${current.name}`;
+        } else if (previus.score > current.score) {
+          return `The winner is ${previus.name}`;
+        } else {
+          return "The Game Tied";
+        }
+      });
+      console.log(currentWinner);
+      setWinner(currentWinner);
     }
 
     // Move to the next player
     const nextPlayerIndex = (currentPlayerIndex + 1) % players.length;
     setCurrentPlayerIndex(nextPlayerIndex);
   };
-  
 
   console.log("showResults", showResults);
   const handleAddPlayer = (playerName) => {
