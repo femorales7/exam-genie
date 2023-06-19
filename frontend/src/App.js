@@ -7,6 +7,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Exam from "./pages/exam";
 import Dashboard from "./pages/dashboard";
 import Preloader from "../src/components/Pre";
+import Construction from "./pages/construction"
 
 import {
   BrowserRouter as Router,
@@ -37,7 +38,9 @@ function App() {
             <Route path="/exam" exact element={<Exam />} />
             <Route path="/about" exact element={<AboutUs />} />
             <Route path="/dashboard" exact element={<Dashboard />} />
+            <Route path="/construction" exact element={<Construction />} />
           </Routes>
+          
           <Footer />
         </div>
       </Router>
