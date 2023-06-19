@@ -5,6 +5,7 @@ require("dotenv").config();
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const morgan = require("morgan");
+const bodyparser = require("body-parser");
 const cors = require("cors");
 const { Configuration, OpenAIApi } = require("openai");
 const generate = require("./generate")
@@ -30,10 +31,10 @@ const openai = new OpenAIApi(configuration);
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+
 app.use(express.json());
 app.use(cors());
-
-app.set("view engine", "ejs");
+app.use(bodyparser.json());
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -56,12 +57,16 @@ const userApiRoutes = require("./routes/users-api");
 const widgetApiRoutes = require("./routes/widgets-api");
 const usersRoutes = require("./routes/users");
 
+const dashboardRoutes = require("./routes/dashboard")
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use("/api/users", userApiRoutes);
 app.use("/api/widgets", widgetApiRoutes);
 app.use("/users", usersRoutes);
+
+app.use("/dashboard", dashboardRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -72,11 +77,11 @@ app.post("/generate", async (req, res) => {
   const question = req.body.question
   try{
     const user_question = await generate(question, openai);
-       
-    
-     
+
+
+
       console.log('Question saved to the database.');
-    
+
 
     res.json({response: user_question})
     extractQuestionData(user_question)

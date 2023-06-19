@@ -9,6 +9,7 @@ import Game from "./components/game/games";
 import Dashboard from "./pages/dashboard";
 import Preloader from "../src/components/Pre";
 
+
 import {
   BrowserRouter as Router,
   Route,
@@ -19,6 +20,7 @@ function App() {
   const [load, upadateLoad] = useState(true);
   const [finalScore, setFinalScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [userQuestion, setUserQuestion] = useState(null)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -28,8 +30,13 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  
+  useEffect(() => {
+    fetch('http://localhost:8080/dashboard')
+    .then(res => res.json())
+    .then((data => { setUserQuestion(data)}))
+  }, [])
 
+  console.log('userQuestions from backend', userQuestion);
 
   return (
     <div className="App">
@@ -51,7 +58,7 @@ function App() {
             />
             <Route path="/game" exact element={<Game />} />
             <Route path="/about" exact element={<AboutUs />} />
-            <Route path="/dashboard" exact element={<Dashboard finalScore={finalScore} currentQuestion={currentQuestion} />}/>
+            <Route path="/dashboard" exact element={<Dashboard userQuestions={userQuestion}finalScore={finalScore} currentQuestion={currentQuestion} />}/>
           </Routes>
           <Footer />
         </div>

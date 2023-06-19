@@ -3,7 +3,7 @@ const { addQuestions } = require("../db/queries/addQuestions");
 const extractQuestionData = (text) => {
 
   // console.log("text", text)
-  
+
 const questionBlocks = text.split("===");
 
 const questionObjects = questionBlocks.map((block) => {
@@ -21,7 +21,7 @@ const questionObjects = questionBlocks.map((block) => {
 
   addQuestions(questionObject)
   .then(() => {
-    
+
     console.log('question saved in DB')
   })
   .catch((error) => {
@@ -32,7 +32,7 @@ const questionObjects = questionBlocks.map((block) => {
 });
 console.log("questionObjects", questionObjects);
 
-  
-};  
+
+};
 
 module.exports =  extractQuestionData;
