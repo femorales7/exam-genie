@@ -11,10 +11,12 @@ const QuestionList = (props) => {
   // const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [showResults, setShowResults] = useState(false);
+  const [userInput, setUserInput] = useState([]);
   const [correct, setCorrect] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
   const navigate = useNavigate();
-    
+  
+  console.log("user input", userInput);
   
 
 
@@ -22,6 +24,7 @@ const QuestionList = (props) => {
   //validation of answer and change set of message Correct or incorrect
   const handleOptionChange = (e) => {
     const userAnswer = e.target.value;
+    setUserInput([...userInput, userAnswer]);
     setSelectedOption(userAnswer);
     console.log("user answer", userAnswer);
     if (userAnswer === questions[props.currentQuestion].answer) {
@@ -46,6 +49,16 @@ const QuestionList = (props) => {
 // finish exam an redirect to Daschboard
   const finishExam = () => {
     navigate("/dashboard");
+    const finalScore = props.finalScore;
+    const result = {finalScore, userInput};
+
+    fetch('http://localhost:8080/result', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify(result) 
+    }).then(() => {
+      console.log("user answer added")
+    })
   };
 
   const mappedQuestion = questions.map((question, index) => {

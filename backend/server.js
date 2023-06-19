@@ -11,6 +11,7 @@ const { Configuration, OpenAIApi } = require("openai");
 const generate = require("./generate")
 const extractQuestionData = require('./helpFunction/extractQuestions')
 const { addQuestions } = require("./db/queries/addQuestions")
+const { addResults } = require("./db/queries/addResults")
 // const { saveResponseToDatabase } = require('./database');
 
 // import dotenv from "dotenv"
@@ -92,9 +93,17 @@ app.post("/generate", async (req, res) => {
   }
 })
 
-app.post("/exam", async(req, res) => {
+app.post("/result", (req, res) => {
   const userAnswer = req.body
   console.log("sever side", userAnswer);
+  addResults(userAnswer)
+  .then(() => {
+    console.log('user result save')
+  })
+  .catch((error) => {
+    console.error(error);
+  })
+
 })
 
 app.listen(PORT, () => {

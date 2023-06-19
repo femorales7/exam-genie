@@ -121,7 +121,9 @@ function ExamGenerated(props) {
             <QuestionList
               questions={questions}
               finalScore={props.finalScore}
+              setFinalScore={props.setFinalScore}
               currentQuestion={props.currentQuestion}
+              setCurrentQuestion={props.setCurrentQuestion}
             />
           )}
         </div>

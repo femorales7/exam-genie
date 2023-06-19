@@ -46,7 +46,7 @@ function Dashboard(props) {
   })
 
   return(
-    props.currentQuestion === 0 ? (
+    props.currentQuestion !== 0 ? (
     <Container fluid className="project-section">
         <div className="final-results">
           <div style={ {width: "50%"}}>
