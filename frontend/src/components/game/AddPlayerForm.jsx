@@ -23,7 +23,7 @@ const AddPlayerForm = ({ onAddPlayer }) => {
       <form className="formAddPlayer" onSubmit={handleFormSubmit}>
         <div class="nickName-box">
           <input
-            lassName="nickName"
+            className="nickName"
             type="text"
             placeholder="Enter nickname"
             value={playerName} // Bind the player name state to the input value

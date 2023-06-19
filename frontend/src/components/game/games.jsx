@@ -41,6 +41,7 @@ function Game() {
   const [incorrect, setIncorrect] = useState(false);
   const [loading, setLoading] = useState(true);
   const [showResults, setShowResults] = useState(false);
+  const [winner, setWinner] = useState("")
 
   // select topic, sub-topic and Specialization
   const handleCategorySelection = (category) => {
@@ -89,6 +90,8 @@ function Game() {
       setPlayers(updatedPlayers);
     } else {
       setIncorrect(true);
+      
+
     }
   };
   console.log("players", players);
@@ -98,24 +101,39 @@ function Game() {
     e.preventDefault();
     setCorrect(false);
     setIncorrect(false);
-    if (currentQuestion === questions.length) {
-      setShowResults(true);
-    }
+    console.log("currentQuestion", currentQuestion);
+    console.log("questions.length", questions.length);
 
-    if (currentQuestion < questions.length) {
+    if (currentQuestion + 1 <= questions.length) {
       const nexQuestion = currentQuestion + 1;
       setCurrentQuestion(nexQuestion);
+    } 
+    if (currentQuestion + 1 === questions.length){
+      console.log("currentQuestion inside if", currentQuestion);
+      setShowResults(true);
+      
+      const currentWinner = players.reduce((previus, current) => {
+        if (current.score > previus.score ){
+          return current.name
+        }else if (previus.score > current.score ){
+          return previus.name
+        }else {
+          return "Tie"
+        }
+        
+      })
+      console.log(currentWinner)
+      setWinner(currentWinner)      
+
     }
-   
+
     // Move to the next player
     const nextPlayerIndex = (currentPlayerIndex + 1) % players.length;
     setCurrentPlayerIndex(nextPlayerIndex);
-    console.log("currentQuestion", currentQuestion);
-    console.log("questions.length", questions.length);
   };
+  
 
   console.log("showResults", showResults);
-
   const handleAddPlayer = (playerName) => {
     if (playerName) {
       setPlayers([...players, { name: playerName, score: 0 }]);
@@ -211,19 +229,23 @@ function Game() {
                           nextQ={nextQ}
                           correct={correct}
                           incorrect={incorrect}
-                          
                         />
                       )}
                       <>
                         {showResults && (
                           <div className="final-results">
-                            <h1>Fianl Results</h1>
+                            <h3>Fianl Results</h3>
                             {players.map((player) => (
-                              <h2>
-                                {player.score} out of {questions.length} correct
-                                - ({(player.score / questions.length) * 100}%)
-                              </h2>
+                              <div>
+                                <h2>{player.name}</h2>
+                                <h1>
+                                  {player.score} out of {questions.length}{" "}
+                                  correct - (
+                                  {(player.score / questions.length) * 100}%)
+                                </h1>
+                              </div>
                             ))}
+                            <h3>The Winner is {winner}</h3>
                             <button onClick={finishExam}>Finish Exam</button>
                           </div>
                         )}
