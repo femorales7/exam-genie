@@ -1,8 +1,9 @@
 import React from "react";
 import { FcApproval, FcHighPriority } from "react-icons/fc";
+import "../styles/ExamGenerated.scss";
 
 const Question = (props) => {
-  console.log("these are key", props.id)
+  console.log("these are key", props.id);
   return (
     props.id === props.currentQuestion && (
       <div className="question-card">
@@ -37,9 +38,20 @@ const Question = (props) => {
         </ul>
         {props.selectedOption && (
           <div>
-            <p>Answer: {props.answer}</p>
-            <p>{props.feedback}</p>
-            <button onClick={props.handleNextQuestion}>Next Questions</button>
+            <div className="AnswerFeedback">
+              <p>Answer: {props.answer}</p>
+              <p>{props.feedback}</p>
+            </div>
+            <div className="buttonNextQ">
+              <button
+                className="button-pushable"
+                onClick={props.handleNextQuestion}
+              >
+                <span class="button-shadow"></span>
+                <span class="button-edge"></span>
+                <span class="button-front text">Next Questions</span>
+              </button>
+            </div>
           </div>
         )}
       </div>

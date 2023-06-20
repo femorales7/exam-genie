@@ -6,14 +6,12 @@ const LoginButton = () => {
 
   return (
     <button class="button_navBar_log" onClick={() => loginWithRedirect()}>
-  <span class="button-text">Log In</span>
-  <div class="fill-container"></div>
-</button>
-);}
-  
-
+      <span class="button-text">Log In</span>
+      <div class="fill-container"></div>
+    </button>
+  );
+};
 
 export default LoginButton;
-
 
 // <button onClick={() => loginWithRedirect()}>Log In</button>;

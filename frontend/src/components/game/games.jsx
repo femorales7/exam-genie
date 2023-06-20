@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, CSSProperties } from "react";
 import data from "../../components/topics/topics.json";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import RingLoader from "react-spinners/RingLoader";
 
 import { Container, Row, Col } from "react-bootstrap";
 import Particle from "../../pages/Particle";
@@ -10,11 +11,17 @@ import QuestionCard from "./questionCard";
 
 import { useNavigate } from "react-router-dom";
 import generateQuestion from "../generatedQuestion/generateQuestion";
-import ReactLoading from "react-loading";
+
 import "../../styles/Game.scss";
 import "../../styles/ExamGenerated.scss";
 
 import AddPlayerForm from "./AddPlayerForm";
+// const override: CSSProperties = {
+//   display: "block",
+//   margin: "0 auto",
+//   borderColor: "red",
+//   paddingTop: "150px"
+// };
 
 function Game() {
   ChartJS.register(ArcElement, Tooltip, Legend);
@@ -218,13 +225,7 @@ function Game() {
 
             {!loading ? (
               <div className="Loadin">
-                <ReactLoading
-                  type={"bars"}
-                  color={"#03fc4e"}
-                  height={200}
-                  width={200}
-                  className="reactLoading"
-                />
+                <RingLoader loading={!loading} size={100} color="orange" />
               </div>
             ) : (
               <div className="">
@@ -246,38 +247,41 @@ function Game() {
                   />
                 )}
                 <>
-                <div className="results">
-                  {showResults && (
-                    <div className="final-results">
-                      <h1>Final Results</h1>
-                      {chartData.map((data) => (
-                        <div key={data.playerName}>
-                          <h2>{data.playerName}</h2>
-                          <Pie data={data.data} options={chartOptions} />
-                          <h1>
-                            {
-                              players.find(
+                  <div className="results">
+                    {showResults && (
+                      <div className="final-results">
+                        <h1>Final Results</h1>
+                        {chartData.map((data) => (
+                          <div key={data.playerName}>
+                            <h2>{data.playerName}</h2>
+                            <Pie data={data.data} options={chartOptions} />
+                            <h1>
+                              {
+                                players.find(
+                                  (player) => player.name === data.playerName
+                                ).score
+                              }{" "}
+                              out of {questions.length} correct - (
+                              {(players.find(
                                 (player) => player.name === data.playerName
-                              ).score
-                            }{" "}
-                            out of {questions.length} correct - (
-                            {(players.find(
-                              (player) => player.name === data.playerName
-                            ).score /
-                              questions.length) *
-                              100}
-                            %)
-                          </h1>
-                        </div>
-                      ))}
-                      <h1> {winner}</h1>
-                      <button className="button-pushable" onClick={finishExam}>
-                        <span class="button-shadow"></span>
-                        <span class="button-edge"></span>
-                        <span class="button-front text">Finish Exam</span>
-                      </button>
-                    </div>
-                  )}
+                              ).score /
+                                questions.length) *
+                                100}
+                              %)
+                            </h1>
+                          </div>
+                        ))}
+                        <h1> {winner}</h1>
+                        <button
+                          className="button-pushable"
+                          onClick={finishExam}
+                        >
+                          <span class="button-shadow"></span>
+                          <span class="button-edge"></span>
+                          <span class="button-front text">Finish Exam</span>
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </>
               </div>

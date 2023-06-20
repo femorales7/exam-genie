@@ -17,19 +17,18 @@ const ButtonOptions = ({ options, handleOptionSelection }) => {
   return (
     <div>
       <div onClick={() => setShowOptions(!showOptions)}>
-        {SelectedOption ? SelectedOption : "Select option"}
+        {SelectedOption ? SelectedOption : ""}
       </div>
-      {showOptions && (
-        <div className="menu">
+      <div className={`menu ${showOptions ? "visible" : ""}`}>
+        <select id="opcionesDespl" name="opciones" required onChange={(e) => handleSelectedOption(e.target.value)}>
+          <option value="">-- Select an option --</option>
           {options.map((option) => (
-            <div key={option} onClick={() => handleSelectedOption(option)}>
-              {option}
-            </div>
+            <option key={option} value={option}>{option}</option>
           ))}
-        </div>
-      )}
+        </select>
+      </div>
     </div>
   );
+  
 };
-
 export default ButtonOptions;

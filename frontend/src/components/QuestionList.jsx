@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import Question from "./Question";
-import { createRoutesFromElements, useNavigate, createBrowserRouter, Link } from "react-router-dom";
+import {
+  createRoutesFromElements,
+  useNavigate,
+  createBrowserRouter,
+  Link,
+} from "react-router-dom";
 import { Route } from "react-router";
-import "../styles/QuestionList.scss"
+import "../styles/QuestionList.scss";
 import Dashboard from "../pages/dashboard";
-
+import "../styles/ExamGenerated.scss"
 
 const QuestionList = (props) => {
   // console.log("questionlist", props)
@@ -15,14 +20,16 @@ const QuestionList = (props) => {
   const [correct, setCorrect] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
   const navigate = useNavigate();
-  
+
   // console.log("user input", userInput);
 
   useEffect(() => {
-    fetch('http://localhost:8080/dashboard')
-    .then(res => res.json())
-    .then((data => { props.setUserQuestion(data)}))
-  }, [])
+    fetch("http://localhost:8080/dashboard")
+      .then((res) => res.json())
+      .then((data) => {
+        props.setUserQuestion(data);
+      });
+  }, []);
 
   const questions = props.questions;
   //validation of answer and change set of message Correct or incorrect
@@ -50,19 +57,19 @@ const QuestionList = (props) => {
       setShowResults(true);
     }
   };
-// finish exam an redirect to Daschboard
+  // finish exam an redirect to Daschboard
   const finishExam = () => {
     navigate("/dashboard");
     const finalScore = props.finalScore;
-    const result = {finalScore, userInput};
+    const result = { finalScore, userInput };
 
-    fetch('http://localhost:8080/result', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify(result) 
+    fetch("http://localhost:8080/result", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(result),
     }).then(() => {
-      console.log("user answer added")
-    })
+      console.log("user answer added");
+    });
   };
 
   const mappedQuestion = questions.map((question, index) => {
@@ -93,7 +100,11 @@ const QuestionList = (props) => {
             {props.finalScore} out of {questions.length} correct - (
             {(props.finalScore / questions.length) * 100}%)
           </h2>
-          <button onClick={finishExam}>Finish Exam</button>
+          <button className="button-pushable" onClick={finishExam}>
+            <span class="button-shadow"></span>
+            <span class="button-edge"></span>
+            <span class="button-front text">Finish Exam</span>
+          </button>
         </div>
       ) : (
         <div className="question-list">{mappedQuestion}</div>

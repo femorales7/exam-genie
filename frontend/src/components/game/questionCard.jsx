@@ -16,7 +16,6 @@ const QuestionCard = ({
   nextQ,
   incorrect,
   correct,
-  
 }) => {
   return (
     <div>
@@ -65,17 +64,25 @@ const QuestionCard = ({
           )}
           {selectedOption && (
             <div>
-              <p>Answer: {questions[currentQuestion].answer}</p>
-              <p>{questions[currentQuestion].feedback}</p>
-              <form onSubmit={nextQ}>
-                <button>Next question</button>
-              </form>
+              <div className="AnswerFeedback">
+                <p>Answer: {questions[currentQuestion].answer}</p>
+                <p>{questions[currentQuestion].feedback}</p>
+              </div>
+              <div className="buttonNextQ">
+                <form onSubmit={nextQ}>
+                  <button className="button-pushable">
+                    <span class="button-shadow"></span>
+                    <span class="button-edge"></span>
+                    <span class="button-front text">Next Questions</span>
+                  </button>
+                  {/* <button>Next question</button> */}
+                </form>
+              </div>
               {/* <button onClick={finishExam}>Finish Exam</button> */}
             </div>
           )}
         </div>
       )}
-     
     </div>
   );
 };

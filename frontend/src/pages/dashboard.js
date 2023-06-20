@@ -52,7 +52,7 @@ function Dashboard(props) {
               options={options}
             />
           </div>
-          <h1>Fianl Results</h1>
+          <h1>Final Results</h1>
           <h2>
             {props.finalScore} out of {props.currentQuestion + 1} correct - (
             {(props.finalScore / (props.currentQuestion + 1)) * 100}%)
