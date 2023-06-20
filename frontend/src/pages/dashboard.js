@@ -3,6 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Container } from "react-bootstrap";
 import { Pie } from "react-chartjs-2";
 import UserQuestions from "../components/UserQuestions";
+import "../styles/dashboard.scss"
 
 
 
@@ -16,7 +17,7 @@ function Dashboard(props) {
         label: "results", 
         data: [props.finalScore, (props.currentQuestion + 1) - props.finalScore],
         // data: [3, 5],
-        backgroundColor: ["blue", "red"],
+        backgroundColor: ["#85C1E9", "#EC7063"],
         borderColor: "black"
       }
     ]
@@ -42,9 +43,9 @@ function Dashboard(props) {
   })
 
   return(
-    props.currentQuestion !== 0 ? (
+    props.currentQuestion === 0 ? (
     <Container fluid className="project-section">
-        <div className="final-results">
+        <div className="user-final-results">
           <div style={ {width: "50%"}}>
             <Pie
               data = {data}

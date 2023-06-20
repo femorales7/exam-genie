@@ -1,4 +1,4 @@
-import OptionsForm from "./game/optionsForm";
+import "../styles/UserQuestions.scss";
 
 const UserQuestions = (props) => {
   const option1 = props.options;
@@ -10,10 +10,10 @@ const UserQuestions = (props) => {
   console.log("options UserQuestion", options);
 
   return (
-    <div>
+    <div className="user-question-card">
       <h1>Question</h1>
       <h2>{props.question} </h2>
-      <ul className="answers-list">
+      <ul className="user-answers-list">
         {options.map((option, index) => (
           <li key={index}>{option}</li>
         ))}

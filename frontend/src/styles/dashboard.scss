@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.final-results {
+.user-final-results {
   /* Center the div  */
   margin: 0 auto;
 
@@ -12,10 +12,10 @@
   margin-top: 64px;
 
   /* Visual  */
-  background-color: gray;
+  background-color: #E5E7E9;
   padding: 16px;
   border-radius: 16px;
-  color: white;
+  color: black;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
-}
+} 
