@@ -16,12 +16,7 @@ function AboutUs() {
               <h1>Jongmin Cha</h1>
               <h2>About:</h2>
               <p>
-                I'm a passionate web developer dedicated to creating immersive
-                online experiences. With expertise in HTML, CSS, and JavaScript,
-                I build user-friendly websites that engage and captivate
-                visitors. Whether working collaboratively or independently, I
-                bring a blend of technical proficiency and creative flair to
-                deliver high-quality solutions that make a lasting impact.
+              As a junior web developer, I have strong foundation of using JavaScript, CSS, , PostgreSQL, and React. With these skills, I can build interactive and attractive web applications. I focus on making sure the websites look good and work smoothly for users. I also know how to handle databases effectively using PostgreSQL. Additionally, I use React to create flexible and engaging parts of the website. I enjoy working with others and I'm always eager to learn and contribute to exciting web projects as I continue to develop my skills.
               </p>
               <h2>Hobbies:</h2>
               <p>
@@ -99,8 +94,7 @@ function AboutUs() {
               </p>
               <h2>Hobbies:</h2>
               <p>
-                Insert Hobbies here, Insert Hobbies here, Insert Hobbies here,
-                Insert Hobbies here,
+                Fishing, Hunting, Camping, Hiking, Chess
               </p>
               <h2>Contact:</h2>
               <h2>

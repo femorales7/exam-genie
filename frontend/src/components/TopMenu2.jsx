@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "../styles/TopMenu2.scss";
 
 import logo from "../images/Exam-genie1.png";
-import { FaHome, FaBookReader, FaChartLine, FaGithubAlt } from "react-icons/fa";
+import { FaHome, FaBookReader, FaChartLine, FaGithubAlt, FaPeopleArrows } from "react-icons/fa";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../Auth0/login";
@@ -36,7 +36,7 @@ const TopMenu2 = () => {
                 Test Exam
               </Link>
               <Link to="/game">
-                <FaBookReader />
+                <FaPeopleArrows />
                 Player Challenge
               </Link>
               <Link to="/dashboard">

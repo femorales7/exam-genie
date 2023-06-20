@@ -6,8 +6,8 @@ function Type() {
     <Typewriter
       options={{
         strings: [
-          "Making easy your test",
-          "Questions from AI",
+          "Making studying easier",
+          "AI Generated Questions",
           "The best way to study",
         ],
         autoStart: true,
