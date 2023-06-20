@@ -34,11 +34,7 @@ const Footer = () => {
               </div>
           </div>
         </div>
-      </div>
-
-      <hr></hr>
-
-      <div className="sb__footer-below">
+        <div className="sb__footer-below">
         <div className="sb__footer-copyright">
           <p>
             @{new Date().getFullYear()} ExamGenie. Testing
@@ -48,6 +44,11 @@ const Footer = () => {
           </p>
         </div>
       </div>
+      </div>
+
+      {/* <hr></hr> */}
+
+      
     </div>
 
   )

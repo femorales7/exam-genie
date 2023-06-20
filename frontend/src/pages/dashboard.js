@@ -33,7 +33,7 @@ function Dashboard(props) {
       text : "Pia chart"
     },
   }
-// console.log("props.userQuestions dashboard", props.userQuestions);
+
   const mappedUserQuetions = props.userQuestions.map((question, index) => {
     return (
       <UserQuestions
@@ -48,7 +48,7 @@ function Dashboard(props) {
   })
 
   return(
-    props.currentQuestion !== 0 ? (
+    props.currentQuestion === 0 ? (
     <Container fluid className="project-section">
         <div className="final-results">
           <div style={ {width: "50%"}}>
