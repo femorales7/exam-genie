@@ -22,6 +22,9 @@ function App() {
   const [finalScore, setFinalScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userQuestion, setUserQuestion] = useState(null)
+  const [getExam, setGetExam] = useState([])
+
+  console.log("This is from app", getExam);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -51,6 +54,8 @@ function App() {
             currentQuestion={currentQuestion} 
             setCurrentQuestion={setCurrentQuestion}
             setUserQuestion={setUserQuestion}
+            getExam={getExam}
+            setGetExam={setGetExam}
             />
           } 
             />

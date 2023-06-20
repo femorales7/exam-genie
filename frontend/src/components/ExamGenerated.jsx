@@ -1,5 +1,5 @@
 import style from "../index.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import data from "../components/topics/topics.json";
 import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
@@ -9,18 +9,41 @@ import "../styles/ExamGenerated.scss";
 import ReactLoading from "react-loading";
 
 function ExamGenerated(props) {
-  console.log("exam", props);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [howManyQuestion, setHowManyQuestion] = useState("5");
   const [loading, setLoading] = useState(true);
+  const [createExam, setCreateExam] = useState("");
 
+  // console.log(props.getExam);
+    useEffect(() => {
+      fetch('http://localhost:8080/exam')
+      .then(res => res.json())
+      .then((data => props.setGetExam(data)))
+    }, [])
+  console.log(props.getExam)
+  const getExamId = props.getExam.map((key) => key.id)
+  console.log(getExamId)
   const handleHowManyQuestions = (event) => {
     const numQuestions = event.target.value;
     setHowManyQuestion(numQuestions);
   };
+
+  const examOnSubmit = (e) => {
+    e.preventDefault();
+
+    const exam = { createExam }
+    fetch('http://localhost:8080/exam', {
+      method: 'POST',
+      headers: { "Content-Type" : "application/json"},
+      body: JSON.stringify(exam)
+    }).then(() => {
+      console.log("exam created")
+    })
+  }
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +54,8 @@ function ExamGenerated(props) {
       selectedSubcategory,
       setLoading,
       selectedTopic,
-      howManyQuestion
+      howManyQuestion,
+      // getExamId
     );
     setQuestions(questionData);
   };
@@ -55,13 +79,28 @@ function ExamGenerated(props) {
     <main>
       <div className="optionForm">
         <div className="options">
+          <form onSubmit={examOnSubmit}>
+            <h2>Create your exam</h2>
+            <input 
+             type="text"
+             placeholder="Create your exam"
+             value={createExam}
+             required
+             onChange={(e) => {
+              setCreateExam(e.target.value)
+             }}
+             />
+            <button type="submit">Create</button>
+          </form>
           <form onSubmit={onSubmit}>
             <h2>Topic</h2>
             <div className="options-button">
-              <ButtonOptions
-                options={Object.keys(data)}
-                handleOptionSelection={handleCategorySelection}
-              />
+              {createExam && (
+                <ButtonOptions
+                  options={Object.keys(data)}
+                  handleOptionSelection={handleCategorySelection}
+                />
+              )}
             </div>
             <h2>Sub-Topic</h2>
             <div className="options-button">
