@@ -6,6 +6,7 @@ import generateQuestion from "./generatedQuestion/generateQuestion";
 import QuestionList from "./QuestionList";
 import "../styles/ExamGenerated.scss";
 
+
 import ReactLoading from "react-loading";
 
 function ExamGenerated(props) {
@@ -107,12 +108,13 @@ function ExamGenerated(props) {
         </div>
       </div>
       {!loading ? (
-        <div className="loading">
+        <div className="Loadin">
           <ReactLoading
             type={"bars"}
             color={"#03fc4e"}
             height={200}
             width={200}
+            className="reactLoading"
           />
         </div>
       ) : (

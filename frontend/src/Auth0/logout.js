@@ -6,10 +6,16 @@ const LogoutButton = () => {
   console.log(useAuth0());
 
   return (
-    <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-      Log Out
-    </button>
+   
+     <button class="button_navBar_log" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+     <span class="button-text">Log Out</span>
+     <div class="fill-container"></div>
+   </button>
   );
 };
 
 export default LogoutButton;
+
+// <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+// Log Out
+// </button>
