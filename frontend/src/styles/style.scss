@@ -259,6 +259,8 @@ button:focus {
 .home-header {
   padding-top: 80px !important;  
   position: relative;
+  // background-color: aqua;
+  width: 50%;
   
 }
 
@@ -272,15 +274,21 @@ button:focus {
   padding-top: 30px !important;
 }
 
+.home-right--empty {
+  width: 100%;
+  // background-color: teal;
+}
+
 .home-content {
+  display: flex;
   padding: 9rem 0 2rem !important;
   color: rgb(9, 9, 9);
   align-content: space-between;
-  // height: 800px;
-  // text-align: left;
+  text-align: left;
+  // background-color: red;
+  height: 500px;
 }
 .home-content #row {
-  display: flex;
   flex-direction: row;
   align-content: space-between;
 
