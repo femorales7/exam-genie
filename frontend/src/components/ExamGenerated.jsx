@@ -52,7 +52,7 @@ function ExamGenerated(props) {
   };
 
   return (
-    <main className={style.main}>
+    <main>
       <div className="optionForm">
         <div className="options">
           <form onSubmit={onSubmit}>

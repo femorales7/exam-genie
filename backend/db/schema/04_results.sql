@@ -3,6 +3,6 @@ CREATE TABLE results (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   -- question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE,
-  user_answer VARCHAR(255) NOT NULL,
+  user_answer VARCHAR(500) NOT NULL,
   score SMALLINT NOT NULL
 );

@@ -13,7 +13,7 @@ function AboutUs() {
           <div className="profile-container-box">
             <img src={ProfileTemplate} className="profile-image" />
             <div className="profile-bio">
-              <h1>Jongmin</h1>
+              <h1>Jongmin Cha</h1>
               <h2>About:</h2>
               <p>
                 I'm a passionate web developer dedicated to creating immersive

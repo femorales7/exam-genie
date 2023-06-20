@@ -6,7 +6,7 @@ const addResults = (resultObject) => {
   const user_id = 1;
   console.log("qurey", resultObject);
 
-  return db.query(query, [user_id, finalScore, userInput])
+  return db.query(query, [user_id, userInput, finalScore])
     .then(data => {
       console.log('result saved to the database.');
     })

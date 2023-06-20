@@ -2,20 +2,15 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Container } from "react-bootstrap";
 import { Pie } from "react-chartjs-2";
-import { useLocation } from "react-router";
-import { useEffect, useState } from "react";
 import UserQuestions from "../components/UserQuestions";
 
 
 
 function Dashboard(props) {  
   ChartJS.register(ArcElement, Tooltip, Legend);
-  const [show, setShow] = useState()
-
-  
 
   const data = {
-    labels : ["correct", "wrong"],
+    labels : ["correct", "incorrect"],
     datasets : [
       {
         label: "results", 
@@ -42,7 +37,6 @@ function Dashboard(props) {
         answer={question.answer}
         feedback={question.feedback}
         options={question.question_option}
-
       />
     )
   })
@@ -70,7 +64,9 @@ function Dashboard(props) {
     </Container>
     ) : (
         <Container fluid className="project-section">
-          <h1>There is no result yet</h1>
+          <div className="final-results">
+            <h1>There is no result yet</h1>
+          </div>
         </Container>
     )
   )

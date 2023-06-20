@@ -2,7 +2,7 @@ import React from "react";
 import { FcApproval, FcHighPriority } from "react-icons/fc";
 
 const Question = (props) => {
-  
+  console.log("these are key", props.id)
   return (
     props.id === props.currentQuestion && (
       <div className="question-card">
