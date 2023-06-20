@@ -580,6 +580,12 @@ input[type="radio"] {
   max-width: 600px; /* adjust the max-width as per your requirements */
   margin: 0 auto; /* center the exam container horizontally */
 }
+
+main {
+  padding-top: 50px;
+  display: flex;
+}
+
 .main form {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,4 @@
 .question-card{
-  height:950px; /* Altura fija */
-  max-height: 900px;
   width: 950px; /* Anchura fija */
   max-width: 600%;
   overflow:-moz-hidden-unscrollable;
@@ -206,7 +204,6 @@ button {
 
 .optionForm {
   padding-left: 10px;
-  position: fixed;
   left: 0;
   margin-bottom: 20px;
 }
@@ -277,7 +274,6 @@ button {
 }
 
 .options {
-  width: 100%;
   border: 1px solid #ccc;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
