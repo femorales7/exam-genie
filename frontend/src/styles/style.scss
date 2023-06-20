@@ -261,6 +261,7 @@ button:focus {
   position: relative;
   // background-color: aqua;
   width: 50%;
+  padding-left: 50px;
   
 }
 
@@ -286,7 +287,7 @@ button:focus {
   align-content: space-between;
   text-align: left;
   // background-color: red;
-  height: 850px;
+  height: 800px;
 }
 .home-content #row {
   flex-direction: row;
@@ -453,7 +454,7 @@ animation: textShine 5s ease-in-out infinite alternate;
   padding-top: 80px !important;
   padding-bottom: 30px !important;
   flex: 1;
-  min-height: calc(100vh - 10px);
+  min-height: calc(81vh - 10px);
   
 }
 

@@ -7,7 +7,7 @@
   margin-bottom: 20px;
   margin-left: 50px;
 
-  background-color: grey;
+  background-color: rgb(128, 128, 128, 0.6);
   border-radius: 16px;
   padding: 16px;
   
@@ -54,11 +54,16 @@ button {
   display: flex;
   flex-direction: column;
   align-content: center;
-  background-color: darkgray;
-  width: 250px;
+  background-color:  rgb(128, 128, 128, 0.6);
+  width: 275px;
+  padding: 15px;
   justify-content: center;
   border-radius: 16px;
   
+}
+.player-list h2{
+  display: flex;
+  justify-content: center;
 }
 
 //Button addPlayerForm, PlayerList 
@@ -209,12 +214,13 @@ button {
 }
 
 .playerList{
-  padding-top: 10px;
+  padding-top: 15px;
+  width: 280px;
 }
 
 //render loading in the middle of the screen
 .reactLoading{
-  width: 750px;
+  
   padding-top: 250px;
 }
 
@@ -282,4 +288,16 @@ button {
   font-size: 16px;
   font-family: "ColfaxAI", Helvetica, sans-serif;
   color: #353740;
+}
+
+.AnswerFeedback{
+  background-color: rgb(128, 128, 128, 0.6);
+  border-radius: 16px;
+  padding: 16px;
+  color: #fff;
+
+}
+
+.buttonNextQ{
+  padding-top: 10px;
 }

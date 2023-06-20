@@ -5,9 +5,10 @@ import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
 import QuestionList from "./QuestionList";
 import "../styles/ExamGenerated.scss";
+import RingLoader from "react-spinners/RingLoader";
 
 
-import ReactLoading from "react-loading";
+
 
 function ExamGenerated(props) {
   console.log("exam", props);
@@ -109,13 +110,7 @@ function ExamGenerated(props) {
       </div>
       {!loading ? (
         <div className="Loadin">
-          <ReactLoading
-            type={"bars"}
-            color={"#03fc4e"}
-            height={200}
-            width={200}
-            className="reactLoading"
-          />
+          <RingLoader loading={!loading} size={100} color="orange" />
         </div>
       ) : (
         <div>

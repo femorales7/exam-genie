@@ -1,7 +1,7 @@
 .question-card {
   margin: 0 auto;
 
-  background-color: grey;
+  background-color: rgb(128, 128, 128, 0.9);
   border-radius: 16px;
   padding: 16px;
   position: absolute;
@@ -10,6 +10,11 @@
   height: auto;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+
+.question-card h3{
+  display: flex;
+  justify-content: center;
 }
 
 .answers-list {
@@ -26,9 +31,9 @@
 }
 
 .options {
-  background-color: darkgray;
+  background-color: hsl(0, 0%, 66%, 0.6);
   width: 300px;
-  height: 900px;
+  height: auto;
   border-radius: 16px;
   padding: 15px;
 }
@@ -38,7 +43,7 @@
 
 // }
 
-.options-button{
+.options-button {
   color: white;
 }
 
@@ -60,10 +65,22 @@
   }
 }
 
-.Loadin{
+.Loadin {
   width: 100%;
   margin: 0px;
   display: flex;
   justify-content: center;
-  
+  padding-top: 250px;
+}
+
+#opcionesDespl {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  /* font-family: cursive, sans-serif; */
+  outline: 0;
+  background: rgba(219, 164, 26, 0.8); /* Color de fondo con transparencia */
+  color: #fff;
+  border: 1px solid rgb(249, 246, 246);
+  padding: 4px;
+  border-radius: 9px;
 }
