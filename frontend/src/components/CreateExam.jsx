@@ -1,4 +1,11 @@
-const createExam = (props) => {
+import { Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import "../styles/CreateExam.scss"
+
+const CreateExam = () => {
+  const navigate = useNavigate();
+  const [createExam, setCreateExam] = useState("");
 
   const examOnSubmit = (e) => {
     e.preventDefault();
@@ -13,23 +20,33 @@ const createExam = (props) => {
     })
   }
 
+  const onClickHandler = () => {
+    navigate("/exam")
+  }
+
   return (
-    <>
-     <form onSubmit={examOnSubmit}>
-      <h2>Create your exam</h2>
-      <input 
-      type="text"
-      placeholder="Create your exam"
-      value={props.createExam}
-      required
-      onChange={(e) => {
-        props.setCreateExam(e.target.value)
-      }}
-      />
-      <button type="submit">Create</button>
-     </form>
-    </>
+    <Container fluid className="project-section">
+      <div className="exam-container">
+        <div className="exam-container-box">
+          <div className="center">
+            <form onSubmit={examOnSubmit}>
+              <h2>Create your own exam</h2>
+              <input 
+              type="text"
+              placeholder="Create your exam"
+              value={createExam}
+              required
+              onChange={(e) => {
+                setCreateExam(e.target.value)
+              }}
+              />
+              <button type="submit" onClick={onClickHandler}>Create</button>
+            </form>
+          </div>
+      </div>
+    </div>
+  </Container>
   )
 }
 
-export default createExam
+export default CreateExam;

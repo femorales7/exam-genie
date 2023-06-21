@@ -4,7 +4,6 @@ import data from "../components/topics/topics.json";
 import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
 import QuestionList from "./QuestionList";
-import CreateExam from "./CreateExam";
 import "../styles/ExamGenerated.scss";
 
 
@@ -27,12 +26,10 @@ function ExamGenerated(props) {
     }, [])
 
   console.log("this is exam id", props.getExam)
-  // const examId = props.getExam.map((key) => key.id)
-  // const lastExamId = examId[examId.length - 1];
+  const examId = props.getExam.map((key) => key.id)
+  const lastExamId = examId[examId.length - 1];
 
-  // const getExamId = Object.keys(props.getExam)
-  // console.log("get exam id", getExamId[getExamId.length-1])
-  // const examId = getExamId[getExamId.length-1]
+  console.log("get exam id", lastExamId)
   const handleHowManyQuestions = (event) => {
     const numQuestions = event.target.value;
     setHowManyQuestion(numQuestions);
@@ -63,7 +60,7 @@ function ExamGenerated(props) {
       setLoading,
       selectedTopic,
       howManyQuestion,
-      // lastExamId
+      lastExamId
     );
     setQuestions(questionData);
   };
@@ -87,16 +84,14 @@ function ExamGenerated(props) {
     <main>
       <div className="optionForm">
         <div className="options">
-          <CreateExam createExam={createExam} setCreateExam={setCreateExam}/> 
+          {/* <CreateExam createExam={createExam} setCreateExam={setCreateExam}/>  */}
           <form onSubmit={onSubmit}>
             <h2>Topic</h2>
             <div className="options-button">
-              {createExam && (
-                <ButtonOptions
-                  options={Object.keys(data)}
-                  handleOptionSelection={handleCategorySelection}
-                />
-              )}
+              <ButtonOptions
+                options={Object.keys(data)}
+                handleOptionSelection={handleCategorySelection}
+              />
             </div>
             <h2>Sub-Topic</h2>
             <div className="options-button">

@@ -9,6 +9,7 @@ import Game from "./components/game/games";
 import Dashboard from "./pages/dashboard";
 import Preloader from "../src/components/Pre";
 import Construction from "./pages/construction"
+import CreateExam from "./components/CreateExam";
 
 
 import {
@@ -21,7 +22,7 @@ function App() {
   const [load, upadateLoad] = useState(true);
   const [finalScore, setFinalScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [userQuestion, setUserQuestion] = useState(null)
+  const [userQuestion, setUserQuestion] = useState([])
   const [getExam, setGetExam] = useState([])
 
   console.log("This is from app", getExam);
@@ -48,6 +49,7 @@ function App() {
           <ScrollToTop />
           <Routes>
             <Route path="/" exact element={<Home />} />
+            <Route path="/create" exact element={ <CreateExam />}/>
             <Route path="/exam" exact element={
             <Exam 
             finalScore={finalScore} 
