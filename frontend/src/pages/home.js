@@ -1,10 +1,8 @@
 import React from "react";
-import Particle from "./Particle";
 import { Container, Row, Col } from "react-bootstrap";
 import Type from "./Type";
 import "../styles/style.scss";
-import homeImage from "../images/imageHome.png";
-import { faAlignRight } from "@fortawesome/free-solid-svg-icons";
+import HomeVideo from "../components/video/HomeVideo";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function Home() {
@@ -35,6 +33,7 @@ function Home() {
                 Exam Genie is an AI question generator designed the way you want to create questions for your exams. Allowing you to generate different questions for your needs!
               </h3>
                 <Type />
+                <HomeVideo />
             </div>
           </div>
           <div className="home-right--empty">

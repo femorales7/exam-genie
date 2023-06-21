@@ -1,17 +1,47 @@
 .final-results {
+  // width: 100%;
+
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+
+  flex-direction: column;
   /* Center the div  */
-  margin: 0 auto;
+  // margin: 0 auto;
 
   /* Dimensions  */
-  width: 50%; /* Can be in percentage also. */
+  width: 90%; /* Can be in percentage also. */
   height: auto;
-  margin-top: 64px;
+  // margin-top: 64px;
 
   /* Visual  */
-  background-color: gray;
+  background-color: rgba(128, 128, 128, 0.7);
   padding: 16px;
   border-radius: 16px;
   color: white;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+ 
+}
+
+.loading-container {
+  display: flex;
+  justify-self: center;
+  padding-left: 300px;
+}
+
+.results {
+  /* Positioning */
+  // position: fixed;
+  // top: 45%;
+  // right: 500%;
+  // transform: translateY(-50%);
+  // width: 100%;
+  // margin: 0px;
+  // display: flex;
+  // align-self: center;
+  // justify-content: center;
+  // align-content: center;
+  // justify-self: center;
+  padding-left: 550px;
 }

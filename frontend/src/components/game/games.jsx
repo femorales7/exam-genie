@@ -69,7 +69,6 @@ function Game() {
     );
 
     setQuestions(questionData);
-    console.log("return from server", questionData);
   };
   // validation of answer and set new player
   const handleOptionChange = (e) => {
@@ -89,7 +88,6 @@ function Game() {
       setIncorrect(true);
     }
   };
-  console.log("players", players);
 
   // Move to the next question
   const nextQ = (e) => {
@@ -121,7 +119,7 @@ function Game() {
       console.log(currentWinner);
       setWinner(currentWinner);
     }
-
+    setSelectedOption("");
     // Move to the next player
     const nextPlayerIndex = (currentPlayerIndex + 1) % players.length;
     setCurrentPlayerIndex(nextPlayerIndex);
@@ -192,99 +190,99 @@ function Game() {
       <Container fluid className="project-section">
         <Particle />
         <Container>
-          <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-            <Col md={4} className="project-card">
-              <main className="maingame">
-                <div className="optionForm">
-                  <OptionsForm
-                    data={data}
-                    selectedCategory={selectedCategory}
-                    selectedSubcategory={selectedSubcategory}
-                    handleCategorySelection={handleCategorySelection}
-                    handleSubcategorySelection={handleSubcategorySelection}
-                    handleTopicSelection={handleTopicSelection}
-                    onSubmit={onSubmit}
-                    setHowManyQuestion={setHowManyQuestion}
-                    players={players}
-                    handleRemovePlayer={handleRemovePlayer}
-                    handleAddPlayerModal={handleAddPlayerModal}
-                  />
-                </div>
+          <main>
+            <div className="optionForm">
+              <OptionsForm
+                data={data}
+                selectedCategory={selectedCategory}
+                selectedSubcategory={selectedSubcategory}
+                handleCategorySelection={handleCategorySelection}
+                handleSubcategorySelection={handleSubcategorySelection}
+                handleTopicSelection={handleTopicSelection}
+                onSubmit={onSubmit}
+                setHowManyQuestion={setHowManyQuestion}
+                players={players}
+                handleRemovePlayer={handleRemovePlayer}
+                handleAddPlayerModal={handleAddPlayerModal}
+              />
+            </div>
 
-                {isModalOpen && (
-                  <AddPlayerForm
+            {isModalOpen && (
+              <AddPlayerForm
+                players={players}
+                setPlayers={setPlayers}
+                onAddPlayer={handleAddPlayer}
+                onCloseModal={handleCloseModal}
+              />
+            )}
+
+            {!loading ? (
+              <div className="Loadin">
+                <ReactLoading
+                  type={"bars"}
+                  color={"#03fc4e"}
+                  height={200}
+                  width={200}
+                  className="reactLoading"
+                />
+              </div>
+            ) : (
+              <div className="">
+                {questions && (
+                  <QuestionCard
+                    questions={questions}
+                    currentQuestion={currentQuestion}
+                    currentPlayerIndex={currentPlayerIndex}
                     players={players}
-                    setPlayers={setPlayers}
-                    onAddPlayer={handleAddPlayer}
-                    onCloseModal={handleCloseModal}
+                    selectedOption={selectedOption}
+                    answer={answer}
+                    feedback={feedback}
+                    handleOptionChange={handleOptionChange}
+                    onSubmit={onSubmit}
+                    finishExam={finishExam}
+                    nextQ={nextQ}
+                    correct={correct}
+                    incorrect={incorrect}
                   />
                 )}
-                <div className="loading-container">
-                  {!loading ? (
-                    <div className="Loadin">
-                      <ReactLoading
-                        type={"bars"}
-                        color={"#03fc4e"}
-                        height={200}
-                        width={200}
-                        className="reactLoading"
-                      />
-                    </div>
-                  ) : (
-                    <div>
-                      {questions && (
-                        <QuestionCard
-                          questions={questions}
-                          currentQuestion={currentQuestion}
-                          currentPlayerIndex={currentPlayerIndex}
-                          players={players}
-                          selectedOption={selectedOption}
-                          answer={answer}
-                          feedback={feedback}
-                          handleOptionChange={handleOptionChange}
-                          onSubmit={onSubmit}
-                          finishExam={finishExam}
-                          nextQ={nextQ}
-                          correct={correct}
-                          incorrect={incorrect}
-                        />
-                      )}
-                      <>
-                        {showResults && (
-                          <div className="final-results">
-                            <h3>Fianl Results</h3>
-                            {chartData.map((data) => (
-                              <div key={data.playerName}>
-                                <h2>{data.playerName}</h2>
-                                <Pie data={data.data} options={chartOptions} />
-                                <h1>
-                                  {
-                                    players.find(
-                                      (player) =>
-                                        player.name === data.playerName
-                                    ).score
-                                  }{" "}
-                                  out of {questions.length} correct - (
-                                  {(players.find(
-                                    (player) => player.name === data.playerName
-                                  ).score /
-                                    questions.length) *
-                                    100}
-                                  %)
-                                </h1>
-                              </div>
-                            ))}
-                            <h3> {winner}</h3>
-                            <button onClick={finishExam}>Finish Exam</button>
-                          </div>
-                        )}
-                      </>
+                <>
+                <div className="results">
+                  {showResults && (
+                    <div className="final-results">
+                      <h1>Final Results</h1>
+                      {chartData.map((data) => (
+                        <div key={data.playerName}>
+                          <h2>{data.playerName}</h2>
+                          <Pie data={data.data} options={chartOptions} />
+                          <h1>
+                            {
+                              players.find(
+                                (player) => player.name === data.playerName
+                              ).score
+                            }{" "}
+                            out of {questions.length} correct - (
+                            {(players.find(
+                              (player) => player.name === data.playerName
+                            ).score /
+                              questions.length) *
+                              100}
+                            %)
+                          </h1>
+                        </div>
+                      ))}
+                      <h1> {winner}</h1>
+                      <button className="button-pushable" onClick={finishExam}>
+                        <span class="button-shadow"></span>
+                        <span class="button-edge"></span>
+                        <span class="button-front text">Finish Exam</span>
+                      </button>
                     </div>
                   )}
-                </div>
-              </main>
-            </Col>
-          </Row>
+                  </div>
+                </>
+              </div>
+            )}
+          </main>
         </Container>
       </Container>
     </section>
