@@ -3,7 +3,6 @@ import Question from "./Question";
 import { createRoutesFromElements, useNavigate, createBrowserRouter, Link } from "react-router-dom";
 import { Route } from "react-router";
 import "../styles/QuestionList.scss"
-import Dashboard from "../pages/dashboard";
 
 
 const QuestionList = (props) => {

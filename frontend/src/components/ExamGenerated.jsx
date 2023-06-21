@@ -27,7 +27,7 @@ function ExamGenerated(props) {
 
   console.log("this is exam id", props.getExam)
   const examId = props.getExam.map((key) => key.id)
-  const lastExamId = examId[examId.length - 1];
+  const lastExamId = examId.pop();
 
   console.log("get exam id", lastExamId)
   const handleHowManyQuestions = (event) => {
