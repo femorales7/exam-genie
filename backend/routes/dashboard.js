@@ -3,7 +3,7 @@ const { getQuestionsByUserAndExams } = require("../db/queries/getQuestionsByUser
 
 
 router.get('/', (req, res) => {
-    getQuestionsByUserAndExams(1)
+    getQuestionsByUserAndExams()
     .then((data) => {
       console.log("questions", data)
       res.json(data);

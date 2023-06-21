@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Pie } from "react-chartjs-2";
 import Question from "./Question";
 import { createRoutesFromElements, useNavigate, createBrowserRouter, Link } from "react-router-dom";
 import { Route } from "react-router";
@@ -6,6 +8,7 @@ import "../styles/QuestionList.scss"
 
 
 const QuestionList = (props) => {
+  ChartJS.register(ArcElement, Tooltip, Legend);
   // console.log("questionlist", props)
   // const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -64,6 +67,26 @@ const QuestionList = (props) => {
     })
   };
 
+  const data = {
+    labels : ["correct", "incorrect"],
+    datasets : [
+      {
+        label: "results", 
+        data: [props.finalScore, questions.length - props.finalScore],
+        // data: [3, 5],
+        backgroundColor: ["#85C1E9", "#EC7063"],
+        borderColor: "black"
+      }
+    ]
+  };
+  const options = {
+    responsive : true,
+    title : {
+      display : true,
+      text : "Pia chart"
+    },
+  }
+
   const mappedQuestion = questions.map((question, index) => {
     return (
       <Question
@@ -88,10 +111,17 @@ const QuestionList = (props) => {
       {showResults ? (
         <div className="final-results">
           <h1>Fianl Results</h1>
+          <div style={ {width: "50%"}}>
+            <Pie
+              data = {data}
+              options={options}
+            />
+          </div>
           <h2>
             {props.finalScore} out of {questions.length} correct - (
             {(props.finalScore / questions.length) * 100}%)
           </h2>
+          
           <button onClick={finishExam}>Finish Exam</button>
         </div>
       ) : (

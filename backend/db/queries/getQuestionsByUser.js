@@ -1,9 +1,9 @@
 const db = require("../connection");
 
-const getQuestionsByUserAndExams = (userId) => {
-  let query = `SELECT questions.*, exams.id, users.name, exams.name as exam_name FROM questions JOIN users ON users.id = user_id JOIN exams ON users.id = exams.user_id WHERE exams.user_id = $1;`;
+const getQuestionsByUserAndExams = () => {
+  let query = `SELECT questions.*, exams.id, exams.name as exam_name FROM questions JOIN exams ON questions.user_id = exams.user_id  GROUP BY questions.id, exams.id;`;
   return db
-  .query(query, [userId])
+  .query(query)
   .then((data) => {
     return data.rows;
   })

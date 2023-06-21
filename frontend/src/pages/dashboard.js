@@ -27,8 +27,6 @@ function Dashboard(props) {
     .then((data => setExams(data)))
   }, [ListShow])
 
-  console.log("this is props from dashboard", matchId)
-  console.log("this is props from dashboard", props)
 
   const data = {
     labels : ["correct", "incorrect"],
@@ -79,21 +77,11 @@ function Dashboard(props) {
     )
   })
 
+  // console.log(mappedUserQuetions);
+
   return(
     <Container fluid className="project-section">
-        <div className="user-final-results">
-          <div style={ {width: "50%"}}>
-            <Pie
-              data = {data}
-              options={options}
-            />
-          </div>
-          <h1>Final Results</h1>
-          <h2>
-            {props.finalScore} out of {props.currentQuestion + 1} correct - (
-            {(props.finalScore / (props.currentQuestion + 1)) * 100}%)
-          </h2>
-        </div>
+      <div>
         <h1> previous exam</h1>
         {ListShow && (<div>
           {questionList}
@@ -101,6 +89,7 @@ function Dashboard(props) {
         {questionShow && (<div>
           {mappedUserQuetions}
         </div> )}
+      </div>
     </Container>
   )
 }
