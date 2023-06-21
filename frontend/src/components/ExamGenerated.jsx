@@ -17,16 +17,18 @@ function ExamGenerated(props) {
   const [howManyQuestion, setHowManyQuestion] = useState("5");
   const [loading, setLoading] = useState(true);
   const [createExam, setCreateExam] = useState("");
+  const [getExam, setGetExam] = useState([])
+  
 
   // console.log(props.getExam);
     useEffect(() => {
       fetch('http://localhost:8080/exam')
       .then(res => res.json())
-      .then((data => props.setGetExam(data)))
-    }, [])
+      .then((data => setGetExam(data)))
+    }, [howManyQuestion])
 
-  console.log("this is exam id", props.getExam)
-  const examId = props.getExam.map((key) => key.id)
+  console.log("this is exam id", getExam)
+  const examId = getExam.map((key) => key.id)
   const lastExamId = examId.pop();
 
   console.log("get exam id", lastExamId)

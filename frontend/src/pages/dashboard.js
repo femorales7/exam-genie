@@ -34,6 +34,7 @@ function Dashboard(props) {
     return (
       <UserQuestions
         key={index}
+        id={index}
         question={question.question}
         answer={question.answer}
         feedback={question.feedback}

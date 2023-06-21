@@ -18,8 +18,6 @@ function Exam(props) {
             currentQuestion={props.currentQuestion}
             setCurrentQuestion={props.setCurrentQuestion}
             setUserQuestion={props.setUserQuestion}
-            setGetExam={props.setGetExam}
-            getExam={props.getExam}
             />
             </div>
       </Container>
