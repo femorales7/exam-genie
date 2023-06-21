@@ -1,8 +1,6 @@
 const { addQuestions } = require("../db/queries/addQuestions");
 
-const extractQuestionData = (text) => {
-
-  // console.log("text", text)
+const extractQuestionData = (text, examId) => {
 
 const questionBlocks = text.split("===");
 
@@ -19,7 +17,7 @@ const questionObjects = questionBlocks.map((block) => {
 
   const questionObject = { question, answer, feedback, options };
 
-  addQuestions(questionObject)
+  addQuestions(questionObject, examId)
   .then(() => {
 
     console.log('question saved in DB')

@@ -9,6 +9,7 @@ import Game from "./components/game/games";
 import Dashboard from "./pages/dashboard";
 import Preloader from "../src/components/Pre";
 import Construction from "./pages/construction"
+import CreateExam from "./components/CreateExam";
 
 
 import {
@@ -21,7 +22,10 @@ function App() {
   const [load, upadateLoad] = useState(true);
   const [finalScore, setFinalScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [userQuestion, setUserQuestion] = useState(null)
+  const [userQuestion, setUserQuestion] = useState([])
+
+
+  console.log("This is from app", userQuestion);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -44,19 +48,27 @@ function App() {
           <ScrollToTop />
           <Routes>
             <Route path="/" exact element={<Home />} />
+            <Route path="/create" exact element={ <CreateExam />}/>
             <Route path="/exam" exact element={
-            <Exam 
-            finalScore={finalScore} 
-            setFinalScore={setFinalScore} 
-            currentQuestion={currentQuestion} 
-            setCurrentQuestion={setCurrentQuestion}
-            setUserQuestion={setUserQuestion}
-            />
-          } 
+              <Exam 
+              finalScore={finalScore} 
+              setFinalScore={setFinalScore} 
+              currentQuestion={currentQuestion} 
+              setCurrentQuestion={setCurrentQuestion}
+              setUserQuestion={setUserQuestion}
+              />
+            } 
             />
             <Route path="/game" exact element={<Game />} />
             <Route path="/about" exact element={<AboutUs />} />
-            <Route path="/dashboard" exact element={<Dashboard userQuestions={userQuestion} finalScore={finalScore} currentQuestion={currentQuestion} />}/>
+            <Route path="/dashboard" exact element={
+              <Dashboard 
+              userQuestions={userQuestion} 
+              finalScore={finalScore} 
+              currentQuestion={currentQuestion}
+              setUserQuestion={setUserQuestion}
+              />}
+            />
             <Route path="/construction" exact element={<Construction />} />
           </Routes>
           

@@ -31,7 +31,7 @@ const TopMenu2 = () => {
           </Link>
           {isAuthenticated && (
             <>
-              <Link to="/exam">
+              <Link to="/create">
                 <FaBookReader />
                 Test Exam
               </Link>

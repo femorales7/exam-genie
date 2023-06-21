@@ -1,0 +1,25 @@
+.center {
+  margin-top: 50px;
+  margin-bottom: 25px;
+  // background-color: aqua;
+  display: flex;
+  justify-content: center;
+}
+
+.exam-container {
+  margin-top: 250px;
+  margin-bottom: 25px;
+  // background-color: aqua;
+  display: flex;
+  justify-content: center;
+}
+
+.exam-container-box {
+  // display: flex;
+  width: 60%;
+  border: solid 2px black;
+  border-radius: 16px;
+  padding: 10px;
+  background-color: rgb(245, 245, 234);
+  text-align: center;
+}

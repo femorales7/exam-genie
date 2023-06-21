@@ -20,8 +20,7 @@ function AboutUs() {
               </p>
               <h2>Hobbies:</h2>
               <p>
-                Insert Hobbies here, Insert Hobbies here, Insert Hobbies here,
-                Insert Hobbies here,
+                I like to go hiking and play video game. 
               </p>
               <h2>Contact:</h2>
               <h2>

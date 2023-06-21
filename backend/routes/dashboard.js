@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const getQuestionsByUserQuery = require("../db/queries/getQuestionsByUser");
+const { getQuestionsByUserAndExams } = require("../db/queries/getQuestionsByUser");
 
 
 router.get('/', (req, res) => {
-    getQuestionsByUserQuery.getQuestionsByUser(1)
+    getQuestionsByUserAndExams()
     .then((data) => {
       console.log("questions", data)
       res.json(data);
