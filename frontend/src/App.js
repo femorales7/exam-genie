@@ -25,6 +25,7 @@ function App() {
   const [getExam, setGetExam] = useState([])
 
   console.log("This is from app", getExam);
+  console.log("This is from app", userQuestion);
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -4,6 +4,7 @@ import data from "../components/topics/topics.json";
 import ButtonOptions from "./generatedQuestion/ButtonOptions";
 import generateQuestion from "./generatedQuestion/generateQuestion";
 import QuestionList from "./QuestionList";
+import CreateExam from "./CreateExam";
 import "../styles/ExamGenerated.scss";
 
 import ReactLoading from "react-loading";
@@ -23,31 +24,37 @@ function ExamGenerated(props) {
       .then(res => res.json())
       .then((data => props.setGetExam(data)))
     }, [])
-  console.log(props.getExam)
-  const getExamId = props.getExam.map((key) => key.id)
-  console.log(getExamId)
+
+  console.log("this is exam id", props.getExam)
+  // const examId = props.getExam.map((key) => key.id)
+  // const lastExamId = examId[examId.length - 1];
+
+  // const getExamId = Object.keys(props.getExam)
+  // console.log("get exam id", getExamId[getExamId.length-1])
+  // const examId = getExamId[getExamId.length-1]
   const handleHowManyQuestions = (event) => {
     const numQuestions = event.target.value;
     setHowManyQuestion(numQuestions);
   };
 
-  const examOnSubmit = (e) => {
-    e.preventDefault();
+  // const examOnSubmit = (e) => {
+  //   e.preventDefault();
 
-    const exam = { createExam }
-    fetch('http://localhost:8080/exam', {
-      method: 'POST',
-      headers: { "Content-Type" : "application/json"},
-      body: JSON.stringify(exam)
-    }).then(() => {
-      console.log("exam created")
-    })
-  }
+  //   const exam = { createExam }
+  //   fetch('http://localhost:8080/exam', {
+  //     method: 'POST',
+  //     headers: { "Content-Type" : "application/json"},
+  //     body: JSON.stringify(exam)
+  //   }).then(() => {
+  //     console.log("exam created")
+  //   })
+  // }
 
 
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log("howManyQuestion in call funtion", howManyQuestion);
+    // console.log("this is lase exam id", lastExamId)
     setLoading(false);
     const questionData = await generateQuestion(
       selectedCategory,
@@ -55,7 +62,7 @@ function ExamGenerated(props) {
       setLoading,
       selectedTopic,
       howManyQuestion,
-      // getExamId
+      // lastExamId
     );
     setQuestions(questionData);
   };
@@ -79,19 +86,7 @@ function ExamGenerated(props) {
     <main>
       <div className="optionForm">
         <div className="options">
-          <form onSubmit={examOnSubmit}>
-            <h2>Create your exam</h2>
-            <input 
-             type="text"
-             placeholder="Create your exam"
-             value={createExam}
-             required
-             onChange={(e) => {
-              setCreateExam(e.target.value)
-             }}
-             />
-            <button type="submit">Create</button>
-          </form>
+          <CreateExam createExam={createExam} setCreateExam={setCreateExam}/> 
           <form onSubmit={onSubmit}>
             <h2>Topic</h2>
             <div className="options-button">

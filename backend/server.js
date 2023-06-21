@@ -12,6 +12,7 @@ const generate = require("./generate")
 const extractQuestionData = require('./helpFunction/extractQuestions')
 const { addQuestions } = require("./db/queries/addQuestions")
 const { addResults } = require("./db/queries/addResults")
+const { addExams } = require("./db/queries/addExams")
 // const { saveResponseToDatabase } = require('./database');
 
 // import dotenv from "dotenv"
@@ -59,6 +60,7 @@ const widgetApiRoutes = require("./routes/widgets-api");
 const usersRoutes = require("./routes/users");
 
 const dashboardRoutes = require("./routes/dashboard")
+const examRoutes = require("./routes/exam")
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -68,6 +70,7 @@ app.use("/api/widgets", widgetApiRoutes);
 app.use("/users", usersRoutes);
 
 app.use("/dashboard", dashboardRoutes);
+app.use("/exam", examRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -75,7 +78,10 @@ app.use("/dashboard", dashboardRoutes);
 // Separate them into separate routes files (see above).
 
 app.post("/generate", async (req, res) => {
-  const question = req.body.question
+  const question = req.body.question;
+  const examId = req.body.examId;
+  console.log("what is in examId", examId)
+  console.log("what is in req body", req.body)
   try{
     const user_question = await generate(question, openai);
 
@@ -85,7 +91,7 @@ app.post("/generate", async (req, res) => {
 
 
     res.json({response: user_question})
-    extractQuestionData(user_question)
+    extractQuestionData(user_question, examId)
 
   }catch(error) {
     console.error(error)
@@ -95,7 +101,6 @@ app.post("/generate", async (req, res) => {
 
 app.post("/result", (req, res) => {
   const userAnswer = req.body
-  console.log("sever side", userAnswer);
   addResults(userAnswer)
   .then(() => {
     console.log('user result save')
@@ -105,6 +110,8 @@ app.post("/result", (req, res) => {
   })
 
 })
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

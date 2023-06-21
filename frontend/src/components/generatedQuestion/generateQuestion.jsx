@@ -8,7 +8,7 @@ const generateQuestion = async (
   setLoading,
   selectedTopic,
   howManyQuestion,
-  getExamId
+  lastExamId
 ) => {
   console.log("howmanyquestion", howManyQuestion);
   const structure = `I need ${howManyQuestion} questions type test of ${selectedCategory}-${selectedSubcategory}-${selectedTopic} with feedback the reason of that answer, I need before the question put Q: , before the each option put A), B), C), D), E) as appropriate, before the answer put Answer: and before the feedback put feedback, summarize feeback as possible. seperate each question by three equal to characters (===)`;
@@ -18,7 +18,7 @@ const generateQuestion = async (
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ question: structure }),
+    body: JSON.stringify({ question: structure, examId: lastExamId }),
   });
   const data = await response.json();
 
@@ -28,7 +28,7 @@ const generateQuestion = async (
   setLoading(true);
   console.log("before", questions)
 
-  questions.getExamId = getExamId;
+  questions.lastExamId = lastExamId;
 
   console.log("after", questions)
 
