@@ -1,7 +1,7 @@
 const db = require("../connection");
 
-const getQuestionsByUser = (userId) => {
-  let query = `SELECT questions.* FROM questions JOIN users ON users.id = user_id WHERE user_id = $1;`;
+const getQuestionsByUserAndExams = (userId) => {
+  let query = `SELECT questions.*, exams.id, users.name FROM questions JOIN users ON users.id = user_id JOIN exams ON users.id = exams.user_id WHERE exams.user_id = $1;`;
   return db
   .query(query, [userId])
   .then((data) => {
@@ -12,4 +12,4 @@ const getQuestionsByUser = (userId) => {
   });
 };
 
-module.exports = { getQuestionsByUser };
+module.exports = { getQuestionsByUserAndExams };
