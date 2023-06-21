@@ -38,6 +38,19 @@ button:focus {
   background-position: center;
 }
 
+.home-right--empty {
+  justify-content: center;
+}
+
+.home-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin: 100px;
+}
+
+.home-image {
+  width: 500px;
+}
 
 
 /* --------- */
@@ -287,7 +300,11 @@ button:focus {
   align-content: space-between;
   text-align: left;
   // background-color: red;
+<<<<<<< HEAD
   height: 800px;
+=======
+  height: 500px;
+>>>>>>> feature/botfooter
 }
 .home-content #row {
   flex-direction: row;
