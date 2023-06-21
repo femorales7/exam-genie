@@ -38,6 +38,19 @@ button:focus {
   background-position: center;
 }
 
+.home-right--empty {
+  justify-content: center;
+}
+
+.home-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin: 100px;
+}
+
+.home-image {
+  width: 500px;
+}
 
 
 /* --------- */
@@ -286,7 +299,7 @@ button:focus {
   align-content: space-between;
   text-align: left;
   // background-color: red;
-  height: 850px;
+  height: 500px;
 }
 .home-content #row {
   flex-direction: row;
