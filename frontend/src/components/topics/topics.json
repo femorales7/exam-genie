@@ -166,5 +166,52 @@
       "Theories and paradigms",
       "Scientific revolutions"
     ]
+  },
+
+  "Canadian Citizenship": {
+    "Rights and Responsibilities of Canadian Citizens":[
+      "Fundamental rights and freedoms",
+      "Equality rights",
+      "Responsibilities of citizens",
+      "Voting rights and participation"
+  ],
+    "Canadian History": [
+      "Indigenous peoples and early settlers",
+      "French and British colonization",
+      "Confederation and the formation of Canada",
+      "World Wars and Canadian contributions",
+      "Recent history and notable events"
+    ],
+    "Canadian Government": [
+      "Structure of government (federal, provincial, and municipal)",
+      "The Constitution and Charter of Rights and Freedoms",
+      "Roles of the Prime Minister, Governor General, and Premier",
+      "Canadian political parties"
+    ],
+    "Canadian Geography": [
+      "Provinces and territories",
+      "Major cities and landmarks",
+      "Natural features (lakes, rivers, mountains)",
+      "Climate and regions"
+    ],
+    "Canadian Economy and Society": [
+      "Economic sectors and industries",
+      "Multiculturalism and diversity",
+      "Official languages (English and French)",
+      "Social programs and healthcare"
+    ],
+    "Canadian Symbols": [
+      "National flag",
+      "National anthem",
+      "Coat of arms",
+      "National holidays"
+    ],
+    "Canadian Culture and Celebrations": [
+      "Arts and literature",
+      "Sports and recreational activities",
+      "Festivals and traditions",
+      "Indigenous cultures"
+    ]
   }
+  
 }

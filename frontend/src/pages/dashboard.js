@@ -47,8 +47,9 @@ function Dashboard(props) {
       text : "Pia chart"
     },
   }
-
+console.log("exams", exams)
   const questionList = exams.map((exam, index) => {
+    
     return(
       <ul>
         <li key={index} onClick={() => {
@@ -61,7 +62,7 @@ function Dashboard(props) {
       </ul>
     )
   })
-
+  console.log("props.userQuestions", props.userQuestions)
   const mappedUserQuetions = props.userQuestions.map((question, index) => {
     return (
       <UserQuestions
@@ -77,7 +78,9 @@ function Dashboard(props) {
     )
   })
 
-  // console.log(mappedUserQuetions);
+  console.log("mappedUserQuetions", mappedUserQuetions);
+  console.log("questionShow", questionShow)
+  console.log("questionList", questionList)
 
   return(
     <Container fluid className="project-section">

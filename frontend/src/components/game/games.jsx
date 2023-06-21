@@ -16,12 +16,7 @@ import "../../styles/Game.scss";
 import "../../styles/ExamGenerated.scss";
 
 import AddPlayerForm from "./AddPlayerForm";
-// const override: CSSProperties = {
-//   display: "block",
-//   margin: "0 auto",
-//   borderColor: "red",
-//   paddingTop: "150px"
-// };
+
 
 function Game() {
   ChartJS.register(ArcElement, Tooltip, Legend);
@@ -132,7 +127,7 @@ function Game() {
     setCurrentPlayerIndex(nextPlayerIndex);
   };
 
-  console.log("showResults", showResults);
+  
   const handleAddPlayer = (playerName) => {
     if (playerName) {
       setPlayers([...players, { name: playerName, score: 0 }]);
@@ -162,7 +157,7 @@ function Game() {
     },
   }));
 
-  console.log("chartData", chartData);
+  
   const chartOptions = {
     responsive: true,
     title: {

@@ -54,7 +54,7 @@ function ExamGenerated(props) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("howManyQuestion in call funtion", howManyQuestion);
+    
     // console.log("this is lase exam id", lastExamId)
     setLoading(false);
     const questionData = await generateQuestion(
@@ -152,7 +152,7 @@ function ExamGenerated(props) {
               setFinalScore={props.setFinalScore}
               currentQuestion={props.currentQuestion}
               setCurrentQuestion={props.setCurrentQuestion}
-              setUserQuestion={props.setUserQuestion}
+              // setUserQuestion={props.setUserQuestion}
             />
           )}
         </div>

@@ -37,7 +37,7 @@ function App() {
 
 
 
-  // console.log('userQuestions from backend', userQuestion);
+  console.log('userQuestions from backend', userQuestion);
 
   return (
     <div className="App">
@@ -55,7 +55,7 @@ function App() {
               setFinalScore={setFinalScore} 
               currentQuestion={currentQuestion} 
               setCurrentQuestion={setCurrentQuestion}
-              setUserQuestion={setUserQuestion}
+              // setUserQuestion={setUserQuestion}
               />
             } 
             />

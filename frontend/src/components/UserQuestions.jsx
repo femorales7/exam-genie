@@ -7,14 +7,22 @@ const UserQuestions = (props) => {
   function refreshPage() {
     window.location.reload(false);
   }
+
+
+  // const option1 = props.options;
+
+  
   const option1 = props.options;
-  // console.log(option1)
+  console.log("option1", option1)
   const ArrayOptions = option1.substring(1, option1.length - 1).split(",");
-  // console.log(ArrayOptions);
+  console.log("ArrayOptions", ArrayOptions);
   const lastOption = ArrayOptions[ArrayOptions.length - 1];
   const options = ArrayOptions.filter((item) => item !== lastOption);
-  // console.log("options UserQuestion", options);
-  console.log(props.exam_id, props.matchId)
+  console.log("options UserQuestion", options);
+  console.log(" props.matchId", props.matchId)
+  console.log("props.exam_id",props.exam_id)
+  console.log("props.question", props.question)
+  console.log("options", options)
   return (
     <>
       {props.exam_id === props.matchId && (
