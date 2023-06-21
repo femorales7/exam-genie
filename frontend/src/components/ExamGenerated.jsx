@@ -25,7 +25,7 @@ function ExamGenerated(props) {
       fetch('http://localhost:8080/exam')
       .then(res => res.json())
       .then((data => setGetExam(data)))
-    }, [howManyQuestion])
+    }, [selectedCategory])
 
   console.log("this is exam id", getExam)
   const examId = getExam.map((key) => key.id)

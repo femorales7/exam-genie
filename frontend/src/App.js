@@ -50,18 +50,25 @@ function App() {
             <Route path="/" exact element={<Home />} />
             <Route path="/create" exact element={ <CreateExam />}/>
             <Route path="/exam" exact element={
-            <Exam 
-            finalScore={finalScore} 
-            setFinalScore={setFinalScore} 
-            currentQuestion={currentQuestion} 
-            setCurrentQuestion={setCurrentQuestion}
-            setUserQuestion={setUserQuestion}
-            />
-          } 
+              <Exam 
+              finalScore={finalScore} 
+              setFinalScore={setFinalScore} 
+              currentQuestion={currentQuestion} 
+              setCurrentQuestion={setCurrentQuestion}
+              setUserQuestion={setUserQuestion}
+              />
+            } 
             />
             <Route path="/game" exact element={<Game />} />
             <Route path="/about" exact element={<AboutUs />} />
-            <Route path="/dashboard" exact element={<Dashboard userQuestions={userQuestion} finalScore={finalScore} currentQuestion={currentQuestion} />}/>
+            <Route path="/dashboard" exact element={
+              <Dashboard 
+              userQuestions={userQuestion} 
+              finalScore={finalScore} 
+              currentQuestion={currentQuestion}
+              setUserQuestion={setUserQuestion}
+              />}
+            />
             <Route path="/construction" exact element={<Construction />} />
           </Routes>
           

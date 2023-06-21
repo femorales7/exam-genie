@@ -4,11 +4,31 @@ import { Container } from "react-bootstrap";
 import { Pie } from "react-chartjs-2";
 import UserQuestions from "../components/UserQuestions";
 import "../styles/dashboard.scss"
+import { useEffect, useState } from "react";
 
 
 
-function Dashboard(props) {  
+function Dashboard(props) {
+  const [ListShow, setListShow] = useState(true);
+  const [questionShow, setQuestionShow] = useState(false);
+  const [exams, setExams] = useState([]);
+  const [matchId, setMatchId] = useState([]);
   ChartJS.register(ArcElement, Tooltip, Legend);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/dashboard')
+    .then(res => res.json())
+    .then((data => { props.setUserQuestion(data)}))
+  }, [ListShow])
+
+  useEffect(() => {
+    fetch('http://localhost:8080/exam')
+    .then(res => res.json())
+    .then((data => setExams(data)))
+  }, [ListShow])
+
+  console.log("this is props from dashboard", matchId)
+  console.log("this is props from dashboard", props)
 
   const data = {
     labels : ["correct", "incorrect"],
@@ -30,11 +50,27 @@ function Dashboard(props) {
     },
   }
 
+  const questionList = exams.map((exam, index) => {
+    return(
+      <ul>
+        <li key={index} onClick={() => {
+          setQuestionShow(true) 
+          setListShow(false)
+          setMatchId(exam.id)
+          }}>
+          {exam.name}
+        </li>
+      </ul>
+    )
+  })
+
   const mappedUserQuetions = props.userQuestions.map((question, index) => {
     return (
       <UserQuestions
         key={index}
         id={index}
+        exam_id={question.exam_id}
+        matchId={matchId}
         question={question.question}
         answer={question.answer}
         feedback={question.feedback}
@@ -44,7 +80,6 @@ function Dashboard(props) {
   })
 
   return(
-    props.currentQuestion !== 0 ? (
     <Container fluid className="project-section">
         <div className="user-final-results">
           <div style={ {width: "50%"}}>
@@ -53,24 +88,20 @@ function Dashboard(props) {
               options={options}
             />
           </div>
-          <h1>Fianl Results</h1>
+          <h1>Final Results</h1>
           <h2>
             {props.finalScore} out of {props.currentQuestion + 1} correct - (
             {(props.finalScore / (props.currentQuestion + 1)) * 100}%)
           </h2>
         </div>
-        <h1>{props.userQuestions[0].name}'s previous exam</h1>
-        <div>
-            {mappedUserQuetions}
-        </div>
+        <h1> previous exam</h1>
+        {ListShow && (<div>
+          {questionList}
+        </div>)}
+        {questionShow && (<div>
+          {mappedUserQuetions}
+        </div> )}
     </Container>
-    ) : (
-        <Container fluid className="project-section">
-          <div className="final-results">
-            <h1>There is no result yet</h1>
-          </div>
-        </Container>
-    )
   )
 }
 
