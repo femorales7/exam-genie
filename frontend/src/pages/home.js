@@ -41,7 +41,7 @@ function Home() {
           <HomeVideo />
           </div>
         </Container>
-        <Container>
+        {/* <Container>
           <div className="home-bottom">
             <div>
               <h2>Study</h2>
@@ -55,7 +55,7 @@ function Home() {
               <img src={TestPicture} className="home-image"/>
             </div>
           </div>
-        </Container>
+        </Container> */}
       </Container>
     </section>
   );

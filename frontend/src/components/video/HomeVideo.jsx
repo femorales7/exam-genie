@@ -8,7 +8,7 @@ const HomeVideo = () => {
   return (
 <iframe src="https://player.vimeo.com/video/837867362?badge=0"
 width="100%"
-height="350"
+height="500"
 frameborder="0" 
 title="home-video">
 </iframe>
