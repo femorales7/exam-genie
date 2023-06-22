@@ -19,6 +19,7 @@
   padding: 0;
   color: #fff;
   text-align: center;
+  font-family: "Helvetica Neue", sans-serif;
 }
 
 .AddPlayer-box .nickName-box {
@@ -35,6 +36,7 @@
   border-bottom: 1px solid #fff;
   outline: none;
   background: transparent;
+  font-family: "Helvetica Neue", sans-serif;
 }
 
 .AddPlayer-box .nickName-box input::placeholder {
@@ -49,6 +51,7 @@
   color: #ffffff;
   pointer-events: none;
   transition: .5s;
+  font-family: "Helvetica Neue", sans-serif;
 }
 
 .AddPlayer-box .nickName-box input:focus ~ label,

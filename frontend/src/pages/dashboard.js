@@ -51,13 +51,14 @@ console.log("exams", exams)
   const questionList = exams.map((exam, index) => {
     
     return(
-      <ul>
-        <li key={index} onClick={() => {
+      <ul className="listExamsUl">
+        <li className="listExams" key={index} onClick={() => {
           setQuestionShow(true) 
           setListShow(false)
           setMatchId(exam.id)
+          
           }}>
-          {exam.name}
+          &#10146; {exam.name}
         </li>
       </ul>
     )
@@ -85,7 +86,7 @@ console.log("exams", exams)
   return(
     <Container fluid className="project-section">
       <div>
-        <h1> previous exam</h1>
+      <h1 className="Previous_Exam">Previous Exam</h1>
         {ListShow && (<div>
           {questionList}
         </div>)}

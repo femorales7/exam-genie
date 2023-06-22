@@ -1,6 +1,7 @@
 import ProfileTemplate from "../images/ProfileTemplate.jpg";
 import AvatarFabian from "../images/AvatarFabian.png";
 import Mathew from "../images/Mathew.jpeg";
+import avatarJonmin from "../images/avatarJonmin.jpeg"
 
 import { Container } from "react-bootstrap";
 import { FaGithub, FaLinkedin, FaMailBulk } from "react-icons/fa";
@@ -12,7 +13,7 @@ function AboutUs() {
       <Container fluid className="project-section">
         <div className="profile-container">
           <div className="profile-container-box">
-            <img src={ProfileTemplate} className="profile-image" />
+            <img src={avatarJonmin} className="profile-image" />
             <div className="profile-bio">
               <h1>Jongmin Cha</h1>
               <h2>About:</h2>
